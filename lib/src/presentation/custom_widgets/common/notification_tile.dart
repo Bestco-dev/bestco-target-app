@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../common/res/colors.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../domain/entities/notification/notification.dart';
-import '../../pages/visit_details/visit_details.dart';
 import 'shimmer_tile.dart';
 
 class NotificationTile extends StatelessWidget {
@@ -25,20 +23,20 @@ class NotificationTile extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         // if (notification.isVisit ) {
-        context.pushNamed(
-          VisitDetailsPage.pageName,
-          pathParameters: {"id": notification.id.toString()},
-        );
+        // context.pushNamed(
+        //   VisitDetailsPage.pageName,
+        //   pathParameters: {"id": notification.id.toString()},
+        // );
         // }
 
         switch (notification.type) {
           case NotificationType.visitAssign ||
                 NotificationType.emergencyVisitAssign ||
                 NotificationType.maintenanceAssign:
-            context.pushNamed(
-              VisitDetailsPage.pageName,
-              pathParameters: {"id": notification.id.toString()},
-            );
+            // context.pushNamed(
+            //   VisitDetailsPage.pageName,
+            //   pathParameters: {"id": notification.id.toString()},
+            // );
             return;
           default:
             return;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../common/res/gaps.dart';
@@ -12,7 +11,7 @@ import '../../custom_widgets/common/status_bar_container.dart';
 import '../../custom_widgets/common/visit_tile.dart';
 import '../../view_models/language_view_model.dart';
 import '../../view_models/visits/visits_view_model.dart';
-import '../visit_details/visit_details.dart';
+
 
 class CalenderMobilePage extends ConsumerStatefulWidget {
   const CalenderMobilePage({Key? key}) : super(key: key);
@@ -61,10 +60,7 @@ class _CalenderMobilePageState extends ConsumerState<CalenderMobilePage> {
                             (visit) => VisitTile(
                               visit: visit,
                               onPressed: () {
-                                context.pushNamed(VisitDetailsPage.pageName,
-                                    pathParameters: {
-                                      "id": visit.id.toString()
-                                    });
+
                               },
                             ),
                           )

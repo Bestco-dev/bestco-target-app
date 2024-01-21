@@ -11,19 +11,13 @@ import '../../common/utils/http_client/token_provider.dart';
 import '../../common/utils/storage/shared_pref_util.dart';
 import '../../domain/entities/app_state/app_state.dart';
 import '../../domain/entities/contract/contract_entity.dart';
-import '../../domain/entities/equipment/equipment.dart';
 import '../../domain/entities/invoice/invoice_entity.dart';
-import '../../domain/entities/system/system.dart';
 import '../../domain/entities/user/user.dart';
-import '../../domain/entities/visit/visit.dart';
 import '../pages/about_app/about_app.dart';
 import '../pages/change_password/change_password.dart';
-import '../pages/check/check.dart';
 import '../pages/customer_curd/customer_curd.dart';
 import '../pages/customer_details/customer_details.dart';
 import '../pages/customers/customers.dart';
-import '../pages/equipements_history/equipment_history.dart';
-import '../pages/equipements_report/equipment_report.dart';
 import '../pages/forget_password/forget_password.dart';
 import '../pages/index/index.dart';
 import '../pages/invoice_details/invoice_details.dart';
@@ -33,8 +27,6 @@ import '../pages/login/login.dart';
 import '../pages/order_curd/order_curd.dart';
 import '../pages/order_details/order_details.dart';
 import '../pages/orders/orders.dart';
-import '../pages/proceed_emergency/proceed_emergency.dart';
-import '../pages/proceed_visit/proceed_visit.dart';
 import '../pages/product_details/product_details.dart';
 import '../pages/products/products.dart';
 import '../pages/profile/profile.dart';
@@ -42,8 +34,6 @@ import '../pages/saleperson_curd/saleperson_curd.dart';
 import '../pages/salepersons/salepersons.dart';
 import '../pages/slaeperson_details/saleperson_details.dart';
 import '../pages/splashscreen/splashscreen.dart';
-import '../pages/visit_details/visit_details.dart';
-import '../pages/visits/visits.dart';
 import 'auth/user_view_model.dart';
 
 final routerNotifierProvider =
@@ -60,31 +50,9 @@ List<ShellRoute> get routes => [
             path: "/",
             builder: (context, state) => const IndexPage(),
             routes: [
-              GoRoute(
-                path: "check/:id",
-                name: CheckPage.pageName,
-                builder: (context, state) {
-                  final idParam = state.pathParameters['id'];
-                  final id = int.parse(idParam!);
-                  return CheckPage(visitId: id);
-                },
-              ),
-              GoRoute(
-                path: "proceed-visit",
-                name: ProceedVisitPage.pageName,
-                builder: (context, state) {
-                  // final idParam = state.pathParameters['id'];
-                  // final id = int.parse(idParam!);
-                  return ProceedVisitPage(visit: state.extra as VisitModel);
-                },
-              ),
-              GoRoute(
-                path: "proceed-emergency",
-                name: ProceedEmergencyPage.pageName,
-                builder: (context, state) {
-                  return const ProceedEmergencyPage();
-                },
-              ),
+
+
+
               GoRoute(
                 path: "customers",
                 name: CustomersPage.pageName,
@@ -180,21 +148,6 @@ List<ShellRoute> get routes => [
               ),
 
               GoRoute(
-                path: "equipmentReport",
-                name: EquipmentReport.pageName,
-                builder: (context, state) {
-                  return EquipmentReport(system: state.extra as SystemModel);
-                },
-              ),
-              GoRoute(
-                path: "equipmentHistory",
-                name: EquipmentHistory.pageName,
-                builder: (context, state) {
-                  return EquipmentHistory(
-                      equipment: state.extra as EquipmentModel);
-                },
-              ),
-              GoRoute(
                 path: "profile",
                 name: ProfilePage.pageName,
                 builder: (context, state) {
@@ -213,22 +166,6 @@ List<ShellRoute> get routes => [
                 name: ChangePasswordPage.pageName,
                 builder: (context, state) {
                   return const ChangePasswordPage();
-                },
-              ),
-              GoRoute(
-                path: "visits",
-                name: VisitsPage.pageName,
-                builder: (context, state) {
-                  return const VisitsPage();
-                },
-              ),
-              GoRoute(
-                path: "visits/:id",
-                name: VisitDetailsPage.pageName,
-                builder: (context, state) {
-                  final idParam = state.pathParameters['id'];
-                  final id = int.parse(idParam!);
-                  return VisitDetailsPage(visitId: id);
                 },
               ),
               GoRoute(

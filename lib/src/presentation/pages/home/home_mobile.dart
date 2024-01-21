@@ -5,18 +5,12 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../../locales/localization/l10n.dart';
-import '../../../common/res/colors.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
-import '../../../common/utils/extensions/datetime.dart';
-import '../../../data/types/types.dart';
-import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/news_curser.dart';
-import '../../custom_widgets/common/recordset/error_recordset.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
-import '../../custom_widgets/common/visit_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
 import '../../view_models/visits/visits_view_model.dart';
 import '../customers/customers.dart';
@@ -24,7 +18,7 @@ import '../orders/orders.dart';
 import '../products/products.dart';
 import '../profile/profile.dart';
 import '../salepersons/salepersons.dart';
-import '../visit_details/visit_details.dart';
+
 
 class HomeMobilePage extends ConsumerStatefulWidget {
   const HomeMobilePage({Key? key}) : super(key: key);
@@ -393,135 +387,6 @@ class _HomeIcons extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _WhatsComing extends ConsumerWidget {
-  const _WhatsComing({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            Localization.current.whatsComing,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-                fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const SizedBox(height: 20),
-        ref.watch(visitsWhatsComingViewModelProvider).maybeWhen(
-              orElse: () => const SizedBox.shrink(),
-              loading: () => const _WhatsComingPlaceholder(),
-              error: (e) => RecordSetErrorWidget(errorMessage: e.message),
-              data: (visits) => Expanded(
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  // padding: EdgeInsets.only(top: 18),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => SizedBox(
-                    width: context.width - 70,
-                    child: GestureDetector(
-                      onTap: () {
-                        context.pushNamed(VisitDetailsPage.pageName,
-                            pathParameters: {
-                              "id": visits[index].id.toString()
-                            });
-                      },
-                      child: CustomCard(
-                        radius: 20,
-                        hm: 10,
-                        vm: 0,
-                        hp: 10,
-                        vp: 0,
-                        borderColor: ResColors.primary,
-                        child: Center(
-                          child: SingleChildScrollView(
-                            child: Row(
-                              children: [
-                                const SizedBox(width: 8),
-                                Container(
-                                  width: 3,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    color: visits[index].type.color,
-                                  ),
-                                ),
-                                const SizedBox(width: 15),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      StatusText(
-                                        color: visits[index].type.color,
-                                        label: visits[index].type.translate,
-                                      ),
-                                      // const SizedBox(height: 10),
-                                      ListTile(
-                                        contentPadding: EdgeInsets.zero,
-                                        title: Text(
-                                          visits[index].date.toTodayDisplay,
-                                        ),
-                                        subtitle: Container(
-                                          margin: const EdgeInsets.only(top: 4),
-                                          child: Text(
-                                            visits[index].systems[0].name,
-                                            maxLines: 2,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                // Expanded(
-                                //   child: ListTile(
-                                //     // contentPadding: EdgeInsets.zero,
-                                //     title: Row(
-                                //       children: [
-                                //         Expanded(
-                                //           child: Text(visits[index].date.displayDate),
-                                //         ),
-                                //
-                                //       ],
-                                //     ),
-                                //     subtitle: Text(
-                                //       visits[index].customer.name *5,
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // child: VisitTile(
-                    //   onPressed: () {
-                    //     print("home");
-                    //     context.pushNamed(VisitDetailsPage.pageName,
-                    //         pathParameters: {"id": data[index].id.toString()});
-                    //   },
-                    //   radius: 20,
-                    //   visit: data[index],
-                    // ),
-                  ),
-                  itemCount: visits.length,
-                ),
-              ),
-            )
-      ],
     );
   }
 }

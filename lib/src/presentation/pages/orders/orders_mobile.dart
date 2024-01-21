@@ -2,27 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/gaps.dart';
-import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
-import '../../../domain/entities/system/system.dart';
 import '../../../domain/use_cases/systems/customers_view_model.dart';
 import '../../custom_widgets/common/add_new.dart';
-import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/card.dart';
-import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_tag.dart';
-import '../../custom_widgets/common/images/transparent_image.dart';
-import '../../custom_widgets/common/pagination/pagination.dart';
-import '../../custom_widgets/common/recordset/empty.dart';
-import '../../custom_widgets/common/recordset/error_recordset.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
-import '../../custom_widgets/common/spinner.dart';
-import '../customer_curd/customer_curd.dart';
-import '../customer_details/customer_details.dart';
 import '../order_details/order_details.dart';
 
 class OrdersMobilePage extends ConsumerStatefulWidget {

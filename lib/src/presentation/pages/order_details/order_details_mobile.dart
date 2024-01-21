@@ -3,16 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
 import '../../../domain/use_cases/systems/customers_view_model.dart';
-import '../../custom_widgets/common/buttons.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/custom_tag.dart';
-import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
 import '../customer_curd/customer_curd.dart';
 
