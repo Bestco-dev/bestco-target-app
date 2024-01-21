@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart'; class LoginTabletPage extends StatefulWidget {const LoginTabletPage({Key? key}) : super(key: key); @override State<LoginTabletPage> createState() => _LoginTabletPageState(); } class _LoginTabletPageState extends State<LoginTabletPage> { @override Widget build(BuildContext context) { return const Text('Login'); } }

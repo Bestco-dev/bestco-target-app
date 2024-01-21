@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>692009010479-si918r0k7daq7h8nt7dr7qmp22f4lptn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.692009010479-si918r0k7daq7h8nt7dr7qmp22f4lptn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCt-X1ZHWlMVwH8GRcXBYaZaDuBBghmDeE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>692009010479</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fireMate</string>
+	<key>PROJECT_ID</key>
+	<string>fire-watch-2024</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fire-watch-2024.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:692009010479:ios:b274cb50f4e7344d980dda</string>
+</dict>
+</plist>

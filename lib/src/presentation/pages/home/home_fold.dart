@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart'; class HomeFoldPage extends StatefulWidget {const HomeFoldPage({Key? key}) : super(key: key); @override State<HomeFoldPage> createState() => _HomeFoldPageState(); } class _HomeFoldPageState extends State<HomeFoldPage> { @override Widget build(BuildContext context) { return const Text('Home'); } }

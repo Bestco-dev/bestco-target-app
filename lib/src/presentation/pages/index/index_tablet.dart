@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart'; class IndexTabletPage extends StatefulWidget {const IndexTabletPage({Key? key}) : super(key: key); @override State<IndexTabletPage> createState() => _IndexTabletPageState(); } class _IndexTabletPageState extends State<IndexTabletPage> { @override Widget build(BuildContext context) { return const Text('Index'); } }

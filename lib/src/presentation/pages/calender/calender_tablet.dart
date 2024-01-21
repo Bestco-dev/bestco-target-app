@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart'; class CalenderTabletPage extends StatefulWidget {const CalenderTabletPage({Key? key}) : super(key: key); @override State<CalenderTabletPage> createState() => _CalenderTabletPageState(); } class _CalenderTabletPageState extends State<CalenderTabletPage> { @override Widget build(BuildContext context) { return const Text('Calender'); } }
