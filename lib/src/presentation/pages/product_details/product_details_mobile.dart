@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/demo/images.dart';
-import '../../../domain/use_cases/systems/customers_view_model.dart';
 import '../../custom_widgets/common/custom_info_item.dart';
 
 class ProductDetailsMobilePage extends ConsumerStatefulWidget {
@@ -15,8 +14,6 @@ class ProductDetailsMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<ProductDetailsMobilePage> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(systemsPaginationViewModelProvider);
-    final stateRead = ref.read(systemsPaginationViewModelProvider.notifier);
 
     return SingleChildScrollView(
       child: Column(

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/demo/images.dart';
-import '../../../domain/entities/system/system.dart';
-import '../../../domain/use_cases/systems/customers_view_model.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
@@ -15,11 +12,7 @@ import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
-import '../../custom_widgets/common/pagination/pagination.dart';
-import '../../custom_widgets/common/recordset/empty.dart';
-import '../../custom_widgets/common/recordset/error_recordset.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
-import '../../custom_widgets/common/spinner.dart';
 import '../customer_curd/customer_curd.dart';
 import '../slaeperson_details/saleperson_details.dart';
 
@@ -32,9 +25,6 @@ class SalePersonsMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(systemsPaginationViewModelProvider);
-    final stateRead = ref.read(systemsPaginationViewModelProvider.notifier);
-
     return CustomAppScaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10),
@@ -65,34 +55,10 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
           ),
         ],
       ),
-      body: PaginationView<SystemModel>(
-        state: state,
-        name: 'salepersons',
-        emptyWidget: const EmptyResultWidget(),
-        loadingWidget: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) => const SystemsPlaceholder(),
-        ),
-        loadMoreWidget: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Spinner(),
-        ),
-        onLoad: () async => await stateRead.load(),
-        onRefresh: () async => await stateRead.refresh(),
-        errorBuilder: (message) => RecordSetErrorWidget(
-          onRetry: () => stateRead.refresh(),
-          errorMessage: message,
-          retryText: Localization.of(context).retry,
-        ),
-        // padding: const EdgeInsets.all(16),
-        divider: const SizedBox(),
-        itemBuilder: (record) {
-          return Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            child: _salepersonWidget(),
-            // child: SystemWidget(system: record),
-          );
-        },
+      body: ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: 10,
+        itemBuilder: (context, index) => _salepersonWidget(),
       ),
     );
   }
@@ -101,6 +67,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
     return CustomCard(
       radius: 10,
       vp: 8,
+      vm: 10,
       child: ListTile(
         onTap: () => context.goNamed(SalePersonDetailsPage.pageName),
         contentPadding: EdgeInsets.zero,

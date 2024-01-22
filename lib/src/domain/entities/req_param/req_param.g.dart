@@ -6,7 +6,8 @@ part of 'req_param.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ReqParam _$$_ReqParamFromJson(Map<String, dynamic> json) => _$_ReqParam(
+_$ReqParamImpl _$$ReqParamImplFromJson(Map<String, dynamic> json) =>
+    _$ReqParamImpl(
       url: json['url'] as String,
       action: $enumDecodeNullable(_$RequestActionEnumMap, json['action']) ??
           RequestAction.request,
@@ -19,7 +20,7 @@ _$_ReqParam _$$_ReqParamFromJson(Map<String, dynamic> json) => _$_ReqParam(
       paramName: json['paramName'] as String?,
     );
 
-Map<String, dynamic> _$$_ReqParamToJson(_$_ReqParam instance) =>
+Map<String, dynamic> _$$ReqParamImplToJson(_$ReqParamImpl instance) =>
     <String, dynamic>{
       'url': instance.url,
       'action': _$RequestActionEnumMap[instance.action]!,

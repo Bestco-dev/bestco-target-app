@@ -6,12 +6,13 @@ part of 'time_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TimeModel _$$_TimeModelFromJson(Map<String, dynamic> json) => _$_TimeModel(
+_$TimeModelImpl _$$TimeModelImplFromJson(Map<String, dynamic> json) =>
+    _$TimeModelImpl(
       time: json['time'] as String,
       type: $enumDecodeNullable(_$TimeTypeEnumMap, json['type']) ?? TimeType.am,
     );
 
-Map<String, dynamic> _$$_TimeModelToJson(_$_TimeModel instance) =>
+Map<String, dynamic> _$$TimeModelImplToJson(_$TimeModelImpl instance) =>
     <String, dynamic>{
       'time': instance.time,
       'type': _$TimeTypeEnumMap[instance.type]!,

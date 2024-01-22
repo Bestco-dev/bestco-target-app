@@ -2,15 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/colors.dart';
 import '../../../common/res/gaps.dart';
+import '../../../data/demo/images.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_curve_edgets.dart';
+import '../../custom_widgets/common/custom_dialogs_bar.dart';
 import '../../custom_widgets/common/custom_round_image.dart';
+import '../../view_models/auth/auth_view_model.dart';
 import '../../view_models/auth/profile_info_view_model.dart';
 import '../../view_models/auth/profile_updater_view_model.dart';
 import '../../view_models/auth/user_view_model.dart';
@@ -74,7 +78,8 @@ class _ProfileMobilePageState extends ConsumerState<ProfileMobilePage> {
                             alignment: Alignment.bottomCenter,
                             child: CustomRoundImage(
                               size: 100,
-                              url: user.avatarUrl ?? '',
+                              url: FakeImages.randomImage(),
+                              // url: user.imageUrl ?? '',
                               borderWidth: 2,
                               borderColor: Colors.blueGrey,
                             ),
@@ -191,12 +196,20 @@ class _ProfileMobilePageState extends ConsumerState<ProfileMobilePage> {
                     const SizedBox(height: 20),
                     _item(title: "رقم الجوال", info: "0566133949"),
                     _item(title: "البريد الالكتروني", info: "muller@gmail.com"),
-                    _item(title: "الحالة الاجتماعية", info: "متزوج"),
+                    // _item(title: "الحالة الاجتماعية", info: "متزوج"),
                     const SizedBox(height: 20),
-                    const AppBtn(
+                    AppBtn(
                       text: "تسحيل خروج",
                       isPlane: true,
                       borderColor: Colors.red,
+                      onPressed: () {
+                        AppCustomDialogs.areYouSureDialog(
+                          message: Localization.current.logout_msg,
+                          icon: const Icon(Iconsax.logout, color: Colors.red),
+                          onOK: () =>
+                              ref.read(authViewModelProvider.notifier).logout(),
+                        );
+                      },
                     ),
                     // const AppBtn(text: "تعديل البيانات الشخصية",isPlane: true,icon: Icons.edit,),
                     // _item(

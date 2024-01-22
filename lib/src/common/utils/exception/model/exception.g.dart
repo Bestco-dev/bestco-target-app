@@ -6,14 +6,15 @@ part of 'exception.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ExceptionModel _$$_ExceptionModelFromJson(Map<String, dynamic> json) =>
-    _$_ExceptionModel(
+_$ExceptionModelImpl _$$ExceptionModelImplFromJson(Map<String, dynamic> json) =>
+    _$ExceptionModelImpl(
       code: json['code'] as int?,
       message: json['message'] as String?,
       errors: json['errors'],
     );
 
-Map<String, dynamic> _$$_ExceptionModelToJson(_$_ExceptionModel instance) =>
+Map<String, dynamic> _$$ExceptionModelImplToJson(
+        _$ExceptionModelImpl instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

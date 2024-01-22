@@ -12,6 +12,7 @@ import 'src/common/services/crashlytics.dart';
 import 'src/common/services/firebase/push_notification_service.dart';
 
 //calibri english fonts
+// flutter packages pub run build_runner watch --delete-conflicting-outputs
 
 void main() async => runZonedGuarded<Future<void>>(() async {
       // Create and initialize [WidgetsBinding]

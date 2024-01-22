@@ -74,22 +74,22 @@ class _$ExceptionModelCopyWithImpl<$Res, $Val extends ExceptionModel>
 }
 
 /// @nodoc
-abstract class _$$_ExceptionModelCopyWith<$Res>
+abstract class _$$ExceptionModelImplCopyWith<$Res>
     implements $ExceptionModelCopyWith<$Res> {
-  factory _$$_ExceptionModelCopyWith(
-          _$_ExceptionModel value, $Res Function(_$_ExceptionModel) then) =
-      __$$_ExceptionModelCopyWithImpl<$Res>;
+  factory _$$ExceptionModelImplCopyWith(_$ExceptionModelImpl value,
+          $Res Function(_$ExceptionModelImpl) then) =
+      __$$ExceptionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? code, String? message, dynamic errors});
 }
 
 /// @nodoc
-class __$$_ExceptionModelCopyWithImpl<$Res>
-    extends _$ExceptionModelCopyWithImpl<$Res, _$_ExceptionModel>
-    implements _$$_ExceptionModelCopyWith<$Res> {
-  __$$_ExceptionModelCopyWithImpl(
-      _$_ExceptionModel _value, $Res Function(_$_ExceptionModel) _then)
+class __$$ExceptionModelImplCopyWithImpl<$Res>
+    extends _$ExceptionModelCopyWithImpl<$Res, _$ExceptionModelImpl>
+    implements _$$ExceptionModelImplCopyWith<$Res> {
+  __$$ExceptionModelImplCopyWithImpl(
+      _$ExceptionModelImpl _value, $Res Function(_$ExceptionModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_ExceptionModelCopyWithImpl<$Res>
     Object? message = freezed,
     Object? errors = freezed,
   }) {
-    return _then(_$_ExceptionModel(
+    return _then(_$ExceptionModelImpl(
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -118,11 +118,11 @@ class __$$_ExceptionModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ExceptionModel extends _ExceptionModel {
-  _$_ExceptionModel({this.code, this.message, this.errors}) : super._();
+class _$ExceptionModelImpl extends _ExceptionModel {
+  _$ExceptionModelImpl({this.code, this.message, this.errors}) : super._();
 
-  factory _$_ExceptionModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ExceptionModelFromJson(json);
+  factory _$ExceptionModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExceptionModelImplFromJson(json);
 
   @override
   final int? code;
@@ -137,10 +137,10 @@ class _$_ExceptionModel extends _ExceptionModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExceptionModel &&
+            other is _$ExceptionModelImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other.errors, errors));
@@ -154,12 +154,13 @@ class _$_ExceptionModel extends _ExceptionModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExceptionModelCopyWith<_$_ExceptionModel> get copyWith =>
-      __$$_ExceptionModelCopyWithImpl<_$_ExceptionModel>(this, _$identity);
+  _$$ExceptionModelImplCopyWith<_$ExceptionModelImpl> get copyWith =>
+      __$$ExceptionModelImplCopyWithImpl<_$ExceptionModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExceptionModelToJson(
+    return _$$ExceptionModelImplToJson(
       this,
     );
   }
@@ -169,11 +170,11 @@ abstract class _ExceptionModel extends ExceptionModel {
   factory _ExceptionModel(
       {final int? code,
       final String? message,
-      final dynamic errors}) = _$_ExceptionModel;
+      final dynamic errors}) = _$ExceptionModelImpl;
   _ExceptionModel._() : super._();
 
   factory _ExceptionModel.fromJson(Map<String, dynamic> json) =
-      _$_ExceptionModel.fromJson;
+      _$ExceptionModelImpl.fromJson;
 
   @override
   int? get code;
@@ -183,6 +184,6 @@ abstract class _ExceptionModel extends ExceptionModel {
   dynamic get errors;
   @override
   @JsonKey(ignore: true)
-  _$$_ExceptionModelCopyWith<_$_ExceptionModel> get copyWith =>
+  _$$ExceptionModelImplCopyWith<_$ExceptionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

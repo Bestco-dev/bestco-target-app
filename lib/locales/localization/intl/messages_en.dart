@@ -136,7 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "logout_msg": MessageLookupByLibrary.simpleMessage(
-            "You want to logout of FireWatch app"),
+            "You want to logout of Bestco app"),
         "maintenance": MessageLookupByLibrary.simpleMessage("Maintenance"),
         "maintenancePeriod":
             MessageLookupByLibrary.simpleMessage("Maintenance Period"),

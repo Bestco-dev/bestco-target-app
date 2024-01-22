@@ -68,22 +68,22 @@ class _$AttachmentModelCopyWithImpl<$Res, $Val extends AttachmentModel>
 }
 
 /// @nodoc
-abstract class _$$_AttachmentModelCopyWith<$Res>
+abstract class _$$AttachmentModelImplCopyWith<$Res>
     implements $AttachmentModelCopyWith<$Res> {
-  factory _$$_AttachmentModelCopyWith(
-          _$_AttachmentModel value, $Res Function(_$_AttachmentModel) then) =
-      __$$_AttachmentModelCopyWithImpl<$Res>;
+  factory _$$AttachmentModelImplCopyWith(_$AttachmentModelImpl value,
+          $Res Function(_$AttachmentModelImpl) then) =
+      __$$AttachmentModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String url});
 }
 
 /// @nodoc
-class __$$_AttachmentModelCopyWithImpl<$Res>
-    extends _$AttachmentModelCopyWithImpl<$Res, _$_AttachmentModel>
-    implements _$$_AttachmentModelCopyWith<$Res> {
-  __$$_AttachmentModelCopyWithImpl(
-      _$_AttachmentModel _value, $Res Function(_$_AttachmentModel) _then)
+class __$$AttachmentModelImplCopyWithImpl<$Res>
+    extends _$AttachmentModelCopyWithImpl<$Res, _$AttachmentModelImpl>
+    implements _$$AttachmentModelImplCopyWith<$Res> {
+  __$$AttachmentModelImplCopyWithImpl(
+      _$AttachmentModelImpl _value, $Res Function(_$AttachmentModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_AttachmentModelCopyWithImpl<$Res>
     Object? id = null,
     Object? url = null,
   }) {
-    return _then(_$_AttachmentModel(
+    return _then(_$AttachmentModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -108,11 +108,13 @@ class __$$_AttachmentModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_AttachmentModel extends _AttachmentModel with DiagnosticableTreeMixin {
-  const _$_AttachmentModel({required this.id, required this.url}) : super._();
+class _$AttachmentModelImpl extends _AttachmentModel
+    with DiagnosticableTreeMixin {
+  const _$AttachmentModelImpl({required this.id, required this.url})
+      : super._();
 
-  factory _$_AttachmentModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AttachmentModelFromJson(json);
+  factory _$AttachmentModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AttachmentModelImplFromJson(json);
 
   @override
   final int id;
@@ -134,10 +136,10 @@ class _$_AttachmentModel extends _AttachmentModel with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AttachmentModel &&
+            other is _$AttachmentModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.url, url) || other.url == url));
   }
@@ -149,12 +151,13 @@ class _$_AttachmentModel extends _AttachmentModel with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AttachmentModelCopyWith<_$_AttachmentModel> get copyWith =>
-      __$$_AttachmentModelCopyWithImpl<_$_AttachmentModel>(this, _$identity);
+  _$$AttachmentModelImplCopyWith<_$AttachmentModelImpl> get copyWith =>
+      __$$AttachmentModelImplCopyWithImpl<_$AttachmentModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AttachmentModelToJson(
+    return _$$AttachmentModelImplToJson(
       this,
     );
   }
@@ -162,11 +165,12 @@ class _$_AttachmentModel extends _AttachmentModel with DiagnosticableTreeMixin {
 
 abstract class _AttachmentModel extends AttachmentModel {
   const factory _AttachmentModel(
-      {required final int id, required final String url}) = _$_AttachmentModel;
+      {required final int id,
+      required final String url}) = _$AttachmentModelImpl;
   const _AttachmentModel._() : super._();
 
   factory _AttachmentModel.fromJson(Map<String, dynamic> json) =
-      _$_AttachmentModel.fromJson;
+      _$AttachmentModelImpl.fromJson;
 
   @override
   int get id;
@@ -174,6 +178,6 @@ abstract class _AttachmentModel extends AttachmentModel {
   String get url;
   @override
   @JsonKey(ignore: true)
-  _$$_AttachmentModelCopyWith<_$_AttachmentModel> get copyWith =>
+  _$$AttachmentModelImplCopyWith<_$AttachmentModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

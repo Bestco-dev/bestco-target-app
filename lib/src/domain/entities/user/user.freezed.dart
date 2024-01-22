@@ -20,18 +20,13 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserEntity {
-  @JsonValue('uid')
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get jobTitle => throw _privateConstructorUsedError;
-  CompanyEntity get company => throw _privateConstructorUsedError;
-  int get scheduledVisitsCount => throw _privateConstructorUsedError;
-  int get maintenanceVisitsCount => throw _privateConstructorUsedError;
-  int get emergencyVisitsCount => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  String? get avatarUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
+  UserType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,19 +41,13 @@ abstract class $UserEntityCopyWith<$Res> {
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
   $Res call(
-      {@JsonValue('uid') int id,
+      {int id,
       String name,
-      String jobTitle,
-      CompanyEntity company,
-      int scheduledVisitsCount,
-      int maintenanceVisitsCount,
-      int emergencyVisitsCount,
       String? email,
       String? phone,
-      String? avatarUrl,
-      String? lang});
-
-  $CompanyEntityCopyWith<$Res> get company;
+      String? imageUrl,
+      String? lang,
+      UserType type});
 }
 
 /// @nodoc
@@ -76,15 +65,11 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? jobTitle = null,
-    Object? company = null,
-    Object? scheduledVisitsCount = null,
-    Object? maintenanceVisitsCount = null,
-    Object? emergencyVisitsCount = null,
     Object? email = freezed,
     Object? phone = freezed,
-    Object? avatarUrl = freezed,
+    Object? imageUrl = freezed,
     Object? lang = freezed,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,26 +80,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      jobTitle: null == jobTitle
-          ? _value.jobTitle
-          : jobTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      company: null == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as CompanyEntity,
-      scheduledVisitsCount: null == scheduledVisitsCount
-          ? _value.scheduledVisitsCount
-          : scheduledVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      maintenanceVisitsCount: null == maintenanceVisitsCount
-          ? _value.maintenanceVisitsCount
-          : maintenanceVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      emergencyVisitsCount: null == emergencyVisitsCount
-          ? _value.emergencyVisitsCount
-          : emergencyVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -123,57 +88,46 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as UserType,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CompanyEntityCopyWith<$Res> get company {
-    return $CompanyEntityCopyWith<$Res>(_value.company, (value) {
-      return _then(_value.copyWith(company: value) as $Val);
-    });
   }
 }
 
 /// @nodoc
-abstract class _$$_UserEntityCopyWith<$Res>
+abstract class _$$UserEntityImplCopyWith<$Res>
     implements $UserEntityCopyWith<$Res> {
-  factory _$$_UserEntityCopyWith(
-          _$_UserEntity value, $Res Function(_$_UserEntity) then) =
-      __$$_UserEntityCopyWithImpl<$Res>;
+  factory _$$UserEntityImplCopyWith(
+          _$UserEntityImpl value, $Res Function(_$UserEntityImpl) then) =
+      __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonValue('uid') int id,
+      {int id,
       String name,
-      String jobTitle,
-      CompanyEntity company,
-      int scheduledVisitsCount,
-      int maintenanceVisitsCount,
-      int emergencyVisitsCount,
       String? email,
       String? phone,
-      String? avatarUrl,
-      String? lang});
-
-  @override
-  $CompanyEntityCopyWith<$Res> get company;
+      String? imageUrl,
+      String? lang,
+      UserType type});
 }
 
 /// @nodoc
-class __$$_UserEntityCopyWithImpl<$Res>
-    extends _$UserEntityCopyWithImpl<$Res, _$_UserEntity>
-    implements _$$_UserEntityCopyWith<$Res> {
-  __$$_UserEntityCopyWithImpl(
-      _$_UserEntity _value, $Res Function(_$_UserEntity) _then)
+class __$$UserEntityImplCopyWithImpl<$Res>
+    extends _$UserEntityCopyWithImpl<$Res, _$UserEntityImpl>
+    implements _$$UserEntityImplCopyWith<$Res> {
+  __$$UserEntityImplCopyWithImpl(
+      _$UserEntityImpl _value, $Res Function(_$UserEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -181,17 +135,13 @@ class __$$_UserEntityCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? jobTitle = null,
-    Object? company = null,
-    Object? scheduledVisitsCount = null,
-    Object? maintenanceVisitsCount = null,
-    Object? emergencyVisitsCount = null,
     Object? email = freezed,
     Object? phone = freezed,
-    Object? avatarUrl = freezed,
+    Object? imageUrl = freezed,
     Object? lang = freezed,
+    Object? type = null,
   }) {
-    return _then(_$_UserEntity(
+    return _then(_$UserEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -200,26 +150,6 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      jobTitle: null == jobTitle
-          ? _value.jobTitle
-          : jobTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      company: null == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as CompanyEntity,
-      scheduledVisitsCount: null == scheduledVisitsCount
-          ? _value.scheduledVisitsCount
-          : scheduledVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      maintenanceVisitsCount: null == maintenanceVisitsCount
-          ? _value.maintenanceVisitsCount
-          : maintenanceVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      emergencyVisitsCount: null == emergencyVisitsCount
-          ? _value.emergencyVisitsCount
-          : emergencyVisitsCount // ignore: cast_nullable_to_non_nullable
-              as int,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -228,118 +158,87 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as UserType,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserEntity extends _UserEntity {
-  _$_UserEntity(
-      {@JsonValue('uid') required this.id,
+class _$UserEntityImpl extends _UserEntity {
+  _$UserEntityImpl(
+      {required this.id,
       required this.name,
-      required this.jobTitle,
-      required this.company,
-      this.scheduledVisitsCount = 0,
-      this.maintenanceVisitsCount = 0,
-      this.emergencyVisitsCount = 0,
       this.email,
       this.phone,
-      this.avatarUrl,
-      this.lang})
+      this.imageUrl,
+      this.lang,
+      required this.type})
       : super._();
 
-  factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_UserEntityFromJson(json);
+  factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserEntityImplFromJson(json);
 
   @override
-  @JsonValue('uid')
   final int id;
   @override
   final String name;
-  @override
-  final String jobTitle;
-  @override
-  final CompanyEntity company;
-  @override
-  @JsonKey()
-  final int scheduledVisitsCount;
-  @override
-  @JsonKey()
-  final int maintenanceVisitsCount;
-  @override
-  @JsonKey()
-  final int emergencyVisitsCount;
   @override
   final String? email;
   @override
   final String? phone;
   @override
-  final String? avatarUrl;
+  final String? imageUrl;
   @override
   final String? lang;
+  @override
+  final UserType type;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, name: $name, jobTitle: $jobTitle, company: $company, scheduledVisitsCount: $scheduledVisitsCount, maintenanceVisitsCount: $maintenanceVisitsCount, emergencyVisitsCount: $emergencyVisitsCount, email: $email, phone: $phone, avatarUrl: $avatarUrl, lang: $lang)';
+    return 'UserEntity(id: $id, name: $name, email: $email, phone: $phone, imageUrl: $imageUrl, lang: $lang, type: $type)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserEntity &&
+            other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.jobTitle, jobTitle) ||
-                other.jobTitle == jobTitle) &&
-            (identical(other.company, company) || other.company == company) &&
-            (identical(other.scheduledVisitsCount, scheduledVisitsCount) ||
-                other.scheduledVisitsCount == scheduledVisitsCount) &&
-            (identical(other.maintenanceVisitsCount, maintenanceVisitsCount) ||
-                other.maintenanceVisitsCount == maintenanceVisitsCount) &&
-            (identical(other.emergencyVisitsCount, emergencyVisitsCount) ||
-                other.emergencyVisitsCount == emergencyVisitsCount) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.lang, lang) || other.lang == lang));
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      jobTitle,
-      company,
-      scheduledVisitsCount,
-      maintenanceVisitsCount,
-      emergencyVisitsCount,
-      email,
-      phone,
-      avatarUrl,
-      lang);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, email, phone, imageUrl, lang, type);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
-      __$$_UserEntityCopyWithImpl<_$_UserEntity>(this, _$identity);
+  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
+      __$$UserEntityImplCopyWithImpl<_$UserEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserEntityToJson(
+    return _$$UserEntityImplToJson(
       this,
     );
   }
@@ -347,47 +246,34 @@ class _$_UserEntity extends _UserEntity {
 
 abstract class _UserEntity extends UserEntity {
   factory _UserEntity(
-      {@JsonValue('uid') required final int id,
+      {required final int id,
       required final String name,
-      required final String jobTitle,
-      required final CompanyEntity company,
-      final int scheduledVisitsCount,
-      final int maintenanceVisitsCount,
-      final int emergencyVisitsCount,
       final String? email,
       final String? phone,
-      final String? avatarUrl,
-      final String? lang}) = _$_UserEntity;
+      final String? imageUrl,
+      final String? lang,
+      required final UserType type}) = _$UserEntityImpl;
   _UserEntity._() : super._();
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
-      _$_UserEntity.fromJson;
+      _$UserEntityImpl.fromJson;
 
   @override
-  @JsonValue('uid')
   int get id;
   @override
   String get name;
-  @override
-  String get jobTitle;
-  @override
-  CompanyEntity get company;
-  @override
-  int get scheduledVisitsCount;
-  @override
-  int get maintenanceVisitsCount;
-  @override
-  int get emergencyVisitsCount;
   @override
   String? get email;
   @override
   String? get phone;
   @override
-  String? get avatarUrl;
+  String? get imageUrl;
   @override
   String? get lang;
   @override
+  UserType get type;
+  @override
   @JsonKey(ignore: true)
-  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
+  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

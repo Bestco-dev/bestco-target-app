@@ -6,32 +6,29 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
-    _$_UserEntity(
+_$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
+    _$UserEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      jobTitle: json['jobTitle'] as String,
-      company: CompanyEntity.fromJson(json['company'] as Map<String, dynamic>),
-      scheduledVisitsCount: json['scheduledVisitsCount'] as int? ?? 0,
-      maintenanceVisitsCount: json['maintenanceVisitsCount'] as int? ?? 0,
-      emergencyVisitsCount: json['emergencyVisitsCount'] as int? ?? 0,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
-      avatarUrl: json['avatarUrl'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       lang: json['lang'] as String?,
+      type: $enumDecode(_$UserTypeEnumMap, json['type']),
     );
 
-Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
+Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'jobTitle': instance.jobTitle,
-      'company': instance.company,
-      'scheduledVisitsCount': instance.scheduledVisitsCount,
-      'maintenanceVisitsCount': instance.maintenanceVisitsCount,
-      'emergencyVisitsCount': instance.emergencyVisitsCount,
       'email': instance.email,
       'phone': instance.phone,
-      'avatarUrl': instance.avatarUrl,
+      'imageUrl': instance.imageUrl,
       'lang': instance.lang,
+      'type': _$UserTypeEnumMap[instance.type]!,
     };
+
+const _$UserTypeEnumMap = {
+  UserType.saleperson: 'saleperson',
+  UserType.supervisor: 'supervisor',
+};

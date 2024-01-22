@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/customer/customer.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
 import 'customer_details_mobile.dart';
 import 'customer_details_tablet.dart';
 
 class CustomerDetailsPage extends StatelessWidget implements IResponsiveUIState {
-
-  const CustomerDetailsPage({Key? key}) : super(key: key);
+  final CustomerEntity customer;
+  const CustomerDetailsPage({Key? key,required this.customer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -18,11 +19,11 @@ class CustomerDetailsPage extends StatelessWidget implements IResponsiveUIState 
 
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
-      const CustomerDetailsMobilePage();
+       CustomerDetailsMobilePage(customer: customer);
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>
-      const CustomerDetailsTabletPage();
+       CustomerDetailsTabletPage(customer: customer);
 
   static String pageName = 'customer_details';
 }

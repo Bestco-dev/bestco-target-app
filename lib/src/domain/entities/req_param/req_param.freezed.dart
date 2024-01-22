@@ -111,10 +111,11 @@ class _$ReqParamCopyWithImpl<$Res, $Val extends ReqParam>
 }
 
 /// @nodoc
-abstract class _$$_ReqParamCopyWith<$Res> implements $ReqParamCopyWith<$Res> {
-  factory _$$_ReqParamCopyWith(
-          _$_ReqParam value, $Res Function(_$_ReqParam) then) =
-      __$$_ReqParamCopyWithImpl<$Res>;
+abstract class _$$ReqParamImplCopyWith<$Res>
+    implements $ReqParamCopyWith<$Res> {
+  factory _$$ReqParamImplCopyWith(
+          _$ReqParamImpl value, $Res Function(_$ReqParamImpl) then) =
+      __$$ReqParamImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -129,11 +130,11 @@ abstract class _$$_ReqParamCopyWith<$Res> implements $ReqParamCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ReqParamCopyWithImpl<$Res>
-    extends _$ReqParamCopyWithImpl<$Res, _$_ReqParam>
-    implements _$$_ReqParamCopyWith<$Res> {
-  __$$_ReqParamCopyWithImpl(
-      _$_ReqParam _value, $Res Function(_$_ReqParam) _then)
+class __$$ReqParamImplCopyWithImpl<$Res>
+    extends _$ReqParamCopyWithImpl<$Res, _$ReqParamImpl>
+    implements _$$ReqParamImplCopyWith<$Res> {
+  __$$ReqParamImplCopyWithImpl(
+      _$ReqParamImpl _value, $Res Function(_$ReqParamImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,7 +149,7 @@ class __$$_ReqParamCopyWithImpl<$Res>
     Object? filePath = freezed,
     Object? paramName = freezed,
   }) {
-    return _then(_$_ReqParam(
+    return _then(_$ReqParamImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -187,8 +188,8 @@ class __$$_ReqParamCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ReqParam extends _ReqParam {
-  _$_ReqParam(
+class _$ReqParamImpl extends _ReqParam {
+  _$ReqParamImpl(
       {required this.url,
       this.action = RequestAction.request,
       this.method = RequestMethod.get,
@@ -200,8 +201,8 @@ class _$_ReqParam extends _ReqParam {
       : _data = data,
         super._();
 
-  factory _$_ReqParam.fromJson(Map<String, dynamic> json) =>
-      _$$_ReqParamFromJson(json);
+  factory _$ReqParamImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReqParamImplFromJson(json);
 
   @override
   final String url;
@@ -237,10 +238,10 @@ class _$_ReqParam extends _ReqParam {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ReqParam &&
+            other is _$ReqParamImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.method, method) || other.method == method) &&
@@ -261,12 +262,12 @@ class _$_ReqParam extends _ReqParam {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ReqParamCopyWith<_$_ReqParam> get copyWith =>
-      __$$_ReqParamCopyWithImpl<_$_ReqParam>(this, _$identity);
+  _$$ReqParamImplCopyWith<_$ReqParamImpl> get copyWith =>
+      __$$ReqParamImplCopyWithImpl<_$ReqParamImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ReqParamToJson(
+    return _$$ReqParamImplToJson(
       this,
     );
   }
@@ -281,10 +282,11 @@ abstract class _ReqParam extends ReqParam {
       final int limit,
       final Map<String, dynamic> data,
       final String? filePath,
-      final String? paramName}) = _$_ReqParam;
+      final String? paramName}) = _$ReqParamImpl;
   _ReqParam._() : super._();
 
-  factory _ReqParam.fromJson(Map<String, dynamic> json) = _$_ReqParam.fromJson;
+  factory _ReqParam.fromJson(Map<String, dynamic> json) =
+      _$ReqParamImpl.fromJson;
 
   @override
   String get url;
@@ -304,6 +306,6 @@ abstract class _ReqParam extends ReqParam {
   String? get paramName;
   @override
   @JsonKey(ignore: true)
-  _$$_ReqParamCopyWith<_$_ReqParam> get copyWith =>
+  _$$ReqParamImplCopyWith<_$ReqParamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

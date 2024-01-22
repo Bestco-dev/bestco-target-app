@@ -75,20 +75,20 @@ class _$ResponseStateCopyWithImpl<T, $Res, $Val extends ResponseState<T>>
 }
 
 /// @nodoc
-abstract class _$$_sucessCopyWith<T, $Res> {
-  factory _$$_sucessCopyWith(
-          _$_sucess<T> value, $Res Function(_$_sucess<T>) then) =
-      __$$_sucessCopyWithImpl<T, $Res>;
+abstract class _$$sucessImplCopyWith<T, $Res> {
+  factory _$$sucessImplCopyWith(
+          _$sucessImpl<T> value, $Res Function(_$sucessImpl<T>) then) =
+      __$$sucessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$_sucessCopyWithImpl<T, $Res>
-    extends _$ResponseStateCopyWithImpl<T, $Res, _$_sucess<T>>
-    implements _$$_sucessCopyWith<T, $Res> {
-  __$$_sucessCopyWithImpl(
-      _$_sucess<T> _value, $Res Function(_$_sucess<T>) _then)
+class __$$sucessImplCopyWithImpl<T, $Res>
+    extends _$ResponseStateCopyWithImpl<T, $Res, _$sucessImpl<T>>
+    implements _$$sucessImplCopyWith<T, $Res> {
+  __$$sucessImplCopyWithImpl(
+      _$sucessImpl<T> _value, $Res Function(_$sucessImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_sucessCopyWithImpl<T, $Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$_sucess<T>(
+    return _then(_$sucessImpl<T>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,8 +107,8 @@ class __$$_sucessCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_sucess<T> implements _sucess<T> {
-  const _$_sucess({required this.data});
+class _$sucessImpl<T> implements _sucess<T> {
+  const _$sucessImpl({required this.data});
 
   @override
   final T data;
@@ -119,10 +119,10 @@ class _$_sucess<T> implements _sucess<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_sucess<T> &&
+            other is _$sucessImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -133,8 +133,8 @@ class _$_sucess<T> implements _sucess<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_sucessCopyWith<T, _$_sucess<T>> get copyWith =>
-      __$$_sucessCopyWithImpl<T, _$_sucess<T>>(this, _$identity);
+  _$$sucessImplCopyWith<T, _$sucessImpl<T>> get copyWith =>
+      __$$sucessImplCopyWithImpl<T, _$sucessImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -200,19 +200,19 @@ class _$_sucess<T> implements _sucess<T> {
 }
 
 abstract class _sucess<T> implements ResponseState<T> {
-  const factory _sucess({required final T data}) = _$_sucess<T>;
+  const factory _sucess({required final T data}) = _$sucessImpl<T>;
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_sucessCopyWith<T, _$_sucess<T>> get copyWith =>
+  _$$sucessImplCopyWith<T, _$sucessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_failureCopyWith<T, $Res> {
-  factory _$$_failureCopyWith(
-          _$_failure<T> value, $Res Function(_$_failure<T>) then) =
-      __$$_failureCopyWithImpl<T, $Res>;
+abstract class _$$failureImplCopyWith<T, $Res> {
+  factory _$$failureImplCopyWith(
+          _$failureImpl<T> value, $Res Function(_$failureImpl<T>) then) =
+      __$$failureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({NetworkExceptions error});
 
@@ -220,11 +220,11 @@ abstract class _$$_failureCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$$_failureCopyWithImpl<T, $Res>
-    extends _$ResponseStateCopyWithImpl<T, $Res, _$_failure<T>>
-    implements _$$_failureCopyWith<T, $Res> {
-  __$$_failureCopyWithImpl(
-      _$_failure<T> _value, $Res Function(_$_failure<T>) _then)
+class __$$failureImplCopyWithImpl<T, $Res>
+    extends _$ResponseStateCopyWithImpl<T, $Res, _$failureImpl<T>>
+    implements _$$failureImplCopyWith<T, $Res> {
+  __$$failureImplCopyWithImpl(
+      _$failureImpl<T> _value, $Res Function(_$failureImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -232,7 +232,7 @@ class __$$_failureCopyWithImpl<T, $Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$_failure<T>(
+    return _then(_$failureImpl<T>(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -251,8 +251,8 @@ class __$$_failureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_failure<T> implements _failure<T> {
-  const _$_failure({required this.error});
+class _$failureImpl<T> implements _failure<T> {
+  const _$failureImpl({required this.error});
 
   @override
   final NetworkExceptions error;
@@ -263,10 +263,10 @@ class _$_failure<T> implements _failure<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_failure<T> &&
+            other is _$failureImpl<T> &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -276,8 +276,8 @@ class _$_failure<T> implements _failure<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_failureCopyWith<T, _$_failure<T>> get copyWith =>
-      __$$_failureCopyWithImpl<T, _$_failure<T>>(this, _$identity);
+  _$$failureImplCopyWith<T, _$failureImpl<T>> get copyWith =>
+      __$$failureImplCopyWithImpl<T, _$failureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -344,10 +344,10 @@ class _$_failure<T> implements _failure<T> {
 
 abstract class _failure<T> implements ResponseState<T> {
   const factory _failure({required final NetworkExceptions error}) =
-      _$_failure<T>;
+      _$failureImpl<T>;
 
   NetworkExceptions get error;
   @JsonKey(ignore: true)
-  _$$_failureCopyWith<T, _$_failure<T>> get copyWith =>
+  _$$failureImplCopyWith<T, _$failureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

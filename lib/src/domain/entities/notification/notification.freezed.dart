@@ -106,11 +106,11 @@ class _$NotificationEntityCopyWithImpl<$Res, $Val extends NotificationEntity>
 }
 
 /// @nodoc
-abstract class _$$_NotificationEntityCopyWith<$Res>
+abstract class _$$NotificationEntityImplCopyWith<$Res>
     implements $NotificationEntityCopyWith<$Res> {
-  factory _$$_NotificationEntityCopyWith(_$_NotificationEntity value,
-          $Res Function(_$_NotificationEntity) then) =
-      __$$_NotificationEntityCopyWithImpl<$Res>;
+  factory _$$NotificationEntityImplCopyWith(_$NotificationEntityImpl value,
+          $Res Function(_$NotificationEntityImpl) then) =
+      __$$NotificationEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -124,11 +124,11 @@ abstract class _$$_NotificationEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_NotificationEntityCopyWithImpl<$Res>
-    extends _$NotificationEntityCopyWithImpl<$Res, _$_NotificationEntity>
-    implements _$$_NotificationEntityCopyWith<$Res> {
-  __$$_NotificationEntityCopyWithImpl(
-      _$_NotificationEntity _value, $Res Function(_$_NotificationEntity) _then)
+class __$$NotificationEntityImplCopyWithImpl<$Res>
+    extends _$NotificationEntityCopyWithImpl<$Res, _$NotificationEntityImpl>
+    implements _$$NotificationEntityImplCopyWith<$Res> {
+  __$$NotificationEntityImplCopyWithImpl(_$NotificationEntityImpl _value,
+      $Res Function(_$NotificationEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -142,7 +142,7 @@ class __$$_NotificationEntityCopyWithImpl<$Res>
     Object? payload = freezed,
     Object? timestamp = null,
   }) {
-    return _then(_$_NotificationEntity(
+    return _then(_$NotificationEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -177,8 +177,8 @@ class __$$_NotificationEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NotificationEntity extends _NotificationEntity {
-  _$_NotificationEntity(
+class _$NotificationEntityImpl extends _NotificationEntity {
+  _$NotificationEntityImpl(
       {required this.id,
       required this.type,
       required this.status,
@@ -188,8 +188,8 @@ class _$_NotificationEntity extends _NotificationEntity {
       @NullableDatetime() required this.timestamp})
       : super._();
 
-  factory _$_NotificationEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_NotificationEntityFromJson(json);
+  factory _$NotificationEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NotificationEntityImplFromJson(json);
 
   @override
   final int id;
@@ -213,10 +213,10 @@ class _$_NotificationEntity extends _NotificationEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NotificationEntity &&
+            other is _$NotificationEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.status, status) || other.status == status) &&
@@ -235,13 +235,13 @@ class _$_NotificationEntity extends _NotificationEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NotificationEntityCopyWith<_$_NotificationEntity> get copyWith =>
-      __$$_NotificationEntityCopyWithImpl<_$_NotificationEntity>(
+  _$$NotificationEntityImplCopyWith<_$NotificationEntityImpl> get copyWith =>
+      __$$NotificationEntityImplCopyWithImpl<_$NotificationEntityImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationEntityToJson(
+    return _$$NotificationEntityImplToJson(
       this,
     );
   }
@@ -256,11 +256,11 @@ abstract class _NotificationEntity extends NotificationEntity {
           final String? body,
           final String? payload,
           @NullableDatetime() required final DateTime timestamp}) =
-      _$_NotificationEntity;
+      _$NotificationEntityImpl;
   _NotificationEntity._() : super._();
 
   factory _NotificationEntity.fromJson(Map<String, dynamic> json) =
-      _$_NotificationEntity.fromJson;
+      _$NotificationEntityImpl.fromJson;
 
   @override
   int get id;
@@ -279,6 +279,6 @@ abstract class _NotificationEntity extends NotificationEntity {
   DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
-  _$$_NotificationEntityCopyWith<_$_NotificationEntity> get copyWith =>
+  _$$NotificationEntityImplCopyWith<_$NotificationEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

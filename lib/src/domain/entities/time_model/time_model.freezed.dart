@@ -67,21 +67,22 @@ class _$TimeModelCopyWithImpl<$Res, $Val extends TimeModel>
 }
 
 /// @nodoc
-abstract class _$$_TimeModelCopyWith<$Res> implements $TimeModelCopyWith<$Res> {
-  factory _$$_TimeModelCopyWith(
-          _$_TimeModel value, $Res Function(_$_TimeModel) then) =
-      __$$_TimeModelCopyWithImpl<$Res>;
+abstract class _$$TimeModelImplCopyWith<$Res>
+    implements $TimeModelCopyWith<$Res> {
+  factory _$$TimeModelImplCopyWith(
+          _$TimeModelImpl value, $Res Function(_$TimeModelImpl) then) =
+      __$$TimeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String time, TimeType type});
 }
 
 /// @nodoc
-class __$$_TimeModelCopyWithImpl<$Res>
-    extends _$TimeModelCopyWithImpl<$Res, _$_TimeModel>
-    implements _$$_TimeModelCopyWith<$Res> {
-  __$$_TimeModelCopyWithImpl(
-      _$_TimeModel _value, $Res Function(_$_TimeModel) _then)
+class __$$TimeModelImplCopyWithImpl<$Res>
+    extends _$TimeModelCopyWithImpl<$Res, _$TimeModelImpl>
+    implements _$$TimeModelImplCopyWith<$Res> {
+  __$$TimeModelImplCopyWithImpl(
+      _$TimeModelImpl _value, $Res Function(_$TimeModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_TimeModelCopyWithImpl<$Res>
     Object? time = null,
     Object? type = null,
   }) {
-    return _then(_$_TimeModel(
+    return _then(_$TimeModelImpl(
       time: null == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -106,11 +107,11 @@ class __$$_TimeModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_TimeModel with DiagnosticableTreeMixin implements _TimeModel {
-  const _$_TimeModel({required this.time, this.type = TimeType.am});
+class _$TimeModelImpl with DiagnosticableTreeMixin implements _TimeModel {
+  const _$TimeModelImpl({required this.time, this.type = TimeType.am});
 
-  factory _$_TimeModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TimeModelFromJson(json);
+  factory _$TimeModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TimeModelImplFromJson(json);
 
   @override
   final String time;
@@ -133,10 +134,10 @@ class _$_TimeModel with DiagnosticableTreeMixin implements _TimeModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TimeModel &&
+            other is _$TimeModelImpl &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -148,12 +149,12 @@ class _$_TimeModel with DiagnosticableTreeMixin implements _TimeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TimeModelCopyWith<_$_TimeModel> get copyWith =>
-      __$$_TimeModelCopyWithImpl<_$_TimeModel>(this, _$identity);
+  _$$TimeModelImplCopyWith<_$TimeModelImpl> get copyWith =>
+      __$$TimeModelImplCopyWithImpl<_$TimeModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TimeModelToJson(
+    return _$$TimeModelImplToJson(
       this,
     );
   }
@@ -161,10 +162,10 @@ class _$_TimeModel with DiagnosticableTreeMixin implements _TimeModel {
 
 abstract class _TimeModel implements TimeModel {
   const factory _TimeModel({required final String time, final TimeType type}) =
-      _$_TimeModel;
+      _$TimeModelImpl;
 
   factory _TimeModel.fromJson(Map<String, dynamic> json) =
-      _$_TimeModel.fromJson;
+      _$TimeModelImpl.fromJson;
 
   @override
   String get time;
@@ -172,6 +173,6 @@ abstract class _TimeModel implements TimeModel {
   TimeType get type;
   @override
   @JsonKey(ignore: true)
-  _$$_TimeModelCopyWith<_$_TimeModel> get copyWith =>
+  _$$TimeModelImplCopyWith<_$TimeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

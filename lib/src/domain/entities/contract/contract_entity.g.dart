@@ -6,14 +6,15 @@ part of 'contract_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ContractEntity _$$_ContractEntityFromJson(Map<String, dynamic> json) =>
-    _$_ContractEntity(
+_$ContractEntityImpl _$$ContractEntityImplFromJson(Map<String, dynamic> json) =>
+    _$ContractEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       expirationDate: DateTime.parse(json['expiration_date'] as String),
     );
 
-Map<String, dynamic> _$$_ContractEntityToJson(_$_ContractEntity instance) =>
+Map<String, dynamic> _$$ContractEntityImplToJson(
+        _$ContractEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -212,12 +212,12 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                     },
                                   ),
                                   const SizedBox(height: 10),
-                                  AppBtn(
-                                    text: "انضم إلينا",
-                                    isPlane: true,
-                                    borderColor: Colors.grey,
-                                    onPressed: (){},
-                                  ),
+                                  // AppBtn(
+                                  //   text: "انضم إلينا",
+                                  //   isPlane: true,
+                                  //   borderColor: Colors.grey,
+                                  //   onPressed: (){},
+                                  // ),
 
                                   // MaterialButton(
                                   //   onPressed: () async {

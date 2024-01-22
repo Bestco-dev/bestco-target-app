@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
-import '../../../domain/use_cases/systems/customers_view_model.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
@@ -19,8 +18,7 @@ class ProductsMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(systemsPaginationViewModelProvider);
-    final stateRead = ref.read(systemsPaginationViewModelProvider.notifier);
+
 
     return CustomAppScaffold(
       appBar: CustomAppBar(

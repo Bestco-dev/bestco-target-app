@@ -20,9 +20,14 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AddressModel {
-  String get name => throw _privateConstructorUsedError;
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  KeyValueOptionEntity? get country => throw _privateConstructorUsedError;
+  KeyValueOptionEntity? get state => throw _privateConstructorUsedError;
+  KeyValueOptionEntity? get city => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +41,19 @@ abstract class $AddressModelCopyWith<$Res> {
           AddressModel value, $Res Function(AddressModel) then) =
       _$AddressModelCopyWithImpl<$Res, AddressModel>;
   @useResult
-  $Res call({String name, double latitude, double longitude});
+  $Res call(
+      {int id,
+      double? latitude,
+      double? longitude,
+      KeyValueOptionEntity? country,
+      KeyValueOptionEntity? state,
+      KeyValueOptionEntity? city,
+      String? street,
+      String? description});
+
+  $KeyValueOptionEntityCopyWith<$Res>? get country;
+  $KeyValueOptionEntityCopyWith<$Res>? get state;
+  $KeyValueOptionEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -52,117 +69,242 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? id = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? country = freezed,
+    Object? state = freezed,
+    Object? city = freezed,
+    Object? street = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      latitude: null == latitude
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
+              as double?,
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KeyValueOptionEntityCopyWith<$Res>? get country {
+    if (_value.country == null) {
+      return null;
+    }
+
+    return $KeyValueOptionEntityCopyWith<$Res>(_value.country!, (value) {
+      return _then(_value.copyWith(country: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KeyValueOptionEntityCopyWith<$Res>? get state {
+    if (_value.state == null) {
+      return null;
+    }
+
+    return $KeyValueOptionEntityCopyWith<$Res>(_value.state!, (value) {
+      return _then(_value.copyWith(state: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KeyValueOptionEntityCopyWith<$Res>? get city {
+    if (_value.city == null) {
+      return null;
+    }
+
+    return $KeyValueOptionEntityCopyWith<$Res>(_value.city!, (value) {
+      return _then(_value.copyWith(city: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
-abstract class _$$_AddressModelCopyWith<$Res>
+abstract class _$$AddressModelImplCopyWith<$Res>
     implements $AddressModelCopyWith<$Res> {
-  factory _$$_AddressModelCopyWith(
-          _$_AddressModel value, $Res Function(_$_AddressModel) then) =
-      __$$_AddressModelCopyWithImpl<$Res>;
+  factory _$$AddressModelImplCopyWith(
+          _$AddressModelImpl value, $Res Function(_$AddressModelImpl) then) =
+      __$$AddressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, double latitude, double longitude});
+  $Res call(
+      {int id,
+      double? latitude,
+      double? longitude,
+      KeyValueOptionEntity? country,
+      KeyValueOptionEntity? state,
+      KeyValueOptionEntity? city,
+      String? street,
+      String? description});
+
+  @override
+  $KeyValueOptionEntityCopyWith<$Res>? get country;
+  @override
+  $KeyValueOptionEntityCopyWith<$Res>? get state;
+  @override
+  $KeyValueOptionEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc
-class __$$_AddressModelCopyWithImpl<$Res>
-    extends _$AddressModelCopyWithImpl<$Res, _$_AddressModel>
-    implements _$$_AddressModelCopyWith<$Res> {
-  __$$_AddressModelCopyWithImpl(
-      _$_AddressModel _value, $Res Function(_$_AddressModel) _then)
+class __$$AddressModelImplCopyWithImpl<$Res>
+    extends _$AddressModelCopyWithImpl<$Res, _$AddressModelImpl>
+    implements _$$AddressModelImplCopyWith<$Res> {
+  __$$AddressModelImplCopyWithImpl(
+      _$AddressModelImpl _value, $Res Function(_$AddressModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? latitude = null,
-    Object? longitude = null,
+    Object? id = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? country = freezed,
+    Object? state = freezed,
+    Object? city = freezed,
+    Object? street = freezed,
+    Object? description = freezed,
   }) {
-    return _then(_$_AddressModel(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      latitude: null == latitude
+    return _then(_$AddressModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
+              as double?,
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as KeyValueOptionEntity?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddressModel extends _AddressModel {
-  _$_AddressModel(
-      {required this.name, required this.latitude, required this.longitude})
+class _$AddressModelImpl extends _AddressModel {
+  _$AddressModelImpl(
+      {required this.id,
+      this.latitude,
+      this.longitude,
+      this.country,
+      this.state,
+      this.city,
+      this.street,
+      this.description})
       : super._();
 
-  factory _$_AddressModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AddressModelFromJson(json);
+  factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddressModelImplFromJson(json);
 
   @override
-  final String name;
+  final int id;
   @override
-  final double latitude;
+  final double? latitude;
   @override
-  final double longitude;
+  final double? longitude;
+  @override
+  final KeyValueOptionEntity? country;
+  @override
+  final KeyValueOptionEntity? state;
+  @override
+  final KeyValueOptionEntity? city;
+  @override
+  final String? street;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'AddressModel(name: $name, latitude: $latitude, longitude: $longitude)';
+    return 'AddressModel(id: $id, latitude: $latitude, longitude: $longitude, country: $country, state: $state, city: $city, street: $street, description: $description)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressModel &&
-            (identical(other.name, name) || other.name == name) &&
+            other is _$AddressModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
-                other.longitude == longitude));
+                other.longitude == longitude) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, latitude, longitude);
+  int get hashCode => Object.hash(runtimeType, id, latitude, longitude, country,
+      state, city, street, description);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressModelCopyWith<_$_AddressModel> get copyWith =>
-      __$$_AddressModelCopyWithImpl<_$_AddressModel>(this, _$identity);
+  _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>
+      __$$AddressModelImplCopyWithImpl<_$AddressModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AddressModelToJson(
+    return _$$AddressModelImplToJson(
       this,
     );
   }
@@ -170,22 +312,37 @@ class _$_AddressModel extends _AddressModel {
 
 abstract class _AddressModel extends AddressModel {
   factory _AddressModel(
-      {required final String name,
-      required final double latitude,
-      required final double longitude}) = _$_AddressModel;
+      {required final int id,
+      final double? latitude,
+      final double? longitude,
+      final KeyValueOptionEntity? country,
+      final KeyValueOptionEntity? state,
+      final KeyValueOptionEntity? city,
+      final String? street,
+      final String? description}) = _$AddressModelImpl;
   _AddressModel._() : super._();
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
-      _$_AddressModel.fromJson;
+      _$AddressModelImpl.fromJson;
 
   @override
-  String get name;
+  int get id;
   @override
-  double get latitude;
+  double? get latitude;
   @override
-  double get longitude;
+  double? get longitude;
+  @override
+  KeyValueOptionEntity? get country;
+  @override
+  KeyValueOptionEntity? get state;
+  @override
+  KeyValueOptionEntity? get city;
+  @override
+  String? get street;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressModelCopyWith<_$_AddressModel> get copyWith =>
+  _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../company/company.dart';
+import '../../../data/types/types_enums.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -9,17 +9,13 @@ part 'user.g.dart';
 class UserEntity with _$UserEntity {
   const UserEntity._(); // Added constructor
   factory UserEntity({
-    @JsonValue('uid') required int id,
+    required int id,
     required String name,
-    required String jobTitle,
-    required CompanyEntity company,
-    @Default(0) int scheduledVisitsCount,
-    @Default(0) int maintenanceVisitsCount,
-    @Default(0) int emergencyVisitsCount,
     String? email,
     String? phone,
-    String? avatarUrl,
+    String? imageUrl,
     String? lang,
+    required UserType type ,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

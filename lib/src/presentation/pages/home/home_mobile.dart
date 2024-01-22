@@ -12,7 +12,6 @@ import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/news_curser.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
-import '../../view_models/visits/visits_view_model.dart';
 import '../customers/customers.dart';
 import '../orders/orders.dart';
 import '../products/products.dart';
@@ -32,8 +31,8 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
   void initState() {
     super.initState();
     Future.microtask(() async {
-      ref.read(visitsResentViewModelProvider.notifier).load();
-      ref.read(visitsWhatsComingViewModelProvider.notifier).load();
+      // ref.read(visitsResentViewModelProvider.notifier).load();
+      // ref.read(visitsWhatsComingViewModelProvider.notifier).load();
     });
   }
 
@@ -84,7 +83,7 @@ class _HomeHeader extends ConsumerWidget {
             child: ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: user?.avatarUrl ?? '',
+                image: user?.imageUrl ?? '',
               ),
             ),
           ),

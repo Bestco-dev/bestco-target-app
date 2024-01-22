@@ -80,22 +80,22 @@ class _$KpiOptionModelCopyWithImpl<$Res, $Val extends KpiOptionModel>
 }
 
 /// @nodoc
-abstract class _$$_KpiOptionModelCopyWith<$Res>
+abstract class _$$KpiOptionModelImplCopyWith<$Res>
     implements $KpiOptionModelCopyWith<$Res> {
-  factory _$$_KpiOptionModelCopyWith(
-          _$_KpiOptionModel value, $Res Function(_$_KpiOptionModel) then) =
-      __$$_KpiOptionModelCopyWithImpl<$Res>;
+  factory _$$KpiOptionModelImplCopyWith(_$KpiOptionModelImpl value,
+          $Res Function(_$KpiOptionModelImpl) then) =
+      __$$KpiOptionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String key, String? value, String label, String? unit});
 }
 
 /// @nodoc
-class __$$_KpiOptionModelCopyWithImpl<$Res>
-    extends _$KpiOptionModelCopyWithImpl<$Res, _$_KpiOptionModel>
-    implements _$$_KpiOptionModelCopyWith<$Res> {
-  __$$_KpiOptionModelCopyWithImpl(
-      _$_KpiOptionModel _value, $Res Function(_$_KpiOptionModel) _then)
+class __$$KpiOptionModelImplCopyWithImpl<$Res>
+    extends _$KpiOptionModelCopyWithImpl<$Res, _$KpiOptionModelImpl>
+    implements _$$KpiOptionModelImplCopyWith<$Res> {
+  __$$KpiOptionModelImplCopyWithImpl(
+      _$KpiOptionModelImpl _value, $Res Function(_$KpiOptionModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_KpiOptionModelCopyWithImpl<$Res>
     Object? label = null,
     Object? unit = freezed,
   }) {
-    return _then(_$_KpiOptionModel(
+    return _then(_$KpiOptionModelImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -130,13 +130,14 @@ class __$$_KpiOptionModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_KpiOptionModel extends _KpiOptionModel with DiagnosticableTreeMixin {
-  const _$_KpiOptionModel(
+class _$KpiOptionModelImpl extends _KpiOptionModel
+    with DiagnosticableTreeMixin {
+  const _$KpiOptionModelImpl(
       {required this.key, this.value, required this.label, this.unit})
       : super._();
 
-  factory _$_KpiOptionModel.fromJson(Map<String, dynamic> json) =>
-      _$$_KpiOptionModelFromJson(json);
+  factory _$KpiOptionModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KpiOptionModelImplFromJson(json);
 
   @override
   final String key;
@@ -164,10 +165,10 @@ class _$_KpiOptionModel extends _KpiOptionModel with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KpiOptionModel &&
+            other is _$KpiOptionModelImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.label, label) || other.label == label) &&
@@ -181,12 +182,13 @@ class _$_KpiOptionModel extends _KpiOptionModel with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KpiOptionModelCopyWith<_$_KpiOptionModel> get copyWith =>
-      __$$_KpiOptionModelCopyWithImpl<_$_KpiOptionModel>(this, _$identity);
+  _$$KpiOptionModelImplCopyWith<_$KpiOptionModelImpl> get copyWith =>
+      __$$KpiOptionModelImplCopyWithImpl<_$KpiOptionModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_KpiOptionModelToJson(
+    return _$$KpiOptionModelImplToJson(
       this,
     );
   }
@@ -197,11 +199,11 @@ abstract class _KpiOptionModel extends KpiOptionModel {
       {required final String key,
       final String? value,
       required final String label,
-      final String? unit}) = _$_KpiOptionModel;
+      final String? unit}) = _$KpiOptionModelImpl;
   const _KpiOptionModel._() : super._();
 
   factory _KpiOptionModel.fromJson(Map<String, dynamic> json) =
-      _$_KpiOptionModel.fromJson;
+      _$KpiOptionModelImpl.fromJson;
 
   @override
   String get key;
@@ -213,6 +215,6 @@ abstract class _KpiOptionModel extends KpiOptionModel {
   String? get unit;
   @override
   @JsonKey(ignore: true)
-  _$$_KpiOptionModelCopyWith<_$_KpiOptionModel> get copyWith =>
+  _$$KpiOptionModelImplCopyWith<_$KpiOptionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

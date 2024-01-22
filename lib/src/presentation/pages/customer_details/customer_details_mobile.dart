@@ -4,7 +4,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/demo/images.dart';
-import '../../../domain/use_cases/systems/customers_view_model.dart';
+import '../../../data/types/types_enums.dart';
+import '../../../domain/entities/address/address.dart';
+import '../../../domain/entities/customer/customer.dart';
 import '../../custom_widgets/common/buttons.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
@@ -13,22 +15,25 @@ import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
+import '../../view_models/customers/customer_view_model.dart';
 import '../customer_curd/customer_curd.dart';
 import '../orders/orders_mobile.dart';
 
 class CustomerDetailsMobilePage extends ConsumerStatefulWidget {
-  const CustomerDetailsMobilePage({Key? key}) : super(key: key);
+  final CustomerEntity customer;
+  const CustomerDetailsMobilePage({Key? key, required this.customer})
+      : super(key: key);
   @override
   ConsumerState<CustomerDetailsMobilePage> createState() =>
       _CheckMobilePageState();
 }
 
 class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
+  // final customer=widget.customer;
+
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(systemsPaginationViewModelProvider);
-    final stateRead = ref.read(systemsPaginationViewModelProvider.notifier);
-
+    final customer = ref.watch(customerProvider(widget.customer));
     return CustomAppScaffold(
       isScroll: true,
       hasPadding: false,
@@ -55,6 +60,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
   }
 
   Widget _customerWidget() {
+    final customer = ref.watch(customerProvider(widget.customer));
     return Column(
       children: [
         ListTile(
@@ -73,26 +79,26 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
             child: ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: FakeImages.randomImage(isUser: true),
+                image: customer.imageUrl ?? '',
               ),
             ),
           ),
-          title: const Text(
-            'خالد محمد',
-            style: TextStyle(
+          title: Text(
+            customer.name,
+            style: const TextStyle(
               color: Color(0xFFFFFFFF),
               fontSize: 15,
               fontWeight: FontWeight.w400,
             ),
           ),
-          subtitle: const Row(
+          subtitle: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.star, color: Colors.yellow),
+              const Icon(Icons.star, color: Colors.yellow),
               Text(
-                '3.5',
+                "${customer.rate}",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFFFFFFFF),
                   fontSize: 13,
                   fontWeight: FontWeight.w400,
@@ -117,7 +123,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               child: AppBtn(
                 isPlane: true,
                 borderColor: Colors.white,
-                 textColor: Colors.white,
+                textColor: Colors.white,
                 text: "معلومات العميل",
                 fontSize: 14,
                 onPressed: () {
@@ -155,14 +161,13 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
                 isPlane: true,
                 borderColor: Colors.white,
                 textColor: Colors.white,
-
                 text: "تفاصيل العنوان",
                 fontSize: 14,
                 onPressed: () {
                   CustomModalSheet.showModalSheet(
                     context,
                     title: "تفاصيل العنوان",
-                    child: _addressInfo(),
+                    child: _addressInfo(customer.address),
                     height: context.height * .7,
                   );
                 },
@@ -174,14 +179,17 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
     );
   }
 
-  Widget _addressInfo() {
+  Widget _addressInfo(AddressModel address) {
+    // final customer = ref.watch(customerProvider(widget.customer));
+
     return SingleChildScrollView(
       child: Column(
         children: [
           CustomInfoItem(title: "الدولة", info: "السعودية", isBold: true),
           CustomInfoItem(title: "المنطقة", info: "الشرقية", isBold: true),
           CustomInfoItem(title: "المدينة", info: "الخبر", isBold: true),
-          CustomInfoItem(title: "الشارع", info: "شارع الامير مشعل", isBold: true),
+          CustomInfoItem(
+              title: "الشارع", info: "شارع الامير مشعل", isBold: true),
           CustomInfoItem(
               title: "تفاصيل",
               info: "تقاطع الامير مشعل مع الشارع الاول",
@@ -220,20 +228,30 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
   }
 
   Widget _customerInfo() {
+    final customer = ref.watch(customerProvider(widget.customer));
     return SingleChildScrollView(
       child: Column(
         children: [
-          CustomInfoItem(title: "إسم العميل", info: "خالد محمد"),
-          CustomInfoItem(title: "نوع العميل", info: "فرد", isBold: true),
-          CustomInfoItem(title: "البريد الإلكتروني", info: "mail@mail.com"),
-          CustomInfoItem(title: "الموقع الإلكتروني", info: "www.website.com"),
-          CustomInfoItem(title: "رقم الجوال", info: "0 123 456 7891", isBold: true),
-          CustomInfoItem(title: "رقم الهاتف", info: "0 123 456 7891", isBold: true),
-          CustomInfoItem(title: "رقم الهوية", info: "231-6545-61521", isBold: true),
+          CustomInfoItem(title: "إسم العميل", info: customer.name),
+          CustomInfoItem(
+              title: "نوع العميل", info: customer.type.name, isBold: true),
+          CustomInfoItem(title: "البريد الإلكتروني", info: customer.email),
+          CustomInfoItem(title: "الموقع الإلكتروني", info: customer.website),
+          CustomInfoItem(
+              title: "رقم الجوال", info: customer.phone, isBold: true),
+          // CustomInfoItem(
+          //     title: "رقم الهاتف", info: "0 123 456 7891", isBold: true),
+          if (customer.type.isIndividual)
+            CustomInfoItem(
+                title: "رقم الهوية", info: customer.nationalId, isBold: true),
+
+          if (customer.type.isCompany)
+            if (customer.type.isIndividual)
+              CustomInfoItem(
+                  title: "الرقم الضريبي", info: customer.taxId, isBold: true),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
-
               Navigator.pop(context);
               CustomModalSheet.showModalSheet(
                 context,
@@ -246,7 +264,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.edit_outlined, color: Colors.green),
-                 SizedBox(width: 10),
+                SizedBox(width: 10),
                 Text(
                   "تعديل البيانات",
                   style: TextStyle(
@@ -263,40 +281,6 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
       ),
     );
   }
-  //
-  // Widget _item(
-  //     {IconData? icon,
-  //     required String title,
-  //     bool isBold = false,
-  //     required String info}) {
-  //   return Container(
-  //     margin: const EdgeInsets.only(bottom: 10),
-  //     child: CustomCard(
-  //       vp: 1,
-  //       // vm: 10,
-  //       child: ListTile(
-  //         contentPadding: EdgeInsets.zero,
-  //         title: Text(
-  //           title,
-  //           style: const TextStyle(
-  //             color: Color(0xFF555B6A),
-  //             fontSize: 14,
-  //             fontWeight: FontWeight.w400,
-  //           ),
-  //         ),
-  //         trailing: Text(
-  //           info,
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(
-  //             color: const Color(0xFF555B6A),
-  //             fontSize: 13,
-  //             fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
 
 class _AddressCurd extends StatelessWidget {

@@ -74,22 +74,22 @@ class _$ContractEntityCopyWithImpl<$Res, $Val extends ContractEntity>
 }
 
 /// @nodoc
-abstract class _$$_ContractEntityCopyWith<$Res>
+abstract class _$$ContractEntityImplCopyWith<$Res>
     implements $ContractEntityCopyWith<$Res> {
-  factory _$$_ContractEntityCopyWith(
-          _$_ContractEntity value, $Res Function(_$_ContractEntity) then) =
-      __$$_ContractEntityCopyWithImpl<$Res>;
+  factory _$$ContractEntityImplCopyWith(_$ContractEntityImpl value,
+          $Res Function(_$ContractEntityImpl) then) =
+      __$$ContractEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name, DateTime expirationDate});
 }
 
 /// @nodoc
-class __$$_ContractEntityCopyWithImpl<$Res>
-    extends _$ContractEntityCopyWithImpl<$Res, _$_ContractEntity>
-    implements _$$_ContractEntityCopyWith<$Res> {
-  __$$_ContractEntityCopyWithImpl(
-      _$_ContractEntity _value, $Res Function(_$_ContractEntity) _then)
+class __$$ContractEntityImplCopyWithImpl<$Res>
+    extends _$ContractEntityCopyWithImpl<$Res, _$ContractEntityImpl>
+    implements _$$ContractEntityImplCopyWith<$Res> {
+  __$$ContractEntityImplCopyWithImpl(
+      _$ContractEntityImpl _value, $Res Function(_$ContractEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_ContractEntityCopyWithImpl<$Res>
     Object? name = null,
     Object? expirationDate = null,
   }) {
-    return _then(_$_ContractEntity(
+    return _then(_$ContractEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -119,14 +119,14 @@ class __$$_ContractEntityCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ContractEntity
+class _$ContractEntityImpl
     with DiagnosticableTreeMixin
     implements _ContractEntity {
-  const _$_ContractEntity(
+  const _$ContractEntityImpl(
       {required this.id, required this.name, required this.expirationDate});
 
-  factory _$_ContractEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_ContractEntityFromJson(json);
+  factory _$ContractEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContractEntityImplFromJson(json);
 
   @override
   final int id;
@@ -151,10 +151,10 @@ class _$_ContractEntity
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ContractEntity &&
+            other is _$ContractEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.expirationDate, expirationDate) ||
@@ -168,12 +168,13 @@ class _$_ContractEntity
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ContractEntityCopyWith<_$_ContractEntity> get copyWith =>
-      __$$_ContractEntityCopyWithImpl<_$_ContractEntity>(this, _$identity);
+  _$$ContractEntityImplCopyWith<_$ContractEntityImpl> get copyWith =>
+      __$$ContractEntityImplCopyWithImpl<_$ContractEntityImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ContractEntityToJson(
+    return _$$ContractEntityImplToJson(
       this,
     );
   }
@@ -183,10 +184,10 @@ abstract class _ContractEntity implements ContractEntity {
   const factory _ContractEntity(
       {required final int id,
       required final String name,
-      required final DateTime expirationDate}) = _$_ContractEntity;
+      required final DateTime expirationDate}) = _$ContractEntityImpl;
 
   factory _ContractEntity.fromJson(Map<String, dynamic> json) =
-      _$_ContractEntity.fromJson;
+      _$ContractEntityImpl.fromJson;
 
   @override
   int get id;
@@ -196,6 +197,6 @@ abstract class _ContractEntity implements ContractEntity {
   DateTime get expirationDate;
   @override
   @JsonKey(ignore: true)
-  _$$_ContractEntityCopyWith<_$_ContractEntity> get copyWith =>
+  _$$ContractEntityImplCopyWith<_$ContractEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

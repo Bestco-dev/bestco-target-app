@@ -11,7 +11,7 @@ import '../../common/utils/http_client/token_provider.dart';
 import '../../common/utils/storage/shared_pref_util.dart';
 import '../../domain/entities/app_state/app_state.dart';
 import '../../domain/entities/contract/contract_entity.dart';
-import '../../domain/entities/invoice/invoice_entity.dart';
+import '../../domain/entities/customer/customer.dart';
 import '../../domain/entities/user/user.dart';
 import '../pages/about_app/about_app.dart';
 import '../pages/change_password/change_password.dart';
@@ -20,9 +20,6 @@ import '../pages/customer_details/customer_details.dart';
 import '../pages/customers/customers.dart';
 import '../pages/forget_password/forget_password.dart';
 import '../pages/index/index.dart';
-import '../pages/invoice_details/invoice_details.dart';
-import '../pages/invoices/invoices.dart';
-import '../pages/invoicing/invoicing.dart';
 import '../pages/login/login.dart';
 import '../pages/order_curd/order_curd.dart';
 import '../pages/order_details/order_details.dart';
@@ -50,9 +47,6 @@ List<ShellRoute> get routes => [
             path: "/",
             builder: (context, state) => const IndexPage(),
             routes: [
-
-
-
               GoRoute(
                 path: "customers",
                 name: CustomersPage.pageName,
@@ -64,7 +58,9 @@ List<ShellRoute> get routes => [
                     path: "customer_details",
                     name: CustomerDetailsPage.pageName,
                     builder: (context, state) {
-                      return const CustomerDetailsPage();
+                      return CustomerDetailsPage(
+                        customer: state.extra as CustomerEntity,
+                      );
                     },
                   ),
                   GoRoute(
@@ -72,12 +68,11 @@ List<ShellRoute> get routes => [
                     name: CustomerCurdPage.pageName,
                     builder: (context, state) {
                       return CustomerCurdPage(
-                          contract: state.extra as ContractEntity);
+                          customer: state.extra as CustomerEntity);
                     },
                   ),
                 ],
               ),
-
               GoRoute(
                 path: "orders",
                 name: OrdersPage.pageName,
@@ -102,8 +97,6 @@ List<ShellRoute> get routes => [
                   ),
                 ],
               ),
-
-
               GoRoute(
                 path: "salePersons",
                 name: SalePersonsPage.pageName,
@@ -128,8 +121,6 @@ List<ShellRoute> get routes => [
                   ),
                 ],
               ),
-
-
               GoRoute(
                 path: "products",
                 name: ProductsPage.pageName,
@@ -146,7 +137,6 @@ List<ShellRoute> get routes => [
                   ),
                 ],
               ),
-
               GoRoute(
                 path: "profile",
                 name: ProfilePage.pageName,
@@ -168,28 +158,7 @@ List<ShellRoute> get routes => [
                   return const ChangePasswordPage();
                 },
               ),
-              GoRoute(
-                path: "invoices",
-                name: InvoicesPage.pageName,
-                builder: (context, state) {
-                  return const InvoicesPage();
-                },
-              ),
-              GoRoute(
-                path: "invoicing",
-                name: InvoicingPage.pageName,
-                builder: (context, state) {
-                  return const InvoicingPage();
-                },
-              ),
-              GoRoute(
-                path: "invoiceDetails",
-                name: InvoicesDetailsPage.pageName,
-                builder: (context, state) {
-                  return InvoicesDetailsPage(
-                      invoice: state.extra as InvoiceEntity);
-                },
-              ),
+
             ],
           ),
           GoRoute(

@@ -1,1 +1,0 @@
-import 'package:flutter/material.dart'; class AccountTabletPage extends StatefulWidget {const AccountTabletPage({Key? key}) : super(key: key); @override State<AccountTabletPage> createState() => _AccountTabletPageState(); } class _AccountTabletPageState extends State<AccountTabletPage> { @override Widget build(BuildContext context) { return const Text('Account'); } }

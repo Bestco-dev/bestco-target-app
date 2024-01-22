@@ -92,25 +92,25 @@ class _$UiStateCopyWithImpl<T, $Res, $Val extends UiState<T>>
 }
 
 /// @nodoc
-abstract class _$$UiStateInitialCopyWith<T, $Res> {
-  factory _$$UiStateInitialCopyWith(
-          _$UiStateInitial<T> value, $Res Function(_$UiStateInitial<T>) then) =
-      __$$UiStateInitialCopyWithImpl<T, $Res>;
+abstract class _$$UiStateInitialImplCopyWith<T, $Res> {
+  factory _$$UiStateInitialImplCopyWith(_$UiStateInitialImpl<T> value,
+          $Res Function(_$UiStateInitialImpl<T>) then) =
+      __$$UiStateInitialImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$UiStateInitialCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateInitial<T>>
-    implements _$$UiStateInitialCopyWith<T, $Res> {
-  __$$UiStateInitialCopyWithImpl(
-      _$UiStateInitial<T> _value, $Res Function(_$UiStateInitial<T>) _then)
+class __$$UiStateInitialImplCopyWithImpl<T, $Res>
+    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateInitialImpl<T>>
+    implements _$$UiStateInitialImplCopyWith<T, $Res> {
+  __$$UiStateInitialImplCopyWithImpl(_$UiStateInitialImpl<T> _value,
+      $Res Function(_$UiStateInitialImpl<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UiStateInitial<T> implements UiStateInitial<T> {
-  const _$UiStateInitial();
+class _$UiStateInitialImpl<T> implements UiStateInitial<T> {
+  const _$UiStateInitialImpl();
 
   @override
   String toString() {
@@ -118,9 +118,9 @@ class _$UiStateInitial<T> implements UiStateInitial<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UiStateInitial<T>);
+        (other.runtimeType == runtimeType && other is _$UiStateInitialImpl<T>);
   }
 
   @override
@@ -208,29 +208,29 @@ class _$UiStateInitial<T> implements UiStateInitial<T> {
 }
 
 abstract class UiStateInitial<T> implements UiState<T> {
-  const factory UiStateInitial() = _$UiStateInitial<T>;
+  const factory UiStateInitial() = _$UiStateInitialImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$UiStateLoadingCopyWith<T, $Res> {
-  factory _$$UiStateLoadingCopyWith(
-          _$UiStateLoading<T> value, $Res Function(_$UiStateLoading<T>) then) =
-      __$$UiStateLoadingCopyWithImpl<T, $Res>;
+abstract class _$$UiStateLoadingImplCopyWith<T, $Res> {
+  factory _$$UiStateLoadingImplCopyWith(_$UiStateLoadingImpl<T> value,
+          $Res Function(_$UiStateLoadingImpl<T>) then) =
+      __$$UiStateLoadingImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$UiStateLoadingCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateLoading<T>>
-    implements _$$UiStateLoadingCopyWith<T, $Res> {
-  __$$UiStateLoadingCopyWithImpl(
-      _$UiStateLoading<T> _value, $Res Function(_$UiStateLoading<T>) _then)
+class __$$UiStateLoadingImplCopyWithImpl<T, $Res>
+    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateLoadingImpl<T>>
+    implements _$$UiStateLoadingImplCopyWith<T, $Res> {
+  __$$UiStateLoadingImplCopyWithImpl(_$UiStateLoadingImpl<T> _value,
+      $Res Function(_$UiStateLoadingImpl<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UiStateLoading<T> implements UiStateLoading<T> {
-  const _$UiStateLoading();
+class _$UiStateLoadingImpl<T> implements UiStateLoading<T> {
+  const _$UiStateLoadingImpl();
 
   @override
   String toString() {
@@ -238,9 +238,9 @@ class _$UiStateLoading<T> implements UiStateLoading<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UiStateLoading<T>);
+        (other.runtimeType == runtimeType && other is _$UiStateLoadingImpl<T>);
   }
 
   @override
@@ -328,24 +328,24 @@ class _$UiStateLoading<T> implements UiStateLoading<T> {
 }
 
 abstract class UiStateLoading<T> implements UiState<T> {
-  const factory UiStateLoading() = _$UiStateLoading<T>;
+  const factory UiStateLoading() = _$UiStateLoadingImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$UiStateDataCopyWith<T, $Res> {
-  factory _$$UiStateDataCopyWith(
-          _$UiStateData<T> value, $Res Function(_$UiStateData<T>) then) =
-      __$$UiStateDataCopyWithImpl<T, $Res>;
+abstract class _$$UiStateDataImplCopyWith<T, $Res> {
+  factory _$$UiStateDataImplCopyWith(_$UiStateDataImpl<T> value,
+          $Res Function(_$UiStateDataImpl<T>) then) =
+      __$$UiStateDataImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$UiStateDataCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateData<T>>
-    implements _$$UiStateDataCopyWith<T, $Res> {
-  __$$UiStateDataCopyWithImpl(
-      _$UiStateData<T> _value, $Res Function(_$UiStateData<T>) _then)
+class __$$UiStateDataImplCopyWithImpl<T, $Res>
+    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateDataImpl<T>>
+    implements _$$UiStateDataImplCopyWith<T, $Res> {
+  __$$UiStateDataImplCopyWithImpl(
+      _$UiStateDataImpl<T> _value, $Res Function(_$UiStateDataImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -353,7 +353,7 @@ class __$$UiStateDataCopyWithImpl<T, $Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$UiStateData<T>(
+    return _then(_$UiStateDataImpl<T>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -364,8 +364,8 @@ class __$$UiStateDataCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$UiStateData<T> implements UiStateData<T> {
-  const _$UiStateData({required this.data});
+class _$UiStateDataImpl<T> implements UiStateData<T> {
+  const _$UiStateDataImpl({required this.data});
 
   @override
   final T data;
@@ -376,10 +376,10 @@ class _$UiStateData<T> implements UiStateData<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UiStateData<T> &&
+            other is _$UiStateDataImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -390,8 +390,9 @@ class _$UiStateData<T> implements UiStateData<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UiStateDataCopyWith<T, _$UiStateData<T>> get copyWith =>
-      __$$UiStateDataCopyWithImpl<T, _$UiStateData<T>>(this, _$identity);
+  _$$UiStateDataImplCopyWith<T, _$UiStateDataImpl<T>> get copyWith =>
+      __$$UiStateDataImplCopyWithImpl<T, _$UiStateDataImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -475,34 +476,34 @@ class _$UiStateData<T> implements UiStateData<T> {
 }
 
 abstract class UiStateData<T> implements UiState<T> {
-  const factory UiStateData({required final T data}) = _$UiStateData<T>;
+  const factory UiStateData({required final T data}) = _$UiStateDataImpl<T>;
 
   T get data;
   @JsonKey(ignore: true)
-  _$$UiStateDataCopyWith<T, _$UiStateData<T>> get copyWith =>
+  _$$UiStateDataImplCopyWith<T, _$UiStateDataImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UiStateEmptyCopyWith<T, $Res> {
-  factory _$$UiStateEmptyCopyWith(
-          _$UiStateEmpty<T> value, $Res Function(_$UiStateEmpty<T>) then) =
-      __$$UiStateEmptyCopyWithImpl<T, $Res>;
+abstract class _$$UiStateEmptyImplCopyWith<T, $Res> {
+  factory _$$UiStateEmptyImplCopyWith(_$UiStateEmptyImpl<T> value,
+          $Res Function(_$UiStateEmptyImpl<T>) then) =
+      __$$UiStateEmptyImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$UiStateEmptyCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateEmpty<T>>
-    implements _$$UiStateEmptyCopyWith<T, $Res> {
-  __$$UiStateEmptyCopyWithImpl(
-      _$UiStateEmpty<T> _value, $Res Function(_$UiStateEmpty<T>) _then)
+class __$$UiStateEmptyImplCopyWithImpl<T, $Res>
+    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateEmptyImpl<T>>
+    implements _$$UiStateEmptyImplCopyWith<T, $Res> {
+  __$$UiStateEmptyImplCopyWithImpl(
+      _$UiStateEmptyImpl<T> _value, $Res Function(_$UiStateEmptyImpl<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UiStateEmpty<T> implements UiStateEmpty<T> {
-  const _$UiStateEmpty();
+class _$UiStateEmptyImpl<T> implements UiStateEmpty<T> {
+  const _$UiStateEmptyImpl();
 
   @override
   String toString() {
@@ -510,9 +511,9 @@ class _$UiStateEmpty<T> implements UiStateEmpty<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UiStateEmpty<T>);
+        (other.runtimeType == runtimeType && other is _$UiStateEmptyImpl<T>);
   }
 
   @override
@@ -600,14 +601,14 @@ class _$UiStateEmpty<T> implements UiStateEmpty<T> {
 }
 
 abstract class UiStateEmpty<T> implements UiState<T> {
-  const factory UiStateEmpty() = _$UiStateEmpty<T>;
+  const factory UiStateEmpty() = _$UiStateEmptyImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$UiStateErrorCopyWith<T, $Res> {
-  factory _$$UiStateErrorCopyWith(
-          _$UiStateError<T> value, $Res Function(_$UiStateError<T>) then) =
-      __$$UiStateErrorCopyWithImpl<T, $Res>;
+abstract class _$$UiStateErrorImplCopyWith<T, $Res> {
+  factory _$$UiStateErrorImplCopyWith(_$UiStateErrorImpl<T> value,
+          $Res Function(_$UiStateErrorImpl<T>) then) =
+      __$$UiStateErrorImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({NetworkExceptions error});
 
@@ -615,11 +616,11 @@ abstract class _$$UiStateErrorCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$$UiStateErrorCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateError<T>>
-    implements _$$UiStateErrorCopyWith<T, $Res> {
-  __$$UiStateErrorCopyWithImpl(
-      _$UiStateError<T> _value, $Res Function(_$UiStateError<T>) _then)
+class __$$UiStateErrorImplCopyWithImpl<T, $Res>
+    extends _$UiStateCopyWithImpl<T, $Res, _$UiStateErrorImpl<T>>
+    implements _$$UiStateErrorImplCopyWith<T, $Res> {
+  __$$UiStateErrorImplCopyWithImpl(
+      _$UiStateErrorImpl<T> _value, $Res Function(_$UiStateErrorImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -627,7 +628,7 @@ class __$$UiStateErrorCopyWithImpl<T, $Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$UiStateError<T>(
+    return _then(_$UiStateErrorImpl<T>(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -646,8 +647,8 @@ class __$$UiStateErrorCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$UiStateError<T> implements UiStateError<T> {
-  const _$UiStateError({required this.error});
+class _$UiStateErrorImpl<T> implements UiStateError<T> {
+  const _$UiStateErrorImpl({required this.error});
 
   @override
   final NetworkExceptions error;
@@ -658,10 +659,10 @@ class _$UiStateError<T> implements UiStateError<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UiStateError<T> &&
+            other is _$UiStateErrorImpl<T> &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -671,8 +672,9 @@ class _$UiStateError<T> implements UiStateError<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UiStateErrorCopyWith<T, _$UiStateError<T>> get copyWith =>
-      __$$UiStateErrorCopyWithImpl<T, _$UiStateError<T>>(this, _$identity);
+  _$$UiStateErrorImplCopyWith<T, _$UiStateErrorImpl<T>> get copyWith =>
+      __$$UiStateErrorImplCopyWithImpl<T, _$UiStateErrorImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -757,10 +759,10 @@ class _$UiStateError<T> implements UiStateError<T> {
 
 abstract class UiStateError<T> implements UiState<T> {
   const factory UiStateError({required final NetworkExceptions error}) =
-      _$UiStateError<T>;
+      _$UiStateErrorImpl<T>;
 
   NetworkExceptions get error;
   @JsonKey(ignore: true)
-  _$$UiStateErrorCopyWith<T, _$UiStateError<T>> get copyWith =>
+  _$$UiStateErrorImplCopyWith<T, _$UiStateErrorImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

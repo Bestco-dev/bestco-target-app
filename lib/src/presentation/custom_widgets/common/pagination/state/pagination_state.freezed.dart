@@ -114,11 +114,11 @@ class _$PaginationStateCopyWithImpl<T, $Res, $Val extends PaginationState<T>>
 }
 
 /// @nodoc
-abstract class _$$_PaginationStateCopyWith<T, $Res>
+abstract class _$$PaginationStateImplCopyWith<T, $Res>
     implements $PaginationStateCopyWith<T, $Res> {
-  factory _$$_PaginationStateCopyWith(_$_PaginationState<T> value,
-          $Res Function(_$_PaginationState<T>) then) =
-      __$$_PaginationStateCopyWithImpl<T, $Res>;
+  factory _$$PaginationStateImplCopyWith(_$PaginationStateImpl<T> value,
+          $Res Function(_$PaginationStateImpl<T>) then) =
+      __$$PaginationStateImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call(
@@ -134,11 +134,11 @@ abstract class _$$_PaginationStateCopyWith<T, $Res>
 }
 
 /// @nodoc
-class __$$_PaginationStateCopyWithImpl<T, $Res>
-    extends _$PaginationStateCopyWithImpl<T, $Res, _$_PaginationState<T>>
-    implements _$$_PaginationStateCopyWith<T, $Res> {
-  __$$_PaginationStateCopyWithImpl(
-      _$_PaginationState<T> _value, $Res Function(_$_PaginationState<T>) _then)
+class __$$PaginationStateImplCopyWithImpl<T, $Res>
+    extends _$PaginationStateCopyWithImpl<T, $Res, _$PaginationStateImpl<T>>
+    implements _$$PaginationStateImplCopyWith<T, $Res> {
+  __$$PaginationStateImplCopyWithImpl(_$PaginationStateImpl<T> _value,
+      $Res Function(_$PaginationStateImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -154,7 +154,7 @@ class __$$_PaginationStateCopyWithImpl<T, $Res>
     Object? initialize = null,
     Object? endReached = null,
   }) {
-    return _then(_$_PaginationState<T>(
+    return _then(_$PaginationStateImpl<T>(
       entities: null == entities
           ? _value._entities
           : entities // ignore: cast_nullable_to_non_nullable
@@ -197,8 +197,8 @@ class __$$_PaginationStateCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_PaginationState<T> extends _PaginationState<T> {
-  _$_PaginationState(
+class _$PaginationStateImpl<T> extends _PaginationState<T> {
+  _$PaginationStateImpl(
       {required final List<T> entities,
       this.errorMessage,
       this.loadMoreError,
@@ -248,10 +248,10 @@ class _$_PaginationState<T> extends _PaginationState<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PaginationState<T> &&
+            other is _$PaginationStateImpl<T> &&
             const DeepCollectionEquality().equals(other._entities, _entities) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -285,8 +285,8 @@ class _$_PaginationState<T> extends _PaginationState<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PaginationStateCopyWith<T, _$_PaginationState<T>> get copyWith =>
-      __$$_PaginationStateCopyWithImpl<T, _$_PaginationState<T>>(
+  _$$PaginationStateImplCopyWith<T, _$PaginationStateImpl<T>> get copyWith =>
+      __$$PaginationStateImplCopyWithImpl<T, _$PaginationStateImpl<T>>(
           this, _$identity);
 }
 
@@ -300,7 +300,7 @@ abstract class _PaginationState<T> extends PaginationState<T> {
       final bool loadingMore,
       final bool isRefresh,
       final bool initialize,
-      final bool endReached}) = _$_PaginationState<T>;
+      final bool endReached}) = _$PaginationStateImpl<T>;
   _PaginationState._() : super._();
 
   @override
@@ -323,6 +323,6 @@ abstract class _PaginationState<T> extends PaginationState<T> {
   bool get endReached;
   @override
   @JsonKey(ignore: true)
-  _$$_PaginationStateCopyWith<T, _$_PaginationState<T>> get copyWith =>
+  _$$PaginationStateImplCopyWith<T, _$PaginationStateImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

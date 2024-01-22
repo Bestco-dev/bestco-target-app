@@ -1106,10 +1106,10 @@ class Localization {
     );
   }
 
-  /// `تريد تسجيل الخروج من تطبيق FireWatch`
+  /// `تريد تسجيل الخروج من تطبيق Bestco`
   String get logout_msg {
     return Intl.message(
-      'تريد تسجيل الخروج من تطبيق FireWatch',
+      'تريد تسجيل الخروج من تطبيق Bestco',
       name: 'logout_msg',
       desc: '',
       args: [],

@@ -4,10 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../common/res/colors.dart';
-import '../account/account.dart';
-import '../calender/calender.dart';
 import '../home/home.dart';
-import '../notifications/notifications.dart';
 
 class IndexMobilePage extends StatefulWidget {
   const IndexMobilePage({Key? key}) : super(key: key);
@@ -39,15 +36,15 @@ class _IndexMobilePageState extends State<IndexMobilePage> {
 
   _onPageSelected(int index) {
     if (index == _currentIndex) return;
-    if (!loaded.contains(index)) {
-      loaded.add(index);
-      _widgets[index] = index == 1
-          ? const CalenderPage(key: PageStorageKey('CalenderPage'))
-          : index == 2
-              ? const NotificationsPage(
-                  key: PageStorageKey('NotificationMobilePage'))
-              : const AccountPage(key: PageStorageKey('AccountMobilePage'));
-    }
+    // if (!loaded.contains(index)) {
+    //   loaded.add(index);
+    //   _widgets[index] = index == 1
+    //       ? const CalenderPage(key: PageStorageKey('CalenderPage'))
+    //       : index == 2
+    //           ? const NotificationsPage(
+    //               key: PageStorageKey('NotificationMobilePage'))
+    //           : const NotificationsPage(key: PageStorageKey('AccountMobilePage'));
+    // }
     setState(() {
       _currentIndex = index;
     });

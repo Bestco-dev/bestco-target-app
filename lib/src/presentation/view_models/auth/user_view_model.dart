@@ -20,9 +20,9 @@ class UserViewModel extends StateNotifier<UserEntity?> {
 
   bool get hasUser => state != null;
 
-  set avatar(String avatar) => state = state?.copyWith(avatarUrl: avatar);
+  set avatar(String avatar) => state = state?.copyWith(imageUrl: avatar);
 
-  setInfo(String avatarUrl) => state = state?.copyWith(avatarUrl: avatarUrl);
+  setInfo(String avatarUrl) => state = state?.copyWith(imageUrl: avatarUrl);
 
   info(UserEntity user) => state = state?.copyWith(
         name: user.name,

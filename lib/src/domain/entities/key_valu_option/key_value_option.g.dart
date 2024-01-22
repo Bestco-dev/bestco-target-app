@@ -1,24 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'key_value.dart';
+part of 'key_value_option.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KpiOptionModelImpl _$$KpiOptionModelImplFromJson(Map<String, dynamic> json) =>
-    _$KpiOptionModelImpl(
+_$KeyValueOptionEntityImpl _$$KeyValueOptionEntityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$KeyValueOptionEntityImpl(
       key: json['key'] as String,
       value: json['value'] as String?,
-      label: json['label'] as String,
-      unit: json['unit'] as String?,
     );
 
-Map<String, dynamic> _$$KpiOptionModelImplToJson(
-        _$KpiOptionModelImpl instance) =>
+Map<String, dynamic> _$$KeyValueOptionEntityImplToJson(
+        _$KeyValueOptionEntityImpl instance) =>
     <String, dynamic>{
       'key': instance.key,
       'value': instance.value,
-      'label': instance.label,
-      'unit': instance.unit,
     };

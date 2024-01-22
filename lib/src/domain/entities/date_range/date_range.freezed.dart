@@ -63,22 +63,22 @@ class _$DateRangeModelCopyWithImpl<$Res, $Val extends DateRangeModel>
 }
 
 /// @nodoc
-abstract class _$$_DateRangeModelCopyWith<$Res>
+abstract class _$$DateRangeModelImplCopyWith<$Res>
     implements $DateRangeModelCopyWith<$Res> {
-  factory _$$_DateRangeModelCopyWith(
-          _$_DateRangeModel value, $Res Function(_$_DateRangeModel) then) =
-      __$$_DateRangeModelCopyWithImpl<$Res>;
+  factory _$$DateRangeModelImplCopyWith(_$DateRangeModelImpl value,
+          $Res Function(_$DateRangeModelImpl) then) =
+      __$$DateRangeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({DateTime? startDate, DateTime? endDate});
 }
 
 /// @nodoc
-class __$$_DateRangeModelCopyWithImpl<$Res>
-    extends _$DateRangeModelCopyWithImpl<$Res, _$_DateRangeModel>
-    implements _$$_DateRangeModelCopyWith<$Res> {
-  __$$_DateRangeModelCopyWithImpl(
-      _$_DateRangeModel _value, $Res Function(_$_DateRangeModel) _then)
+class __$$DateRangeModelImplCopyWithImpl<$Res>
+    extends _$DateRangeModelCopyWithImpl<$Res, _$DateRangeModelImpl>
+    implements _$$DateRangeModelImplCopyWith<$Res> {
+  __$$DateRangeModelImplCopyWithImpl(
+      _$DateRangeModelImpl _value, $Res Function(_$DateRangeModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_DateRangeModelCopyWithImpl<$Res>
     Object? startDate = freezed,
     Object? endDate = freezed,
   }) {
-    return _then(_$_DateRangeModel(
+    return _then(_$DateRangeModelImpl(
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,9 @@ class __$$_DateRangeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DateRangeModel extends _DateRangeModel with DiagnosticableTreeMixin {
-  const _$_DateRangeModel({this.startDate, this.endDate}) : super._();
+class _$DateRangeModelImpl extends _DateRangeModel
+    with DiagnosticableTreeMixin {
+  const _$DateRangeModelImpl({this.startDate, this.endDate}) : super._();
 
   @override
   final DateTime? startDate;
@@ -125,10 +126,10 @@ class _$_DateRangeModel extends _DateRangeModel with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DateRangeModel &&
+            other is _$DateRangeModelImpl &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate));
@@ -140,13 +141,15 @@ class _$_DateRangeModel extends _DateRangeModel with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DateRangeModelCopyWith<_$_DateRangeModel> get copyWith =>
-      __$$_DateRangeModelCopyWithImpl<_$_DateRangeModel>(this, _$identity);
+  _$$DateRangeModelImplCopyWith<_$DateRangeModelImpl> get copyWith =>
+      __$$DateRangeModelImplCopyWithImpl<_$DateRangeModelImpl>(
+          this, _$identity);
 }
 
 abstract class _DateRangeModel extends DateRangeModel {
   const factory _DateRangeModel(
-      {final DateTime? startDate, final DateTime? endDate}) = _$_DateRangeModel;
+      {final DateTime? startDate,
+      final DateTime? endDate}) = _$DateRangeModelImpl;
   const _DateRangeModel._() : super._();
 
   @override
@@ -155,6 +158,6 @@ abstract class _DateRangeModel extends DateRangeModel {
   DateTime? get endDate;
   @override
   @JsonKey(ignore: true)
-  _$$_DateRangeModelCopyWith<_$_DateRangeModel> get copyWith =>
+  _$$DateRangeModelImplCopyWith<_$DateRangeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

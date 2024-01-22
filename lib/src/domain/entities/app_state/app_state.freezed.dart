@@ -86,25 +86,25 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 }
 
 /// @nodoc
-abstract class _$$InitializingCopyWith<$Res> {
-  factory _$$InitializingCopyWith(
-          _$Initializing value, $Res Function(_$Initializing) then) =
-      __$$InitializingCopyWithImpl<$Res>;
+abstract class _$$InitializingImplCopyWith<$Res> {
+  factory _$$InitializingImplCopyWith(
+          _$InitializingImpl value, $Res Function(_$InitializingImpl) then) =
+      __$$InitializingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitializingCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$Initializing>
-    implements _$$InitializingCopyWith<$Res> {
-  __$$InitializingCopyWithImpl(
-      _$Initializing _value, $Res Function(_$Initializing) _then)
+class __$$InitializingImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$InitializingImpl>
+    implements _$$InitializingImplCopyWith<$Res> {
+  __$$InitializingImplCopyWithImpl(
+      _$InitializingImpl _value, $Res Function(_$InitializingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Initializing implements Initializing {
-  const _$Initializing();
+class _$InitializingImpl implements Initializing {
+  const _$InitializingImpl();
 
   @override
   String toString() {
@@ -112,9 +112,9 @@ class _$Initializing implements Initializing {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Initializing);
+        (other.runtimeType == runtimeType && other is _$InitializingImpl);
   }
 
   @override
@@ -196,29 +196,29 @@ class _$Initializing implements Initializing {
 }
 
 abstract class Initializing implements AppState {
-  const factory Initializing() = _$Initializing;
+  const factory Initializing() = _$InitializingImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthenticatedCopyWith<$Res> {
-  factory _$$AuthenticatedCopyWith(
-          _$Authenticated value, $Res Function(_$Authenticated) then) =
-      __$$AuthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthenticatedImplCopyWith<$Res> {
+  factory _$$AuthenticatedImplCopyWith(
+          _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
+      __$$AuthenticatedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthenticatedCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$Authenticated>
-    implements _$$AuthenticatedCopyWith<$Res> {
-  __$$AuthenticatedCopyWithImpl(
-      _$Authenticated _value, $Res Function(_$Authenticated) _then)
+class __$$AuthenticatedImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AuthenticatedImpl>
+    implements _$$AuthenticatedImplCopyWith<$Res> {
+  __$$AuthenticatedImplCopyWithImpl(
+      _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Authenticated implements Authenticated {
-  const _$Authenticated();
+class _$AuthenticatedImpl implements Authenticated {
+  const _$AuthenticatedImpl();
 
   @override
   String toString() {
@@ -226,9 +226,9 @@ class _$Authenticated implements Authenticated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Authenticated);
+        (other.runtimeType == runtimeType && other is _$AuthenticatedImpl);
   }
 
   @override
@@ -310,29 +310,29 @@ class _$Authenticated implements Authenticated {
 }
 
 abstract class Authenticated implements AppState {
-  const factory Authenticated() = _$Authenticated;
+  const factory Authenticated() = _$AuthenticatedImpl;
 }
 
 /// @nodoc
-abstract class _$$UnauthenticatedCopyWith<$Res> {
-  factory _$$UnauthenticatedCopyWith(
-          _$Unauthenticated value, $Res Function(_$Unauthenticated) then) =
-      __$$UnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$UnauthenticatedImplCopyWith<$Res> {
+  factory _$$UnauthenticatedImplCopyWith(_$UnauthenticatedImpl value,
+          $Res Function(_$UnauthenticatedImpl) then) =
+      __$$UnauthenticatedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UnauthenticatedCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$Unauthenticated>
-    implements _$$UnauthenticatedCopyWith<$Res> {
-  __$$UnauthenticatedCopyWithImpl(
-      _$Unauthenticated _value, $Res Function(_$Unauthenticated) _then)
+class __$$UnauthenticatedImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$UnauthenticatedImpl>
+    implements _$$UnauthenticatedImplCopyWith<$Res> {
+  __$$UnauthenticatedImplCopyWithImpl(
+      _$UnauthenticatedImpl _value, $Res Function(_$UnauthenticatedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Unauthenticated implements Unauthenticated {
-  const _$Unauthenticated();
+class _$UnauthenticatedImpl implements Unauthenticated {
+  const _$UnauthenticatedImpl();
 
   @override
   String toString() {
@@ -340,9 +340,9 @@ class _$Unauthenticated implements Unauthenticated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Unauthenticated);
+        (other.runtimeType == runtimeType && other is _$UnauthenticatedImpl);
   }
 
   @override
@@ -424,14 +424,14 @@ class _$Unauthenticated implements Unauthenticated {
 }
 
 abstract class Unauthenticated implements AppState {
-  const factory Unauthenticated() = _$Unauthenticated;
+  const factory Unauthenticated() = _$UnauthenticatedImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingErrorCopyWith<$Res> {
-  factory _$$LoadingErrorCopyWith(
-          _$LoadingError value, $Res Function(_$LoadingError) then) =
-      __$$LoadingErrorCopyWithImpl<$Res>;
+abstract class _$$LoadingErrorImplCopyWith<$Res> {
+  factory _$$LoadingErrorImplCopyWith(
+          _$LoadingErrorImpl value, $Res Function(_$LoadingErrorImpl) then) =
+      __$$LoadingErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExceptionModel error});
 
@@ -439,11 +439,11 @@ abstract class _$$LoadingErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadingErrorCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$LoadingError>
-    implements _$$LoadingErrorCopyWith<$Res> {
-  __$$LoadingErrorCopyWithImpl(
-      _$LoadingError _value, $Res Function(_$LoadingError) _then)
+class __$$LoadingErrorImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$LoadingErrorImpl>
+    implements _$$LoadingErrorImplCopyWith<$Res> {
+  __$$LoadingErrorImplCopyWithImpl(
+      _$LoadingErrorImpl _value, $Res Function(_$LoadingErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -451,7 +451,7 @@ class __$$LoadingErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$LoadingError(
+    return _then(_$LoadingErrorImpl(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -470,8 +470,8 @@ class __$$LoadingErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingError implements LoadingError {
-  const _$LoadingError({required this.error});
+class _$LoadingErrorImpl implements LoadingError {
+  const _$LoadingErrorImpl({required this.error});
 
   @override
   final ExceptionModel error;
@@ -482,10 +482,10 @@ class _$LoadingError implements LoadingError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadingError &&
+            other is _$LoadingErrorImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -495,8 +495,8 @@ class _$LoadingError implements LoadingError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadingErrorCopyWith<_$LoadingError> get copyWith =>
-      __$$LoadingErrorCopyWithImpl<_$LoadingError>(this, _$identity);
+  _$$LoadingErrorImplCopyWith<_$LoadingErrorImpl> get copyWith =>
+      __$$LoadingErrorImplCopyWithImpl<_$LoadingErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -575,10 +575,10 @@ class _$LoadingError implements LoadingError {
 
 abstract class LoadingError implements AppState {
   const factory LoadingError({required final ExceptionModel error}) =
-      _$LoadingError;
+      _$LoadingErrorImpl;
 
   ExceptionModel get error;
   @JsonKey(ignore: true)
-  _$$LoadingErrorCopyWith<_$LoadingError> get copyWith =>
+  _$$LoadingErrorImplCopyWith<_$LoadingErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

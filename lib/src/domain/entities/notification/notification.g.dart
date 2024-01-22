@@ -6,9 +6,9 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NotificationEntity _$$_NotificationEntityFromJson(
+_$NotificationEntityImpl _$$NotificationEntityImplFromJson(
         Map<String, dynamic> json) =>
-    _$_NotificationEntity(
+    _$NotificationEntityImpl(
       id: json['id'] as int,
       type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
       status: json['status'] as String,
@@ -18,8 +18,8 @@ _$_NotificationEntity _$$_NotificationEntityFromJson(
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
 
-Map<String, dynamic> _$$_NotificationEntityToJson(
-        _$_NotificationEntity instance) =>
+Map<String, dynamic> _$$NotificationEntityImplToJson(
+        _$NotificationEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': _$NotificationTypeEnumMap[instance.type]!,
