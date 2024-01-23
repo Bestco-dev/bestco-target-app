@@ -21,8 +21,7 @@ class CustomersRepositoryImpl extends CustomersRepo {
 
   @override
   Future<ResponseState<CustomerEntity>> create(ReqParam param) {
-    // TODO: implement create
-    throw UnimplementedError();
+    return datasource.create(param);
   }
 
   @override
@@ -56,8 +55,7 @@ class CustomersRepositoryImpl extends CustomersRepo {
 
   @override
   Future<ResponseState<bool>> update(ReqParam param) {
-    // TODO: implement update
-    throw UnimplementedError();
+  return datasource.update(param);
   }
 
   @override

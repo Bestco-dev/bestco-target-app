@@ -51,8 +51,7 @@ class _UseCase implements CustomersRepo {
 
   @override
   Future<ResponseState<bool>> update(ReqParam param) {
-    // TODO: implement update
-    throw UnimplementedError();
+   return repo.update(param);
   }
 
   @override

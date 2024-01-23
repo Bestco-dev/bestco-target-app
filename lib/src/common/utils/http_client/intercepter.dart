@@ -20,6 +20,7 @@ class InterceptorImplementer implements Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     log(options.baseUrl + options.path, name: "Request url");
+    log("${options.data}", name: "Request data");
     String? token = ref.read(authTokenProvider).getToken;
     if (token != null) {
       options.headers.addAll({

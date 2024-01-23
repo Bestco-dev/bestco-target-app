@@ -15,9 +15,10 @@ _$CustomerEntityImpl _$$CustomerEntityImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       email: json['email'] as String?,
       website: json['website'] as String?,
-      nationalId: json['nationalId'] as String?,
-      taxId: json['taxId'] as String?,
-      imageUrl: json['imageUrl'] as String?,
+      nationalId: json['national_id'] as String?,
+      taxId: json['tax_id'] as String?,
+      imageUrl: json['image_url'] as String?,
+      description: json['description'] as String?,
       address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
     );
 
@@ -31,10 +32,11 @@ Map<String, dynamic> _$$CustomerEntityImplToJson(
       'phone': instance.phone,
       'email': instance.email,
       'website': instance.website,
-      'nationalId': instance.nationalId,
-      'taxId': instance.taxId,
-      'imageUrl': instance.imageUrl,
-      'address': instance.address,
+      'national_id': instance.nationalId,
+      'tax_id': instance.taxId,
+      'image_url': instance.imageUrl,
+      'description': instance.description,
+      'address': instance.address.toJson(),
     };
 
 const _$CustomerTypeEnumMap = {

@@ -1,0 +1,81 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../domain/entities/address/address.dart';
+import '../../../domain/entities/customer/customer.dart';
+import '../../../domain/entities/req_param/req_param.dart';
+import '../../../domain/entities/ui_state/ui_state.dart';
+import '../../../domain/use_cases/customers_use_case.dart';
+import '../../custom_widgets/common/custom_progress_bar.dart';
+import 'details_view_model.dart';
+import 'list_view_model.dart';
+
+final customerCurdProvider = StateNotifierProvider.autoDispose
+    .family<_ViewModel, CustomerEntity, CustomerEntity>((ref, model) {
+  return _ViewModel(model, ref: ref);
+});
+
+class _ViewModel extends StateNotifier<CustomerEntity> {
+  final Ref ref;
+  _ViewModel(super.state, {required this.ref});
+  void updateName(String value) => state = state.copyWith(name: value);
+  void updatePhone(String value) => state = state.copyWith(phone: value);
+  void updateNationalId(String value) =>
+      state = state.copyWith(nationalId: value);
+  void updateEmail(String value) => state = state.copyWith(email: value);
+  void updateDescription(String value) =>
+      state = state.copyWith(description: value);
+
+  void updateAddress(AddressModel address) =>
+      state = state.copyWith(address: address);
+
+  Future<bool> update() async {
+    ProgressBar.show();
+    final result = await ref
+        .read(customersRemoteUseCaseProvider)
+        .update(ReqParam(url: '', data: state.toJson()));
+    ProgressBar.hide();
+    return result.when(success: (data) {
+      log("update1 done ...");
+      ref.read(customerDetailsProvider.notifier).state =
+          UiState.data(data: state);
+      ref.read(customersListViewModelProvider.notifier).updateToUi(state);
+      return true;
+    }, failure: (error) {
+      log("update Error ...");
+      return false;
+    });
+  }
+
+  Future<bool> create() async {
+    ProgressBar.show();
+    final result = await ref
+        .read(customersRemoteUseCaseProvider)
+        .create(ReqParam(url: '', data: state.toJson()));
+    ProgressBar.hide();
+    return result.when(success: (data) {
+      log("create done ...");
+      return true;
+    }, failure: (error) {
+      log("create Error ...");
+      return false;
+    });
+  }
+
+  Future<bool> delete() async {
+    ProgressBar.show();
+    final result = await ref
+        .read(customersRemoteUseCaseProvider)
+        .delete(ReqParam(url: '', data: state.toJson()));
+    ProgressBar.hide();
+    return result.when(success: (data) {
+      log("delete done ...");
+      return true;
+    }, failure: (error) {
+      log("delete Error ...");
+      return false;
+    });
+  }
+}

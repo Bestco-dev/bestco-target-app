@@ -5,7 +5,7 @@ import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/customers_use_case.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
 
-final customersViewModelProvider =
+final customersListViewModelProvider =
     StateNotifierProvider<ViewModel, UiState<List<CustomerEntity>>>(
         (ref) => ViewModel(ref: ref));
 
@@ -40,6 +40,18 @@ class ViewModel extends StateNotifier<UiState<List<CustomerEntity>>> {
     );
   }
 
+  updateToUi(CustomerEntity customer) {
+    state.maybeWhen(
+      orElse: () {},
+      data: (data) {
+        state = UiState.data(data: [
+          for (CustomerEntity item in data)
+            if (item.id == customer.id) customer else item
+        ]);
+      },
+    );
+  }
+
   refresh() async {
     ProgressBar.show();
     final result = await ref.read(customersRemoteUseCaseProvider).load();
@@ -53,12 +65,4 @@ class ViewModel extends StateNotifier<UiState<List<CustomerEntity>>> {
 
   List<CustomerEntity> get _customers =>
       state.maybeWhen(data: (data) => data, orElse: () => []);
-
-  Future<bool> create(CustomerEntity customer) async {
-    return false;
-  }
-
-  Future<bool> delete(CustomerEntity customer) async {
-    return true;
-  }
 }

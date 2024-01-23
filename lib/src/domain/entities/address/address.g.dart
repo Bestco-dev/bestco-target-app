@@ -9,8 +9,6 @@ part of 'address.dart';
 _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
     _$AddressModelImpl(
       id: json['id'] as int,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
       country: json['country'] == null
           ? null
           : KeyValueOptionEntity.fromJson(
@@ -24,16 +22,18 @@ _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
           : KeyValueOptionEntity.fromJson(json['city'] as Map<String, dynamic>),
       street: json['street'] as String?,
       description: json['description'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$AddressModelImplToJson(_$AddressModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
       'country': instance.country,
       'state': instance.state,
       'city': instance.city,
       'street': instance.street,
       'description': instance.description,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

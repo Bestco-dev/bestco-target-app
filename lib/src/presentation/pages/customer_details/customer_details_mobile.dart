@@ -7,6 +7,7 @@ import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
+import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../custom_widgets/common/buttons.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
@@ -14,8 +15,13 @@ import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
+import '../../custom_widgets/common/key_value_selection.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
-import '../../view_models/customers/customer_view_model.dart';
+import '../../view_models/cities_view_model.dart';
+import '../../view_models/countries_view_model.dart';
+import '../../view_models/customers/adress_view_model.dart';
+import '../../view_models/customers/details_view_model.dart';
+import '../../view_models/states_view_model.dart';
 import '../customer_curd/customer_curd.dart';
 import '../orders/orders_mobile.dart';
 
@@ -29,24 +35,29 @@ class CustomerDetailsMobilePage extends ConsumerStatefulWidget {
 }
 
 class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
-  // final customer=widget.customer;
+  @override
+  void initState() {
+    Future.microtask(() {
+      ref.read(customerDetailsProvider.notifier).state =
+          UiState.data(data: widget.customer);
+
+      // ref.read(addressDe)
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final customer = ref.watch(customerProvider(widget.customer));
+    final state = ref.watch(customerDetailsProvider);
     return CustomAppScaffold(
       isScroll: true,
       hasPadding: false,
-      // floatingActionButton: const Padding(
-      //   padding: EdgeInsets.all(10),
-      //   child: AppBtn(
-      //     text: "اضافة طلب",
-      //     icon: Icons.add,
-      //   ),
-      // ),
       appBar: CustomAppBar(
         title: "تفاصيل العميل",
-        subTitle: _customerWidget(),
+        subTitle: state.maybeWhen(
+          orElse: () => const SizedBox.shrink(),
+          data: (data) => _customerWidget(data),
+        ),
         // subTitle: AppBtn(text: "Testing"),
       ),
       body: const OrdersListWidget(),
@@ -59,8 +70,9 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
     );
   }
 
-  Widget _customerWidget() {
-    final customer = ref.watch(customerProvider(widget.customer));
+  Widget _customerWidget(CustomerEntity customer) {
+    // final customer = ref.watch(customerDetailsProvider(widget.customer));
+    // final customer = ref.watch(customerDetails02Provider);
     return Column(
       children: [
         ListTile(
@@ -80,6 +92,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: customer.imageUrl ?? '',
+                // image: customer.imageUrl ?? '',
               ),
             ),
           ),
@@ -130,27 +143,8 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
                   CustomModalSheet.showModalSheet(
                     context,
                     title: "ملعومات العميل",
-                    child: _customerInfo(),
+                    child: _customerInfo(customer),
                     height: context.height * .7,
-                  );
-
-                  return;
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: const Color(0xfff7f7f7),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(20),
-                      ),
-                    ),
-                    builder: (_) {
-                      return SizedBox(
-                        height: context.height * .7,
-                        child: _customerInfo(),
-                      );
-                    },
                   );
                 },
               ),
@@ -201,8 +195,8 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               CustomModalSheet.showModalSheet(
                 context,
                 title: "تعديل العنوان",
-                child: const _AddressCurd(),
-                height: context.height * .7,
+                child: _AddressCurd(address: address),
+                height: context.height * .9,
               );
             },
             child: const Row(
@@ -227,8 +221,9 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
     );
   }
 
-  Widget _customerInfo() {
-    final customer = ref.watch(customerProvider(widget.customer));
+  Widget _customerInfo(CustomerEntity customer) {
+    // final customer = ref.watch(customerDetailsProvider(widget.customer));
+    // final customer = ref.watch(customerDetails02Provider);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -256,7 +251,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               CustomModalSheet.showModalSheet(
                 context,
                 title: "ملعومات العميل",
-                child: const CustomerCurdPage(),
+                child: CustomerCurdPage(customer: customer),
                 height: context.height * .9,
               );
             },
@@ -283,61 +278,87 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
   }
 }
 
-class _AddressCurd extends StatelessWidget {
-  const _AddressCurd({super.key});
+class _AddressCurd extends ConsumerWidget {
+  final AddressModel address;
+  const _AddressCurd({super.key, required this.address});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xfff7f7f7),
-      width: double.infinity,
-      height: double.infinity,
-      child: Column(
-        children: [
-          TitledTextField(
-            title: "اسم العنوان",
-            isRequired: true,
-            child: TextFormField(
-              decoration: const InputDecoration(hintText: "اسم العنوان"),
-              validator: MultiValidator([
-                RequiredValidator(
-                  errorText: 'اسم العنوان مطلوب',
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(addressCurdProvider(address));
+    final stateRead = ref.watch(addressCurdProvider(address).notifier);
+
+    // return state.
+    return Scaffold(
+      body: Container(
+        color: const Color(0xfff7f7f7),
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TitledTextField(
+                title: "الدولة",
+                child: KeyValueSelection(
+                  stateProvider: ref.watch(countriesProvider),
+                  onRefresh: () => ref.read(countriesProvider.notifier).load(),
+                  title: "الدولة",
+                  // selectedItem: ,
                 ),
-              ]),
-            ),
-          ),
-          TitledTextField(
-            title: "الدولة",
-            isRequired: true,
-            child: TextFormField(
-              decoration: const InputDecoration(hintText: "الدولة"),
-              validator: MultiValidator([
-                RequiredValidator(
-                  errorText: 'الدولة',
+              ),
+              TitledTextField(
+                title: "المنظقة",
+                child: KeyValueSelection(
+                  stateProvider: ref.watch(statesProvider),
+                  onRefresh: () => ref.read(statesProvider.notifier).load(),
+                  title: "المنظقة",
+                  // selectedItem: ,
                 ),
-              ]),
-            ),
-          ),
-          TitledTextField(
-            title: "المدينة",
-            isRequired: true,
-            child: TextFormField(
-              decoration: const InputDecoration(hintText: "المدينة"),
-              validator: MultiValidator([
-                RequiredValidator(
-                  errorText: 'المدينة',
+              ),
+              TitledTextField(
+                title: "المدينة",
+                child: KeyValueSelection(
+                  stateProvider: ref.watch(citiesProvider),
+                  onRefresh: () => ref.read(citiesProvider.notifier).load(),
+                  title: "المدينة",
+                  // selectedItem: ,
                 ),
-              ]),
-            ),
+              ),
+              TitledTextField(
+                title: "الشارع",
+                isRequired: true,
+                child: TextFormField(
+                  decoration: const InputDecoration(hintText: "الشارع"),
+                  validator: MultiValidator([
+                    RequiredValidator(
+                      errorText: 'الشارع',
+                    ),
+                  ]),
+                ),
+              ),
+              TitledTextField(
+                title: "التفاصيل",
+                isRequired: true,
+                child: TextFormField(
+                  maxLines: 4,
+                  decoration: const InputDecoration(hintText: "التفاصيل"),
+                  validator: MultiValidator([
+                    RequiredValidator(
+                      errorText: 'التفاصيل',
+                    ),
+                  ]),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                color: Colors.white,
+                child: AppBtn(
+                  text: "حفظ",
+                  onPressed: () {},
+                ),
+              )
+            ],
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            color: Colors.white,
-            child: AppBtn(
-              text: "حفظ",
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

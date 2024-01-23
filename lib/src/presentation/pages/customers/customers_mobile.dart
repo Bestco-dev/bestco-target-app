@@ -13,7 +13,7 @@ import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
-import '../../view_models/customers/customers_view_model.dart';
+import '../../view_models/customers/list_view_model.dart';
 import '../customer_curd/customer_curd.dart';
 import '../customer_details/customer_details.dart';
 
@@ -26,8 +26,8 @@ class CustomersMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(customersViewModelProvider);
-    final stateRead = ref.read(customersViewModelProvider.notifier);
+    final state = ref.watch(customersListViewModelProvider);
+    final stateRead = ref.read(customersListViewModelProvider.notifier);
     return CustomAppScaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10),
@@ -95,7 +95,7 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
           child: ClipOval(
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: FakeImages.randomImage(isUser: true),
+              image: customer.imageUrl??'',
             ),
           ),
         ),

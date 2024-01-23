@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 
 import '../../domain/entities/address/address.dart';
 import '../../domain/entities/customer/customer.dart';
+import '../../domain/entities/key_valu_option/key_value_option.dart';
 import '../types/types_enums.dart';
 import 'images.dart';
 
@@ -18,6 +19,14 @@ AddressModel getAddress() {
   );
 }
 
+KeyValueOptionEntity getKeyOption() {
+  final id = faker.randomGenerator.integer(5000);
+  return KeyValueOptionEntity(
+    key: "$id",
+    value: faker.lorem.words(1).join(''),
+  );
+}
+
 CustomerEntity getCustomer() {
   final id = faker.randomGenerator.integer(5000);
   final name = faker.person.name();
@@ -28,7 +37,7 @@ CustomerEntity getCustomer() {
     name: name,
     type: type,
     phone: phone,
-    imageUrl: FakeImages.randomImage(isUser: false),
+    imageUrl: FakeImages.randomImage(isUser: true),
     address: getAddress(),
   );
 }

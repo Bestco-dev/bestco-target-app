@@ -33,19 +33,23 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(count) =>
       "${Intl.plural(count, zero: 'No month', one: 'One month', other: '${count} months')}";
 
-  static String m5(count) =>
+  static String m5(info) => "Search for ${info}";
+
+  static String m6(info) => "Select ${info}";
+
+  static String m7(count) =>
       "${Intl.plural(count, zero: 'No systems', one: 'One system', other: '${count} systems')}";
 
-  static String m6(version) => "Version ${version}";
+  static String m8(version) => "Version ${version}";
 
-  static String m7(num) => "${num} Visit before";
+  static String m9(num) => "${num} Visit before";
 
-  static String m8(type) => "${type} visit";
+  static String m10(type) => "${type} visit";
 
-  static String m9(count) =>
+  static String m11(count) =>
       "${Intl.plural(count, zero: 'No week', one: 'One week', other: '${count} weeks')}";
 
-  static String m10(count) =>
+  static String m12(count) =>
       "${Intl.plural(count, zero: 'No year', one: 'One year', other: '${count} years')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -209,8 +213,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "scheduled": MessageLookupByLibrary.simpleMessage("Scheduled"),
         "searchForEquipment":
             MessageLookupByLibrary.simpleMessage("Search for equipment"),
+        "searchForItem": m5,
         "searchForSystem":
             MessageLookupByLibrary.simpleMessage("Search for system"),
+        "selectItem": m6,
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "selected": MessageLookupByLibrary.simpleMessage("Selected"),
@@ -221,7 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("Success"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "systems": MessageLookupByLibrary.simpleMessage("Systems"),
-        "systemsCount": m5,
+        "systemsCount": m7,
         "systemsSpecify":
             MessageLookupByLibrary.simpleMessage("Systems Specify"),
         "testRequirements":
@@ -242,26 +248,26 @@ class MessageLookup extends MessageLookupByLibrary {
             "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"),
         "validationRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
-        "version": m6,
+        "version": m8,
         "visit": MessageLookupByLibrary.simpleMessage("Visit"),
         "visitBefore": MessageLookupByLibrary.simpleMessage("Visit before"),
-        "visitBeforeNum": m7,
+        "visitBeforeNum": m9,
         "visitDetails": MessageLookupByLibrary.simpleMessage("Visit Details"),
         "visitProceed": MessageLookupByLibrary.simpleMessage("Visit Proceed"),
         "visitReportSendSuccessfullyMessage": MessageLookupByLibrary.simpleMessage(
             "Your report has been sent successfully !\nplease Wait for client confirmation"),
-        "visitType": m8,
+        "visitType": m10,
         "visits": MessageLookupByLibrary.simpleMessage("Visits"),
         "wait": MessageLookupByLibrary.simpleMessage("Please Wait ..."),
         "warning": MessageLookupByLibrary.simpleMessage("Warning"),
-        "weeksCount": m9,
+        "weeksCount": m11,
         "welcome":
             MessageLookupByLibrary.simpleMessage("keep up with good work"),
         "whatsComing": MessageLookupByLibrary.simpleMessage("What’s coming"),
         "whatsappMessage":
             MessageLookupByLibrary.simpleMessage("Whatsapp message"),
         "writeNote": MessageLookupByLibrary.simpleMessage("Write your note"),
-        "yearCount": m10,
+        "yearCount": m12,
         "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
         "yourCompany": MessageLookupByLibrary.simpleMessage("Your Company")
       };

@@ -21,13 +21,13 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AddressModel {
   int get id => throw _privateConstructorUsedError;
-  double? get latitude => throw _privateConstructorUsedError;
-  double? get longitude => throw _privateConstructorUsedError;
   KeyValueOptionEntity? get country => throw _privateConstructorUsedError;
   KeyValueOptionEntity? get state => throw _privateConstructorUsedError;
   KeyValueOptionEntity? get city => throw _privateConstructorUsedError;
   String? get street => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,13 +43,13 @@ abstract class $AddressModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      double? latitude,
-      double? longitude,
       KeyValueOptionEntity? country,
       KeyValueOptionEntity? state,
       KeyValueOptionEntity? city,
       String? street,
-      String? description});
+      String? description,
+      double? latitude,
+      double? longitude});
 
   $KeyValueOptionEntityCopyWith<$Res>? get country;
   $KeyValueOptionEntityCopyWith<$Res>? get state;
@@ -70,27 +70,19 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
   @override
   $Res call({
     Object? id = null,
-    Object? latitude = freezed,
-    Object? longitude = freezed,
     Object? country = freezed,
     Object? state = freezed,
     Object? city = freezed,
     Object? street = freezed,
     Object? description = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      latitude: freezed == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longitude: freezed == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
       country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -111,6 +103,14 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 
@@ -161,13 +161,13 @@ abstract class _$$AddressModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      double? latitude,
-      double? longitude,
       KeyValueOptionEntity? country,
       KeyValueOptionEntity? state,
       KeyValueOptionEntity? city,
       String? street,
-      String? description});
+      String? description,
+      double? latitude,
+      double? longitude});
 
   @override
   $KeyValueOptionEntityCopyWith<$Res>? get country;
@@ -189,27 +189,19 @@ class __$$AddressModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? latitude = freezed,
-    Object? longitude = freezed,
     Object? country = freezed,
     Object? state = freezed,
     Object? city = freezed,
     Object? street = freezed,
     Object? description = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_$AddressModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      latitude: freezed == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longitude: freezed == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
       country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -230,6 +222,14 @@ class __$$AddressModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -239,13 +239,13 @@ class __$$AddressModelImplCopyWithImpl<$Res>
 class _$AddressModelImpl extends _AddressModel {
   _$AddressModelImpl(
       {required this.id,
-      this.latitude,
-      this.longitude,
       this.country,
       this.state,
       this.city,
       this.street,
-      this.description})
+      this.description,
+      this.latitude,
+      this.longitude})
       : super._();
 
   factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -253,10 +253,6 @@ class _$AddressModelImpl extends _AddressModel {
 
   @override
   final int id;
-  @override
-  final double? latitude;
-  @override
-  final double? longitude;
   @override
   final KeyValueOptionEntity? country;
   @override
@@ -267,10 +263,14 @@ class _$AddressModelImpl extends _AddressModel {
   final String? street;
   @override
   final String? description;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
 
   @override
   String toString() {
-    return 'AddressModel(id: $id, latitude: $latitude, longitude: $longitude, country: $country, state: $state, city: $city, street: $street, description: $description)';
+    return 'AddressModel(id: $id, country: $country, state: $state, city: $city, street: $street, description: $description, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -279,22 +279,22 @@ class _$AddressModelImpl extends _AddressModel {
         (other.runtimeType == runtimeType &&
             other is _$AddressModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, latitude, longitude, country,
-      state, city, street, description);
+  int get hashCode => Object.hash(runtimeType, id, country, state, city, street,
+      description, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -313,13 +313,13 @@ class _$AddressModelImpl extends _AddressModel {
 abstract class _AddressModel extends AddressModel {
   factory _AddressModel(
       {required final int id,
-      final double? latitude,
-      final double? longitude,
       final KeyValueOptionEntity? country,
       final KeyValueOptionEntity? state,
       final KeyValueOptionEntity? city,
       final String? street,
-      final String? description}) = _$AddressModelImpl;
+      final String? description,
+      final double? latitude,
+      final double? longitude}) = _$AddressModelImpl;
   _AddressModel._() : super._();
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
@@ -327,10 +327,6 @@ abstract class _AddressModel extends AddressModel {
 
   @override
   int get id;
-  @override
-  double? get latitude;
-  @override
-  double? get longitude;
   @override
   KeyValueOptionEntity? get country;
   @override
@@ -341,6 +337,10 @@ abstract class _AddressModel extends AddressModel {
   String? get street;
   @override
   String? get description;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
   @override
   @JsonKey(ignore: true)
   _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>

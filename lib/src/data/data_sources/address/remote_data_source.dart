@@ -5,26 +5,27 @@ import '../../../common/utils/exception/network_exceptions/network_exceptions.da
 import '../../../common/utils/http_client/http_clinet.dart';
 import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
+import '../../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
 import '../../demo/customers.dart';
 import 'data_source.dart';
 
-final customersRemoteDataSourceProvider =
-    Provider<AuthRemoteDataSourceImplementer>(
-  (ref) => AuthRemoteDataSourceImplementer(ref.read(dioClientProvider)),
+final addressRemoteDataSourceProvider =
+    Provider<AddressRemoteDataSourceImplementer>(
+  (ref) => AddressRemoteDataSourceImplementer(ref.read(dioClientProvider)),
 );
 
-class AuthRemoteDataSourceImplementer implements CustomersDataSource {
+class AddressRemoteDataSourceImplementer implements AddressDataSource {
   final Dio _client;
-  AuthRemoteDataSourceImplementer(this._client);
+  AddressRemoteDataSourceImplementer(this._client);
 
   @override
-  Future<ResponseState<CustomerEntity>> create(ReqParam param) async {
+  Future<ResponseState<AddressModel>> create(ReqParam param) async {
     try {
       final res = await _client.get("");
       return ResponseState.success(
-        data: CustomerEntity.fromJson(param.data),
+        data: AddressModel.fromJson(param.data),
       );
     } catch (e, _) {
       return ResponseState.failure(
@@ -34,29 +35,11 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   }
 
   @override
-  Future<ResponseState<AddressModel>> createAddress(ReqParam param) {
-    // TODO: implement createAddress
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ResponseState<bool>> delete(ReqParam param) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ResponseState<bool>> deleteAddress(ReqParam param) {
-    // TODO: implement deleteAddress
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ResponseState<List<CustomerEntity>>> load() async {
+  Future<ResponseState<List<AddressModel>>> load() async {
     try {
       final res = await _client.get("");
       return ResponseState.success(
-        data: getCustomerList(length: 5),
+        data: List.generate(4, (index) => getAddress()),
       );
     } catch (e, _) {
       return ResponseState.failure(
@@ -66,7 +49,7 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   }
 
   @override
-  Future<ResponseState<CustomerEntity>> loadOne(ReqParam param) {
+  Future<ResponseState<AddressModel>> loadOne(ReqParam param) {
     // TODO: implement loadOne
     throw UnimplementedError();
   }
@@ -84,8 +67,23 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   }
 
   @override
-  Future<ResponseState<bool>> updateAddress(ReqParam param) {
-    // TODO: implement updateAddress
+  Future<ResponseState<bool>> delete(ReqParam param) {
+    // TODO: implement delete
     throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseState<List<KeyValueOptionEntity>>> loadOptions(
+      ReqParam param) async {
+    try {
+      final res = await _client.get("");
+      return ResponseState.success(
+        data: List.generate(4, (index) => getKeyOption()),
+      );
+    } catch (e, _) {
+      return ResponseState.failure(
+        error: NetworkExceptions.parse(e),
+      );
+    }
   }
 }

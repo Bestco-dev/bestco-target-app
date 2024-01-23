@@ -30,6 +30,7 @@ mixin _$CustomerEntity {
   String? get nationalId => throw _privateConstructorUsedError;
   String? get taxId => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   AddressModel get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $CustomerEntityCopyWith<$Res> {
       String? nationalId,
       String? taxId,
       String? imageUrl,
+      String? description,
       AddressModel address});
 
   $AddressModelCopyWith<$Res> get address;
@@ -83,6 +85,7 @@ class _$CustomerEntityCopyWithImpl<$Res, $Val extends CustomerEntity>
     Object? nationalId = freezed,
     Object? taxId = freezed,
     Object? imageUrl = freezed,
+    Object? description = freezed,
     Object? address = null,
   }) {
     return _then(_value.copyWith(
@@ -126,6 +129,10 @@ class _$CustomerEntityCopyWithImpl<$Res, $Val extends CustomerEntity>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -161,6 +168,7 @@ abstract class _$$CustomerEntityImplCopyWith<$Res>
       String? nationalId,
       String? taxId,
       String? imageUrl,
+      String? description,
       AddressModel address});
 
   @override
@@ -188,6 +196,7 @@ class __$$CustomerEntityImplCopyWithImpl<$Res>
     Object? nationalId = freezed,
     Object? taxId = freezed,
     Object? imageUrl = freezed,
+    Object? description = freezed,
     Object? address = null,
   }) {
     return _then(_$CustomerEntityImpl(
@@ -231,6 +240,10 @@ class __$$CustomerEntityImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -240,7 +253,8 @@ class __$$CustomerEntityImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$CustomerEntityImpl extends _CustomerEntity {
   _$CustomerEntityImpl(
       {required this.id,
@@ -253,6 +267,7 @@ class _$CustomerEntityImpl extends _CustomerEntity {
       this.nationalId,
       this.taxId,
       this.imageUrl,
+      this.description,
       required this.address})
       : super._();
 
@@ -281,11 +296,13 @@ class _$CustomerEntityImpl extends _CustomerEntity {
   @override
   final String? imageUrl;
   @override
+  final String? description;
+  @override
   final AddressModel address;
 
   @override
   String toString() {
-    return 'CustomerEntity(id: $id, name: $name, rate: $rate, type: $type, phone: $phone, email: $email, website: $website, nationalId: $nationalId, taxId: $taxId, imageUrl: $imageUrl, address: $address)';
+    return 'CustomerEntity(id: $id, name: $name, rate: $rate, type: $type, phone: $phone, email: $email, website: $website, nationalId: $nationalId, taxId: $taxId, imageUrl: $imageUrl, description: $description, address: $address)';
   }
 
   @override
@@ -305,13 +322,15 @@ class _$CustomerEntityImpl extends _CustomerEntity {
             (identical(other.taxId, taxId) || other.taxId == taxId) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, rate, type, phone,
-      email, website, nationalId, taxId, imageUrl, address);
+      email, website, nationalId, taxId, imageUrl, description, address);
 
   @JsonKey(ignore: true)
   @override
@@ -340,6 +359,7 @@ abstract class _CustomerEntity extends CustomerEntity {
       final String? nationalId,
       final String? taxId,
       final String? imageUrl,
+      final String? description,
       required final AddressModel address}) = _$CustomerEntityImpl;
   _CustomerEntity._() : super._();
 
@@ -366,6 +386,8 @@ abstract class _CustomerEntity extends CustomerEntity {
   String? get taxId;
   @override
   String? get imageUrl;
+  @override
+  String? get description;
   @override
   AddressModel get address;
   @override

@@ -10,13 +10,13 @@ class AddressModel with _$AddressModel {
   const AddressModel._(); // Added constructor
   factory AddressModel({
     required int id,
-    double? latitude,
-    double? longitude,
     KeyValueOptionEntity? country,
     KeyValueOptionEntity? state,
     KeyValueOptionEntity? city,
     String? street,
     String? description,
+    double? latitude,
+    double? longitude,
 
     // KeyVal
   }) = _AddressModel;

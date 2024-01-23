@@ -4,6 +4,8 @@
   "english": "English",
   "selectLanguage": "Select language",
   "resetNow": "Reset now",
+  "searchForItem":"Search for {info}",
+  "selectItem": "Select {info}",
   "doYouForgetYourPasswordn": "Do you forget your password.\n",
   "login": "Login",
   "required": "Required",

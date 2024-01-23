@@ -4,6 +4,9 @@
   "english": "English",
   "selectLanguage": "قم بإختيار اللغه",
   "resetNow": "إعادة تعيين",
+  "searchForItem":"أبحث عن {info}",
+  "selectItem": "إختر {info}",
+
   "doYouForgetYourPasswordn": "هل نسيت كلمه المرور.\n",
   "login": "تسجيل الدخول",
   "required": "مطلوب",

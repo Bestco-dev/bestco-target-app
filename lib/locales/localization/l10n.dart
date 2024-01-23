@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -88,6 +87,26 @@ class Localization {
       name: 'resetNow',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `أبحث عن {info}`
+  String searchForItem(Object info) {
+    return Intl.message(
+      'أبحث عن $info',
+      name: 'searchForItem',
+      desc: '',
+      args: [info],
+    );
+  }
+
+  /// `إختر {info}`
+  String selectItem(Object info) {
+    return Intl.message(
+      'إختر $info',
+      name: 'selectItem',
+      desc: '',
+      args: [info],
     );
   }
 

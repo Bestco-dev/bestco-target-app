@@ -33,19 +33,23 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(count) =>
       "${Intl.plural(count, zero: 'لا يوجد', one: 'شهر', other: '${count} شهور')}";
 
-  static String m5(count) =>
+  static String m5(info) => "أبحث عن ${info}";
+
+  static String m6(info) => "إختر ${info}";
+
+  static String m7(count) =>
       "${Intl.plural(count, zero: 'لا توجد ', one: 'نظام واحد', other: '${count} انظمه')}";
 
-  static String m6(version) => "النسخة ${version}";
+  static String m8(version) => "النسخة ${version}";
 
-  static String m7(num) => " زيارة ${num} قبل";
+  static String m9(num) => " زيارة ${num} قبل";
 
-  static String m8(type) => " زيارة ${type} ";
+  static String m10(type) => " زيارة ${type} ";
 
-  static String m9(count) =>
+  static String m11(count) =>
       "${Intl.plural(count, zero: 'لا يوجد', one: 'إسبوع', other: '${count} أسابيع')}";
 
-  static String m10(count) =>
+  static String m12(count) =>
       "${Intl.plural(count, zero: 'لا يوجد', one: 'سنه', other: '${count} سنين')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -222,8 +226,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "scheduled": MessageLookupByLibrary.simpleMessage("مجدوله"),
         "searchForEquipment":
             MessageLookupByLibrary.simpleMessage("البحث عن المعدات"),
+        "searchForItem": m5,
         "searchForSystem":
             MessageLookupByLibrary.simpleMessage("البحث عن الانظمة"),
+        "selectItem": m6,
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("قم بإختيار اللغه"),
         "selected": MessageLookupByLibrary.simpleMessage("محددة"),
@@ -234,7 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("نجاح"),
         "system": MessageLookupByLibrary.simpleMessage("الانظمه"),
         "systems": MessageLookupByLibrary.simpleMessage("الانظمه"),
-        "systemsCount": m5,
+        "systemsCount": m7,
         "systemsSpecify": MessageLookupByLibrary.simpleMessage("تحديد الأنظمة"),
         "testRequirements":
             MessageLookupByLibrary.simpleMessage("متطلبات الإختبار"),
@@ -252,26 +258,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "validationPasswordPattern": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل, واحدة منها حرف كبير وحرف صغير ورقم ورمز"),
         "validationRequired": MessageLookupByLibrary.simpleMessage("مطلوب"),
-        "version": m6,
+        "version": m8,
         "visit": MessageLookupByLibrary.simpleMessage("زيارة"),
         "visitBefore": MessageLookupByLibrary.simpleMessage("الزيارة السابقة"),
-        "visitBeforeNum": m7,
+        "visitBeforeNum": m9,
         "visitDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الزيارة"),
         "visitProceed": MessageLookupByLibrary.simpleMessage("معالجة الزيارة"),
         "visitReportSendSuccessfullyMessage":
             MessageLookupByLibrary.simpleMessage(
                 "تم إرسال تقريرك بنجاح!\n الرجاء انتظار التأكيد من العميل"),
-        "visitType": m8,
+        "visitType": m10,
         "visits": MessageLookupByLibrary.simpleMessage("الزيارات"),
         "wait": MessageLookupByLibrary.simpleMessage("انتظر من فضلك ..."),
         "warning": MessageLookupByLibrary.simpleMessage("تحذير"),
-        "weeksCount": m9,
+        "weeksCount": m11,
         "welcome":
             MessageLookupByLibrary.simpleMessage("تقوم بعمل راىع استمر بذلك"),
         "whatsComing": MessageLookupByLibrary.simpleMessage("ما هو قادم"),
         "whatsappMessage": MessageLookupByLibrary.simpleMessage("رسالة واتساب"),
         "writeNote": MessageLookupByLibrary.simpleMessage("اكتب ملاحظتك"),
-        "yearCount": m10,
+        "yearCount": m12,
         "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
         "yourCompany": MessageLookupByLibrary.simpleMessage("شركتك")
       };
