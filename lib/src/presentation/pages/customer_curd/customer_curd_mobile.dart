@@ -1,3 +1,4 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -21,7 +22,7 @@ class CustomerCurdMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
   // late final TextEditingController _nameController;
   late CustomerEntity customer;
-
+  String tags = '';
   @override
   void initState() {
     customer = widget.customer != null
@@ -29,9 +30,10 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
         : CustomerEntity(
             id: -1,
             name: '',
-            type: CustomerType.individual,
+            type: CustomerType.person,
             address: AddressModel(id: -1),
           );
+    super.initState();
   }
 
   @override
@@ -42,8 +44,14 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
       backgroundColor: const Color(0xfff7f7f7),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
+            TitledTextField(
+              title: "نوع العميل",
+              child: _customerType(),
+            ),
+            const SizedBox(height: 10),
             TitledTextField(
               title: "اسم العميل",
               isRequired: true,
@@ -81,20 +89,38 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
                 //     errorText: '',
                 //   ),
                 // ]),
+                onChanged: stateRead.updatePhone,
               ),
             ),
-            TitledTextField(
-              title: "رقم الهوية",
-              child: TextFormField(
-                initialValue: customer.nationalId,
-                decoration: const InputDecoration(hintText: "رقم الهوية"),
-                // validator: MultiValidator([
-                //   RequiredValidator(
-                //     errorText: '',
-                //   ),
-                // ]),
+            if (state.type.isIndividual)
+              TitledTextField(
+                title: "رقم الهوية",
+                child: TextFormField(
+                  initialValue: customer.nationalId,
+                  decoration: const InputDecoration(hintText: "رقم الهوية"),
+                  // validator: MultiValidator([
+                  //   RequiredValidator(
+                  //     errorText: '',
+                  //   ),
+                  // ]),
+                  onChanged: stateRead.updateNationalId,
+                ),
               ),
-            ),
+
+            if (state.type.isCompany)
+              TitledTextField(
+                title: "الرقم الضريبي",
+                child: TextFormField(
+                  initialValue: customer.taxId,
+                  decoration: const InputDecoration(hintText: "الرقم الضريبي"),
+                  // validator: MultiValidator([
+                  //   RequiredValidator(
+                  //     errorText: '',
+                  //   ),
+                  // ]),
+                  onChanged: stateRead.updateTaxNum,
+                ),
+              ),
             TitledTextField(
               title: "البريد الالكتروني",
               child: TextFormField(
@@ -106,6 +132,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
                 //     errorText: '',
                 //   ),
                 // ]),
+                onChanged: stateRead.updateEmail,
               ),
             ),
             TitledTextField(
@@ -114,6 +141,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
                 initialValue: customer.description,
                 maxLines: 4,
                 decoration: const InputDecoration(hintText: "اضف ملاحظة"),
+                onChanged: stateRead.updateDescription,
               ),
             ),
             // const SizedBox(height: 10),
@@ -122,13 +150,19 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
               color: Colors.white,
               child: AppBtn(
                 text: "حفظ",
-                onPressed: () {
-                  if (widget.customer == null) {
-                    stateRead.create();
-                  } else {
-                    stateRead.update();
-                    // stateRead.update(widget.customer!);
+                onPressed: () async {
+                  bool check = await ((widget.customer == null)
+                      ? stateRead.create()
+                      : stateRead.update());
+                  if (check && context.mounted) {
+                    Navigator.pop(context);
                   }
+                  // if (widget.customer == null) {
+                  //   stateRead.create();
+                  // } else {
+                  //   stateRead.update();
+                  //   // stateRead.update(widget.customer!);
+                  // }
                 },
               ),
             ),
@@ -138,4 +172,51 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
       ),
     );
   }
+
+  Widget _customerType() {
+    final state = ref.watch(customerCurdProvider(customer));
+    final stateRead = ref.watch(customerCurdProvider(customer).notifier);
+    return ChipsChoice<CustomerType>.single(
+      value: state.type,
+      onChanged: stateRead.updateType,
+      // onChanged: (val) => setState(() => tags = val),
+      choiceItems: C2Choice.listFrom<CustomerType, CustomerType>(
+        source: CustomerType.values,
+        value: (i, v) => v,
+        label: (i, v) => v.name,
+        tooltip: (i, v) => v.name,
+      ),
+      // choiceItems: CustomerType.v,
+      choiceCheckmark: true,
+      leading: const Icon(Icons.select_all),
+      // choiceBuilder: (item, i) => Text(item.value.name),
+      // choiceTrailingBuilder: (item, i) => Icon(Icons.check_circle),
+      choiceStyle: C2ChipStyle.filled(
+        borderRadius: BorderRadius.circular(50),
+        selectedStyle: const C2ChipStyle(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
+        foregroundColor: Colors.black,
+        color: Colors.grey[200],
+        // color: Colors.green
+        // backgroundColor: Colors.green,
+      ),
+    );
+  }
+
+  // Widget _customerType() {
+  //   return ChipsChoice<String>.multiple(
+  //     value: tags,
+  //     onChanged: (val) => setState(() => tags = val),
+  //     choiceItems: C2Choice.listFrom<String, String>(
+  //       source: ["option 1", "option 2"],
+  //       value: (i, v) => v,
+  //       label: (i, v) => v,
+  //       tooltip: (i, v) => v,
+  //     ),
+  //     choiceCheckmark: true,
+  //     choiceStyle: C2ChipStyle.outlined(),
+  //   );
+  // }
 }

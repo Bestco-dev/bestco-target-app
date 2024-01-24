@@ -19,7 +19,7 @@ class KeyValueSelection extends ConsumerStatefulWidget {
   final String? title;
   final Function? onRefresh;
   final UiState<List<KeyValueOptionEntity>> stateProvider;
-  final Function(KeyValueOptionEntity? area)? onSelect;
+  final Function(KeyValueOptionEntity? value)? onSelect;
   const KeyValueSelection(
       {super.key,
       this.selectedItem,

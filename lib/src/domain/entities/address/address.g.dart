@@ -17,9 +17,7 @@ _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : KeyValueOptionEntity.fromJson(
               json['state'] as Map<String, dynamic>),
-      city: json['city'] == null
-          ? null
-          : KeyValueOptionEntity.fromJson(json['city'] as Map<String, dynamic>),
+      city: json['city'] as String?,
       street: json['street'] as String?,
       description: json['description'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),

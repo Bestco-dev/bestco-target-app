@@ -40,6 +40,6 @@ Map<String, dynamic> _$$CustomerEntityImplToJson(
     };
 
 const _$CustomerTypeEnumMap = {
-  CustomerType.individual: 'individual',
+  CustomerType.person: 'person',
   CustomerType.company: 'company',
 };

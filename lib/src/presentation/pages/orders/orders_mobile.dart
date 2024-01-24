@@ -1,3 +1,4 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +21,6 @@ class OrdersMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<OrdersMobilePage> {
   @override
   Widget build(BuildContext context) {
-
-
     return CustomAppScaffold(
       hasPadding: false,
       // floatingActionButton: Padding(
@@ -60,45 +59,48 @@ class _CheckMobilePageState extends ConsumerState<OrdersMobilePage> {
 
 class OrdersListWidget extends StatefulWidget {
   final bool canAddNew;
-  const OrdersListWidget({super.key,this.canAddNew=true});
+  const OrdersListWidget({super.key, this.canAddNew = true});
 
   @override
   State<OrdersListWidget> createState() => _OrdersListWidgetState();
 }
 
 class _OrdersListWidgetState extends State<OrdersListWidget> {
+  List<String> tags = [];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-         if(widget.canAddNew) Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: AddNewBtn(
-              label: "اضافة طلب",
-              onPress: () {},
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 40,
-            // color: Colors.grey,
-            child: ListView.builder(
-              itemCount: 10,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CustomSelectionTag(
-                    info: "طلب بطاقة رعاية صحية",
-                    isSelected: index == 1,
-                  ),
-                  const SizedBox(width: 10),
-                ],
+          if (widget.canAddNew)
+            Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AddNewBtn(
+                label: "اضافة طلب",
+                onPress: () {},
               ),
             ),
+          SizedBox(
+            width: double.infinity,
+            // height: 40,
+            child: _typeFitter(),
+            // color: Colors.grey,
+            // child: ListView.builder(
+            //   itemCount: 10,
+            //   padding: const EdgeInsets.symmetric(horizontal: 10),
+            //   scrollDirection: Axis.horizontal,
+            //   itemBuilder: (context, index) => Row(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       CustomSelectionTag(
+            //         info: "طلب بطاقة رعاية صحية",
+            //         isSelected: index == 1,
+            //       ),
+            //       const SizedBox(width: 10),
+            //     ],
+            //   ),
+            // ),
           ),
           const SizedBox(height: 16),
           ListView.builder(
@@ -113,6 +115,37 @@ class _OrdersListWidgetState extends State<OrdersListWidget> {
             itemBuilder: (context, index) => _orderWidget(),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _typeFitter() {
+    return ChipsChoice<String>.multiple(
+      value: tags,
+      onChanged: (val) => setState(() => tags = val),
+      choiceItems: C2Choice.listFrom<String, String>(
+        source: [
+          "طلبات الرعاية الصحية",
+          "طلبات التمويل",
+          "طلبات التسويق",
+          "طلبات الانظمة الرقمية"
+        ],
+        value: (i, v) => v,
+        label: (i, v) => v,
+        tooltip: (i, v) => v,
+      ),
+      choiceCheckmark: true,
+      // choiceStyle: C2ChipStyle.outlined(),
+      choiceStyle: C2ChipStyle.filled(
+        borderRadius: BorderRadius.circular(50),
+        selectedStyle: const C2ChipStyle(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
+        foregroundColor: Colors.black,
+        color: Colors.grey[200],
+        // color: Colors.green
+        // backgroundColor: Colors.green,
       ),
     );
   }

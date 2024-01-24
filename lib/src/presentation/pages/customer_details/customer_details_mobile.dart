@@ -40,7 +40,8 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
     Future.microtask(() {
       ref.read(customerDetailsProvider.notifier).state =
           UiState.data(data: widget.customer);
-
+      ref.read(addressDetailsProvider.notifier).state =
+          UiState.data(data: widget.customer.address);
       // ref.read(addressDe)
     });
     super.initState();
@@ -175,19 +176,20 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
 
   Widget _addressInfo(AddressModel address) {
     // final customer = ref.watch(customerProvider(widget.customer));
-
+    // final state = ref.watch(addressDetailsProvider);
     return SingleChildScrollView(
       child: Column(
         children: [
-          CustomInfoItem(title: "الدولة", info: "السعودية", isBold: true),
-          CustomInfoItem(title: "المنطقة", info: "الشرقية", isBold: true),
-          CustomInfoItem(title: "المدينة", info: "الخبر", isBold: true),
           CustomInfoItem(
-              title: "الشارع", info: "شارع الامير مشعل", isBold: true),
+              title: "الدولة", info: address.country?.value, isBold: true),
           CustomInfoItem(
-              title: "تفاصيل",
-              info: "تقاطع الامير مشعل مع الشارع الاول",
-              isBold: true),
+              title: "المنطقة", info: address.state?.value, isBold: true),
+          CustomInfoItem(
+              title: "المدينة", info: address.city, isBold: true),
+          CustomInfoItem(
+              title: "الشارع", info: address.street ?? '', isBold: true),
+          CustomInfoItem(
+              title: "تفاصيل", info: address.description, isBold: true),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
@@ -195,7 +197,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               CustomModalSheet.showModalSheet(
                 context,
                 title: "تعديل العنوان",
-                child: _AddressCurd(address: address),
+                child: AddressCurd(address: address),
                 height: context.height * .9,
               );
             },
@@ -231,7 +233,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
           CustomInfoItem(
               title: "نوع العميل", info: customer.type.name, isBold: true),
           CustomInfoItem(title: "البريد الإلكتروني", info: customer.email),
-          CustomInfoItem(title: "الموقع الإلكتروني", info: customer.website),
+          // CustomInfoItem(title: "الموقع الإلكتروني", info: customer.website),
           CustomInfoItem(
               title: "رقم الجوال", info: customer.phone, isBold: true),
           // CustomInfoItem(
@@ -278,9 +280,9 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
   }
 }
 
-class _AddressCurd extends ConsumerWidget {
+class AddressCurd extends ConsumerWidget {
   final AddressModel address;
-  const _AddressCurd({super.key, required this.address});
+  const AddressCurd({super.key, required this.address});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -302,6 +304,8 @@ class _AddressCurd extends ConsumerWidget {
                   stateProvider: ref.watch(countriesProvider),
                   onRefresh: () => ref.read(countriesProvider.notifier).load(),
                   title: "الدولة",
+                  onSelect: stateRead.updateCountry,
+                  selectedItem: state.country,
                   // selectedItem: ,
                 ),
               ),
@@ -311,22 +315,43 @@ class _AddressCurd extends ConsumerWidget {
                   stateProvider: ref.watch(statesProvider),
                   onRefresh: () => ref.read(statesProvider.notifier).load(),
                   title: "المنظقة",
+
+                  onSelect: stateRead.updateState,
+                  selectedItem: state.state,
                   // selectedItem: ,
                 ),
               ),
               TitledTextField(
                 title: "المدينة",
-                child: KeyValueSelection(
-                  stateProvider: ref.watch(citiesProvider),
-                  onRefresh: () => ref.read(citiesProvider.notifier).load(),
-                  title: "المدينة",
-                  // selectedItem: ,
+                isRequired: true,
+                child: TextFormField(
+                  initialValue: state.city,
+                  onChanged: stateRead.updateCity,
+                  decoration: const InputDecoration(hintText: "المدينة"),
+                  validator: MultiValidator([
+                    RequiredValidator(
+                      errorText: 'المدينة',
+                    ),
+                  ]),
                 ),
               ),
+              // TitledTextField(
+              //   title: "المدينة",
+              //   child: KeyValueSelection(
+              //     stateProvider: ref.watch(citiesProvider),
+              //     onRefresh: () => ref.read(citiesProvider.notifier).load(),
+              //     title: "المدينة",
+              //     onSelect: stateRead.updateCity,
+              //     selectedItem: state.city,
+              //     // selectedItem: ,
+              //   ),
+              // ),
               TitledTextField(
                 title: "الشارع",
                 isRequired: true,
                 child: TextFormField(
+                  initialValue: state.street,
+                  onChanged: stateRead.updateStreet,
                   decoration: const InputDecoration(hintText: "الشارع"),
                   validator: MultiValidator([
                     RequiredValidator(
@@ -339,6 +364,7 @@ class _AddressCurd extends ConsumerWidget {
                 title: "التفاصيل",
                 isRequired: true,
                 child: TextFormField(
+                  initialValue: state.description,
                   maxLines: 4,
                   decoration: const InputDecoration(hintText: "التفاصيل"),
                   validator: MultiValidator([
@@ -346,6 +372,7 @@ class _AddressCurd extends ConsumerWidget {
                       errorText: 'التفاصيل',
                     ),
                   ]),
+                  onChanged: stateRead.updateDescription,
                 ),
               ),
               Container(
@@ -353,7 +380,10 @@ class _AddressCurd extends ConsumerWidget {
                 color: Colors.white,
                 child: AppBtn(
                   text: "حفظ",
-                  onPressed: () {},
+                  onPressed: () async {
+                    final bool = await stateRead.update();
+                    if (bool && context.mounted) Navigator.pop(context);
+                  },
                 ),
               )
             ],

@@ -12,6 +12,8 @@ import '../../common/utils/storage/shared_pref_util.dart';
 import '../../domain/entities/app_state/app_state.dart';
 import '../../domain/entities/contract/contract_entity.dart';
 import '../../domain/entities/customer/customer.dart';
+import '../../domain/entities/product/product_entity.dart';
+import '../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../domain/entities/user/user.dart';
 import '../pages/about_app/about_app.dart';
 import '../pages/change_password/change_password.dart';
@@ -108,7 +110,9 @@ List<ShellRoute> get routes => [
                     path: "salePerson_details",
                     name: SalePersonDetailsPage.pageName,
                     builder: (context, state) {
-                      return const SalePersonDetailsPage();
+                      return SalePersonDetailsPage(
+                        saleperson: state.extra as SalePersonEntity,
+                      );
                     },
                   ),
                   GoRoute(
@@ -116,7 +120,7 @@ List<ShellRoute> get routes => [
                     name: SalePersonCurdPage.pageName,
                     builder: (context, state) {
                       return SalePersonCurdPage(
-                          contract: state.extra as ContractEntity);
+                          saleperson: state.extra as SalePersonEntity);
                     },
                   ),
                 ],
@@ -132,7 +136,8 @@ List<ShellRoute> get routes => [
                     path: "product_details",
                     name: ProductDetailsPage.pageName,
                     builder: (context, state) {
-                      return const ProductDetailsPage();
+                      return ProductDetailsPage(
+                          product: state.extra as ProductEntity);
                     },
                   ),
                 ],
@@ -158,7 +163,6 @@ List<ShellRoute> get routes => [
                   return const ChangePasswordPage();
                 },
               ),
-
             ],
           ),
           GoRoute(

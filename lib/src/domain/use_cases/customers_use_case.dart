@@ -16,8 +16,7 @@ class _UseCase implements CustomersRepo {
 
   @override
   Future<ResponseState<CustomerEntity>> create(ReqParam param) {
-    // TODO: implement create
-    throw UnimplementedError();
+    return repo.create(param);
   }
 
   @override

@@ -5,14 +5,19 @@ import 'package:go_router/go_router.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/demo/images.dart';
+import '../../../data/types/types_enums.dart';
+import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/card.dart';
+import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
+import '../../view_models/salepersons/details_view_model.dart';
+import '../../view_models/salepersons/list_view_model.dart';
 import '../customer_curd/customer_curd.dart';
 import '../slaeperson_details/saleperson_details.dart';
 
@@ -25,6 +30,8 @@ class SalePersonsMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(salepersonListViewModelProvider);
+    final stateRead = ref.read(salepersonListViewModelProvider.notifier);
     return CustomAppScaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10),
@@ -36,7 +43,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
               context,
               title: "ملعومات المندوب",
               child: const CustomerCurdPage(),
-              height: context.height * .50,
+              height: context.height * .90,
             );
             return;
           },
@@ -55,21 +62,29 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: 10,
-        itemBuilder: (context, index) => _salepersonWidget(),
+      body: state.maybeWhen(
+        orElse: () => const SizedBox.shrink(),
+        loading: () => const AppCircularLoading(),
+        data: (data) => RefreshIndicator(
+          onRefresh: () => stateRead.load(),
+          child: ListView.builder(
+            itemCount: data.length,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) => _salepersonWidget(data[index]),
+          ),
+        ),
       ),
     );
   }
 
-  Widget _salepersonWidget() {
+  Widget _salepersonWidget(SalePersonEntity saleperson) {
     return CustomCard(
       radius: 10,
       vp: 8,
       vm: 10,
       child: ListTile(
-        onTap: () => context.goNamed(SalePersonDetailsPage.pageName),
+        onTap: () =>
+            context.goNamed(SalePersonDetailsPage.pageName, extra: saleperson),
         contentPadding: EdgeInsets.zero,
         leading: Container(
           height: 50,
@@ -89,9 +104,9 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
             ),
           ),
         ),
-        title: const Text(
-          'خالد محمد',
-          style: TextStyle(
+        title: Text(
+          saleperson.name,
+          style: const TextStyle(
             color: Color(0xFF555B6A),
             fontSize: 15,
             fontWeight: FontWeight.w400,
@@ -101,8 +116,8 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomTag(
-              info: "نشط",
-              color: Color(0xFF50B663),
+              info: saleperson.status.label,
+              color: const Color(0xFF50B663),
             ),
             const SizedBox(width: 10),
             const Icon(

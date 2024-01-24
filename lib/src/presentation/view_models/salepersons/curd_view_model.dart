@@ -8,30 +8,32 @@ import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/req_param/req_param.dart';
+import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/customers_use_case.dart';
+import '../../../domain/use_cases/saleperson_use_case.dart';
 import '../../custom_widgets/common/custom_dialogs_bar.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
 import '../../custom_widgets/common/snack_bars.dart';
 import 'details_view_model.dart';
 import 'list_view_model.dart';
 
-final customerCurdProvider = StateNotifierProvider.autoDispose
-    .family<_ViewModel, CustomerEntity, CustomerEntity>((ref, model) {
+final salepersonCurdProvider = StateNotifierProvider.autoDispose
+    .family<_ViewModel, SalePersonEntity, SalePersonEntity>((ref, model) {
   return _ViewModel(model, ref: ref);
 });
 
-class _ViewModel extends StateNotifier<CustomerEntity> {
+class _ViewModel extends StateNotifier<SalePersonEntity> {
   final Ref ref;
   _ViewModel(super.state, {required this.ref});
   void updateName(String value) => state = state.copyWith(name: value);
-  void updateType(CustomerType value) => state = state.copyWith(type: value);
+
   void updatePhone(String value) => state = state.copyWith(phone: value);
-  void updateTaxNum(String value) => state = state.copyWith(taxId: value);
+  void updatePassword(String value) => state = state.copyWith(password: value);
   void updateNationalId(String value) =>
       state = state.copyWith(nationalId: value);
   void updateEmail(String value) => state = state.copyWith(email: value);
-  // void updateWebs(String value) => state = state.copyWith(email: value);
+
   void updateDescription(String value) =>
       state = state.copyWith(description: value);
 
@@ -39,9 +41,9 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
       state = state.copyWith(address: address);
 
   void updateDetailsAndList() {
-    ref.read(customerDetailsProvider.notifier).state =
+    ref.read(salepersonDetailsProvider.notifier).state =
         UiState.data(data: state);
-    ref.read(customersListViewModelProvider.notifier).updateToUi(state);
+    ref.read(salepersonListViewModelProvider.notifier).updateToUi(state);
   }
 
   Future<bool> update() async {
@@ -67,12 +69,12 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
     }
     ProgressBar.show();
     final result = await ref
-        .read(customersRemoteUseCaseProvider)
+        .read(salepersonsRemoteUseCaseProvider)
         .create(ReqParam(url: '', data: state.toJson()));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("create done ...");
-      ref.read(customersListViewModelProvider.notifier).addToUi(data);
+      ref.read(salepersonListViewModelProvider.notifier).addToUi(data);
       AppCustomDialogs.showInfoDialog(
         type: DialogType.success,
         message: "تم اضافة العميل بنجاح",

@@ -13,7 +13,7 @@ import 'curd_view_model.dart';
 import 'details_view_model.dart';
 import 'list_view_model.dart';
 
-final addressDetailsProvider = StateProvider<UiState<AddressModel>>((ref) {
+final salepersonAddressDetailsProvider = StateProvider<UiState<AddressModel>>((ref) {
   return const UiState.initial();
 });
 
@@ -43,18 +43,18 @@ class _ViewModel extends StateNotifier<AddressModel> {
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");
-      ref.read(addressDetailsProvider.notifier).state =
+      ref.read(salepersonAddressDetailsProvider.notifier).state =
           UiState.data(data: state);
-      ref.read(customerDetailsProvider).maybeWhen(
+      ref.read(salepersonDetailsProvider).maybeWhen(
           orElse: () {},
-          data: (customer) {
-            ref.read(customerDetailsProvider.notifier).state =
-                UiState.data(data: customer.copyWith(address: state));
+          data: (saleperson) {
+            ref.read(salepersonDetailsProvider.notifier).state =
+                UiState.data(data: saleperson.copyWith(address: state));
             ref
-                .read(customerCurdProvider(customer).notifier)
+                .read(salepersonCurdProvider(saleperson).notifier)
                 .updateAddress(state);
             ref
-                .read(customerCurdProvider(customer).notifier)
+                .read(salepersonCurdProvider(saleperson).notifier)
                 .updateDetailsAndList();
           });
       return true;

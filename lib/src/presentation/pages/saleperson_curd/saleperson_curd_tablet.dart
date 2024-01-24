@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/contract/contract_entity.dart';
+import '../../../domain/entities/salseperson/saleperson_entity.dart';
 
 class SalePersonCurdTabletPage extends StatefulWidget {
-  final ContractEntity? contract;
-  const SalePersonCurdTabletPage({Key? key,required this.contract}) : super(key: key);
+  final SalePersonEntity? saleperson;
+  const SalePersonCurdTabletPage({Key? key,required this.saleperson}) : super(key: key);
   @override
   State<SalePersonCurdTabletPage> createState() => _SalePersonCurdTabletPageState();
 }

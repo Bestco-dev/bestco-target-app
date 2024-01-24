@@ -4,6 +4,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/demo/images.dart';
+import '../../../data/types/types_enums.dart';
+import '../../../domain/entities/salseperson/saleperson_entity.dart';
+import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../custom_widgets/common/buttons.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
@@ -13,11 +16,16 @@ import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
+import '../../view_models/salepersons/adress_view_model.dart';
+import '../../view_models/salepersons/details_view_model.dart';
+import '../customer_details/customer_details_mobile.dart';
 import '../orders/orders_mobile.dart';
 import '../saleperson_curd/saleperson_curd.dart';
 
 class SalePersonDetailsMobilePage extends ConsumerStatefulWidget {
-  const SalePersonDetailsMobilePage({Key? key}) : super(key: key);
+  final SalePersonEntity saleperson;
+  const SalePersonDetailsMobilePage({Key? key, required this.saleperson})
+      : super(key: key);
   @override
   ConsumerState<SalePersonDetailsMobilePage> createState() =>
       _CheckMobilePageState();
@@ -25,8 +33,20 @@ class SalePersonDetailsMobilePage extends ConsumerStatefulWidget {
 
 class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    Future.microtask(() {
+      ref.read(salepersonDetailsProvider.notifier).state =
+          UiState.data(data: widget.saleperson);
+      ref.read(salepersonAddressDetailsProvider.notifier).state =
+          UiState.data(data: widget.saleperson.address);
+      // ref.read(addressDe)
+    });
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(salepersonDetailsProvider);
     return CustomAppScaffold(
       isScroll: true,
       hasPadding: false,
@@ -37,16 +57,19 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
       //     icon: Icons.add,
       //   ),
       // ),
-      appBar: CustomAppBar(
-        title: "تفاصيل المندوب",
-        subTitle: _customerWidget(),
-        // subTitle: AppBtn(text: "Testing"),
+      appBar: state.maybeWhen(
+        orElse: () => const SizedBox.shrink(),
+        data: (saleperson) => CustomAppBar(
+          title: "تفاصيل المندوب",
+          subTitle: _salepersonWidget(saleperson),
+          // subTitle: AppBtn(text: "Testing"),
+        ),
       ),
       body: const OrdersListWidget(canAddNew: false),
     );
   }
 
-  Widget _customerWidget() {
+  Widget _salepersonWidget(SalePersonEntity saleperson) {
     return Column(
       children: [
         ListTile(
@@ -69,20 +92,20 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
               ),
             ),
           ),
-          title: const Text(
-            'خالد محمد',
-            style: TextStyle(
+          title: Text(
+            saleperson.name,
+            style: const TextStyle(
               color: Color(0xFFFFFFFF),
               fontSize: 15,
               fontWeight: FontWeight.w400,
             ),
           ),
-          subtitle: const Row(
+          subtitle: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               CustomTag(
-                info: "نشط",
-                color: Color(0xFF50B663),
+                info: saleperson.status.label,
+                color: const Color(0xFF50B663),
               ),
             ],
           ),
@@ -122,7 +145,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
                   CustomModalSheet.showModalSheet(
                     context,
                     title: "ملعومات المندوب",
-                    child: _salePersonInfo(),
+                    child: _salePersonInfo(saleperson),
                     height: context.height * .7,
                   );
                 },
@@ -267,17 +290,33 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
     );
   }
 
-  Widget _salePersonInfo() {
+  Widget _salePersonInfo(SalePersonEntity saleperson) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          CustomInfoItem(title: "إسم المندوب", info: "خالد محمد"),
-          CustomInfoItem(title: "البريد الإلكتروني", info: "mail@mail.com"),
-          CustomInfoItem(title: "الموقع الإلكتروني", info: "www.website.com"),
+          CustomInfoItem(title: "إسم المندوب", info: saleperson.name),
+          CustomInfoItem(title: "البريد الإلكتروني", info: saleperson.email),
+          // CustomInfoItem(title: "الموقع الإلكتروني", info: saleperson),
           CustomInfoItem(
-              title: "رقم الجوال", info: "0 123 456 7891", isBold: true),
+              title: "رقم الجوال", info: saleperson.phone, isBold: true),
           CustomInfoItem(
-              title: "رقم الهوية", info: "231-6545-61521", isBold: true),
+              title: "رقم الهوية", info: saleperson.nationalId, isBold: true),
+
+          CustomInfoIWidgetItem(
+              title: "العنوان",
+              info: TextButton(
+                child: Text("عرض التفاصيل"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  CustomModalSheet.showModalSheet(
+                    context,
+                    title: "تفاصيل العنوان",
+                    child: AddressCurd(address: saleperson.address),
+                    height: context.height * .9,
+                  );
+                },
+              ),
+              isBold: true),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
@@ -285,7 +324,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
               CustomModalSheet.showModalSheet(
                 context,
                 title: "ملعومات المندوب",
-                child: const SalePersonCurdPage(),
+                child: SalePersonCurdPage(saleperson: saleperson),
                 height: context.height * .9,
               );
             },

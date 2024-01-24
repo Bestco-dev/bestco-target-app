@@ -6,7 +6,7 @@ import '../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../domain/entities/req_param/req_param.dart';
 import '../../domain/entities/ui_state/ui_state.dart';
 
-final citiesProvider = StateNotifierProvider.autoDispose<_Notifier,
+final citiesProvider = StateNotifierProvider<_Notifier,
     UiState<List<KeyValueOptionEntity>>>((ref) {
   return _Notifier(ref: ref);
 });

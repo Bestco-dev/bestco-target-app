@@ -23,7 +23,8 @@ mixin _$AddressModel {
   int get id => throw _privateConstructorUsedError;
   KeyValueOptionEntity? get country => throw _privateConstructorUsedError;
   KeyValueOptionEntity? get state => throw _privateConstructorUsedError;
-  KeyValueOptionEntity? get city => throw _privateConstructorUsedError;
+  String? get city =>
+      throw _privateConstructorUsedError; // KeyValueOptionEntity? city,
   String? get street => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
@@ -45,7 +46,7 @@ abstract class $AddressModelCopyWith<$Res> {
       {int id,
       KeyValueOptionEntity? country,
       KeyValueOptionEntity? state,
-      KeyValueOptionEntity? city,
+      String? city,
       String? street,
       String? description,
       double? latitude,
@@ -53,7 +54,6 @@ abstract class $AddressModelCopyWith<$Res> {
 
   $KeyValueOptionEntityCopyWith<$Res>? get country;
   $KeyValueOptionEntityCopyWith<$Res>? get state;
-  $KeyValueOptionEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
       city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as KeyValueOptionEntity?,
+              as String?,
       street: freezed == street
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
@@ -137,18 +137,6 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
       return _then(_value.copyWith(state: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $KeyValueOptionEntityCopyWith<$Res>? get city {
-    if (_value.city == null) {
-      return null;
-    }
-
-    return $KeyValueOptionEntityCopyWith<$Res>(_value.city!, (value) {
-      return _then(_value.copyWith(city: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -163,7 +151,7 @@ abstract class _$$AddressModelImplCopyWith<$Res>
       {int id,
       KeyValueOptionEntity? country,
       KeyValueOptionEntity? state,
-      KeyValueOptionEntity? city,
+      String? city,
       String? street,
       String? description,
       double? latitude,
@@ -173,8 +161,6 @@ abstract class _$$AddressModelImplCopyWith<$Res>
   $KeyValueOptionEntityCopyWith<$Res>? get country;
   @override
   $KeyValueOptionEntityCopyWith<$Res>? get state;
-  @override
-  $KeyValueOptionEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -213,7 +199,7 @@ class __$$AddressModelImplCopyWithImpl<$Res>
       city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as KeyValueOptionEntity?,
+              as String?,
       street: freezed == street
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
@@ -258,7 +244,8 @@ class _$AddressModelImpl extends _AddressModel {
   @override
   final KeyValueOptionEntity? state;
   @override
-  final KeyValueOptionEntity? city;
+  final String? city;
+// KeyValueOptionEntity? city,
   @override
   final String? street;
   @override
@@ -315,7 +302,7 @@ abstract class _AddressModel extends AddressModel {
       {required final int id,
       final KeyValueOptionEntity? country,
       final KeyValueOptionEntity? state,
-      final KeyValueOptionEntity? city,
+      final String? city,
       final String? street,
       final String? description,
       final double? latitude,
@@ -332,8 +319,8 @@ abstract class _AddressModel extends AddressModel {
   @override
   KeyValueOptionEntity? get state;
   @override
-  KeyValueOptionEntity? get city;
-  @override
+  String? get city;
+  @override // KeyValueOptionEntity? city,
   String? get street;
   @override
   String? get description;

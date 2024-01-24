@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/salseperson/saleperson_entity.dart';
+
 class SalePersonDetailsTabletPage extends StatefulWidget {
-  const SalePersonDetailsTabletPage({Key? key}) : super(key: key);
+  final SalePersonEntity saleperson;
+  const SalePersonDetailsTabletPage({Key? key,required this.saleperson}) : super(key: key);
   @override
   State<SalePersonDetailsTabletPage> createState() => _SalePersonDetailsTabletPageState();
 }
