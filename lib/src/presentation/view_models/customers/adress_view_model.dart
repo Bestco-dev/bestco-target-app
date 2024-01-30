@@ -37,9 +37,13 @@ class _ViewModel extends StateNotifier<AddressModel> {
 
   Future<bool> update() async {
     ProgressBar.show();
-    final result = await ref
-        .read(addressRemoteUseCaseProvider)
-        .update(ReqParam(url: '', data: state.toJson()));
+    final result = await ref.read(addressRemoteUseCaseProvider).update(ReqParam(
+          url: '/customer/update',
+          data: {
+            "id": 51,
+            "address": state.toJson(),
+          },
+        ));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");

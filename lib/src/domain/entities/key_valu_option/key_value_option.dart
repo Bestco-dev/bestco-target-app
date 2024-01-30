@@ -8,8 +8,8 @@ part 'key_value_option.g.dart';
 abstract class KeyValueOptionEntity with _$KeyValueOptionEntity {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory KeyValueOptionEntity({
-   required String key,
-    String? value,
+    @JsonKey(name: "id") required  dynamic key,
+   @JsonKey(name: "name") String? value,
   }) = _KeyValueOptionEntity;
 
 

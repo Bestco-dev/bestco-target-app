@@ -22,7 +22,7 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   @override
   Future<ResponseState<CustomerEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.get("");
+      final res = await _client.post(param.url, data: param.data);
       return ResponseState.success(
         data: CustomerEntity.fromJson(param.data),
       );
@@ -54,11 +54,16 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   @override
   Future<ResponseState<List<CustomerEntity>>> load() async {
     try {
-      final res = await _client.get("");
+      final res = await _client.get("/customers");
+
       return ResponseState.success(
-        data: getCustomerList(length: 5),
+        data:
+            (res.data as List).map((e) => CustomerEntity.fromJson(e)).toList(),
+        // data: getCustomerList(length: 5),
       );
-    } catch (e, _) {
+    } catch (e,goo) {
+
+      print(goo);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );
@@ -74,7 +79,8 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
   @override
   Future<ResponseState<bool>> update(ReqParam param) async {
     try {
-      final res = await _client.get('', data: param.data);
+      final res = await _client.put(param.url, data: param.data);
+
       return const ResponseState.success(data: true);
     } catch (e, _) {
       return ResponseState.failure(

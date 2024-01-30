@@ -40,6 +40,8 @@ class Assets {
   static const String logoLogoNameWhite = 'assets/logo/logo_name_white.png';
   static const String svgChangeDate = 'assets/svg/change_date.svg';
   static const String svgEmRequest = 'assets/svg/emRequest.svg';
+  static const String svgEmptyPage = 'assets/svg/empty_page.svg';
+  static const String svgErrorPage = 'assets/svg/error_page.svg';
   static const String svgRequest = 'assets/svg/request.svg';
   static const String svgRequest2 = 'assets/svg/request2.svg';
   static const String svgRequestEmergency = 'assets/svg/request_emergency.svg';

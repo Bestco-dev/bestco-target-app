@@ -190,7 +190,7 @@ class __$$ReqParamImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReqParamImpl extends _ReqParam {
   _$ReqParamImpl(
-      {required this.url,
+      {this.url = '',
       this.action = RequestAction.request,
       this.method = RequestMethod.get,
       this.offset = 0,
@@ -205,6 +205,7 @@ class _$ReqParamImpl extends _ReqParam {
       _$$ReqParamImplFromJson(json);
 
   @override
+  @JsonKey()
   final String url;
   @override
   @JsonKey()
@@ -275,7 +276,7 @@ class _$ReqParamImpl extends _ReqParam {
 
 abstract class _ReqParam extends ReqParam {
   factory _ReqParam(
-      {required final String url,
+      {final String url,
       final RequestAction action,
       final RequestMethod method,
       final int offset,

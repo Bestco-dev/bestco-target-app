@@ -88,7 +88,8 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
             child: ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: FakeImages.randomImage(isUser: true),
+                image: saleperson.imgUrl??'',
+                // image: FakeImages.randomImage(isUser: true),
               ),
             ),
           ),

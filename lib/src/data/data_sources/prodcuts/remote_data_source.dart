@@ -13,8 +13,7 @@ import '../../demo/customers.dart';
 import '../../demo/products.dart';
 import 'data_source.dart';
 
-final productsRemoteDataSourceProvider =
-    Provider<_RemoteDataSourceImplementer>(
+final productsRemoteDataSourceProvider = Provider<_RemoteDataSourceImplementer>(
   (ref) => _RemoteDataSourceImplementer(ref.read(dioClientProvider)),
 );
 
@@ -25,7 +24,7 @@ class _RemoteDataSourceImplementer implements ProductsDataSource {
   @override
   Future<ResponseState<ProductEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.get("");
+      final res = await _client.get("/products");
       return ResponseState.success(
         data: ProductEntity.fromJson(param.data),
       );
@@ -39,9 +38,10 @@ class _RemoteDataSourceImplementer implements ProductsDataSource {
   @override
   Future<ResponseState<List<ProductEntity>>> load() async {
     try {
-      final res = await _client.get("");
+      final res = await _client.get("/products");
       return ResponseState.success(
-        data: getProductsList(),
+        data: (res.data as List).map((e) => ProductEntity.fromJson(e)).toList(),
+        // data: getProductsList(),
       );
     } catch (e, _) {
       return ResponseState.failure(

@@ -92,33 +92,33 @@ class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
                 onChanged: stateRead.updatePhone,
               ),
             ),
-            if (state.type.isIndividual)
-              TitledTextField(
-                title: "رقم الهوية",
-                child: TextFormField(
-                  initialValue: customer.nationalId,
-                  decoration: const InputDecoration(hintText: "رقم الهوية"),
-                  // validator: MultiValidator([
-                  //   RequiredValidator(
-                  //     errorText: '',
-                  //   ),
-                  // ]),
-                  onChanged: stateRead.updateNationalId,
-                ),
-              ),
+            // if (state.type.isIndividual)
+            //   TitledTextField(
+            //     title: "رقم الهوية",
+            //     child: TextFormField(
+            //       initialValue: customer.vat,
+            //       decoration: const InputDecoration(hintText: "رقم الهوية"),
+            //       // validator: MultiValidator([
+            //       //   RequiredValidator(
+            //       //     errorText: '',
+            //       //   ),
+            //       // ]),
+            //       onChanged: stateRead.updateNationalId,
+            //     ),
+            //   ),
 
-            if (state.type.isCompany)
+            // if (state.type.isCompany)
               TitledTextField(
                 title: "الرقم الضريبي",
                 child: TextFormField(
-                  initialValue: customer.taxId,
+                  initialValue: customer.vat,
                   decoration: const InputDecoration(hintText: "الرقم الضريبي"),
                   // validator: MultiValidator([
                   //   RequiredValidator(
                   //     errorText: '',
                   //   ),
                   // ]),
-                  onChanged: stateRead.updateTaxNum,
+                  onChanged: stateRead.updateVATNum,
                 ),
               ),
             TitledTextField(

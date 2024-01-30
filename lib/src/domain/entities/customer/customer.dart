@@ -9,19 +9,20 @@ part 'customer.g.dart';
 @freezed
 class CustomerEntity with _$CustomerEntity {
   const CustomerEntity._(); // Add
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)// ed constructor
+  @JsonSerializable(
+      fieldRename: FieldRename.snake, explicitToJson: true) // ed constructor
   factory CustomerEntity({
     required int id,
     required String name,
-   @Default(3) double rate,
-    required CustomerType type ,
+    @Default(3) @JsonKey(includeToJson: false) double rate,
+    @JsonKey(name: "company_type") required CustomerType type,
     String? phone,
     String? email,
     String? website,
-    String? nationalId,
-    String? taxId,
-    String? imageUrl,
-    String? description,
+    String? vat,
+    // String? taxId,
+    String? imgUrl,
+    @JsonKey(name: "comment")String? description,
     required AddressModel address,
   }) = _CustomerEntity;
 

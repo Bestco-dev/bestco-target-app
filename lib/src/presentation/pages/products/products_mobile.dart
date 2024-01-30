@@ -9,6 +9,7 @@ import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/products/list_view_model.dart';
 import '../product_details/product_details.dart';
@@ -41,9 +42,9 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
       body: ref.watch(productsListViewModelProvider).maybeWhen(
             orElse: () => const SizedBox.shrink(),
             loading: () => const AppCircularLoading(),
-            // loading: () => const SystemsPlaceholder(),
             data: (products) => RefreshIndicator(
-              onRefresh: () => ref.read(productsListViewModelProvider.notifier).load(),
+              onRefresh: () =>
+                  ref.read(productsListViewModelProvider.notifier).load(),
               child: GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -63,6 +64,11 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
                 itemCount: products.length,
               ),
             ),
+            error: (error) => ErrorPage(
+              message: error.message,
+              onReload: () =>
+                  ref.read(productsListViewModelProvider.notifier).load(),
+            ),
           ),
     );
   }
@@ -74,7 +80,7 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
           context,
           title: "اسم المنتج",
           hasMarginBottom: false,
-          child:  ProductDetailsPage(product: product),
+          child: ProductDetailsPage(product: product),
           height: context.height * .90,
         );
       },

@@ -78,8 +78,8 @@ class _ProfileMobilePageState extends ConsumerState<ProfileMobilePage> {
                             alignment: Alignment.bottomCenter,
                             child: CustomRoundImage(
                               size: 100,
-                              url: FakeImages.randomImage(),
-                              // url: user.imageUrl ?? '',
+                              // url: FakeImages.randomImage(),
+                              url: user.imageUrl ?? '',
                               borderWidth: 2,
                               borderColor: Colors.blueGrey,
                             ),

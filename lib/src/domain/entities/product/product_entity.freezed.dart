@@ -22,7 +22,7 @@ ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) {
 mixin _$ProductEntity {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $ProductEntityCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String? imageUrl,
+      String imageUrl,
       String? description,
       double? price,
       String? department,
@@ -67,7 +67,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = freezed,
+    Object? imageUrl = null,
     Object? description = freezed,
     Object? price = freezed,
     Object? department = freezed,
@@ -83,10 +83,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: freezed == imageUrl
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -122,7 +122,7 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      String? imageUrl,
+      String imageUrl,
       String? description,
       double? price,
       String? department,
@@ -143,7 +143,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = freezed,
+    Object? imageUrl = null,
     Object? description = freezed,
     Object? price = freezed,
     Object? department = freezed,
@@ -159,10 +159,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: freezed == imageUrl
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$ProductEntityImpl
   const _$ProductEntityImpl(
       {required this.id,
       required this.name,
-      this.imageUrl,
+      this.imageUrl = '',
       this.description,
       this.price,
       this.department,
@@ -211,7 +211,8 @@ class _$ProductEntityImpl
   @override
   final String name;
   @override
-  final String? imageUrl;
+  @JsonKey()
+  final String imageUrl;
   @override
   final String? description;
   @override
@@ -286,7 +287,7 @@ abstract class _ProductEntity implements ProductEntity {
   const factory _ProductEntity(
       {required final int id,
       required final String name,
-      final String? imageUrl,
+      final String imageUrl,
       final String? description,
       final double? price,
       final String? department,
@@ -301,7 +302,7 @@ abstract class _ProductEntity implements ProductEntity {
   @override
   String get name;
   @override
-  String? get imageUrl;
+  String get imageUrl;
   @override
   String? get description;
   @override

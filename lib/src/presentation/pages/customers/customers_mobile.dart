@@ -11,6 +11,8 @@ import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/empty_page.dart';
+import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/customers/list_view_model.dart';
@@ -58,17 +60,23 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
         ],
       ),
       body: state.maybeWhen(
-        orElse: () => const SizedBox.shrink(),
-        loading: () => const CustomersPlaceholder(),
-        data: (data) => RefreshIndicator(
-          onRefresh: () => stateRead.load(),
-          child: ListView.builder(
-            itemCount: data.length,
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) => _customerWidget(data[index]),
-          ),
-        ),
-      ),
+          orElse: () => const SizedBox.shrink(),
+          loading: () => const CustomersPlaceholder(),
+          data: (data) => RefreshIndicator(
+                onRefresh: () => stateRead.load(),
+                child: ListView.builder(
+                  itemCount: data.length,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) => _customerWidget(data[index]),
+                ),
+              ),
+          error: (error) => ErrorPage(
+                message: error.message,
+                onReload: () => stateRead.load(),
+              ),
+          empty: () => EmptyPage(
+                onRefresh: () => stateRead.load(),
+              )),
     );
   }
 
@@ -95,7 +103,7 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
           child: ClipOval(
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: customer.imageUrl??'',
+              image: customer.imgUrl ?? '',
             ),
           ),
         ),

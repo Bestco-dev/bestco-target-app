@@ -27,9 +27,8 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
   void updateName(String value) => state = state.copyWith(name: value);
   void updateType(CustomerType value) => state = state.copyWith(type: value);
   void updatePhone(String value) => state = state.copyWith(phone: value);
-  void updateTaxNum(String value) => state = state.copyWith(taxId: value);
-  void updateNationalId(String value) =>
-      state = state.copyWith(nationalId: value);
+  void updateVATNum(String value) => state = state.copyWith(vat: value);
+
   void updateEmail(String value) => state = state.copyWith(email: value);
   // void updateWebs(String value) => state = state.copyWith(email: value);
   void updateDescription(String value) =>
@@ -48,7 +47,17 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
     ProgressBar.show();
     final result = await ref
         .read(customersRemoteUseCaseProvider)
-        .update(ReqParam(url: '', data: state.toJson()));
+        .update(
+          ReqParam(
+            url: '/customer/${state.id}',
+            // data: {
+            //   "name":"homasd"
+            // }
+            data: state.toJson()
+              ..remove("img_url")
+              ..remove("address"),
+          ),
+        );
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");
@@ -68,7 +77,7 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
     ProgressBar.show();
     final result = await ref
         .read(customersRemoteUseCaseProvider)
-        .create(ReqParam(url: '', data: state.toJson()));
+        .create(ReqParam(url: '/create', data: state.toJson()));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("create done ...");

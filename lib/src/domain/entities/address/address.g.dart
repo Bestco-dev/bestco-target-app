@@ -8,7 +8,7 @@ part of 'address.dart';
 
 _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
     _$AddressModelImpl(
-      id: json['id'] as int,
+      id: json['id'] as int? ?? 0,
       country: json['country'] == null
           ? null
           : KeyValueOptionEntity.fromJson(

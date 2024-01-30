@@ -13,7 +13,7 @@ SalePersonEntity getSalepersons() {
   return SalePersonEntity(
     id: id,
     name: name,
-    imageUrl: FakeImages.randomImage(),
+    imgUrl: FakeImages.randomImage(),
     address: getAddress(),
     phone: phone,
     email: email,

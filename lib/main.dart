@@ -26,7 +26,7 @@ void main() async => runZonedGuarded<Future<void>>(() async {
       // FlutterStatusbarcolor.setStatusBarColor(Colors.white);
 
       //init Firebase notification service
-      await PushNotificationService().initialize();
+      // await PushNotificationService().initialize();
 
       runApp(
         Phoenix(

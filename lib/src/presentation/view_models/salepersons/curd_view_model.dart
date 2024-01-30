@@ -50,7 +50,7 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
     ProgressBar.show();
     final result = await ref
         .read(customersRemoteUseCaseProvider)
-        .update(ReqParam(url: '', data: state.toJson()));
+        .update(ReqParam(url: '/saleperson/${state.id}', data: state.toJson()));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");
@@ -64,7 +64,7 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
 
   Future<bool> create() async {
     if (state.name.isEmpty) {
-      CustomSnakeBars.showErrorSnakeBar("الرجاء ادخال اسم العميل");
+      CustomSnakeBars.showErrorSnakeBar("الرجاء ادخال اسم المندوب");
       return false;
     }
     ProgressBar.show();
@@ -77,7 +77,7 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
       ref.read(salepersonListViewModelProvider.notifier).addToUi(data);
       AppCustomDialogs.showInfoDialog(
         type: DialogType.success,
-        message: "تم اضافة العميل بنجاح",
+        message: "تم اضافة المندوب بنجاح",
       );
       return true;
     }, failure: (error) {

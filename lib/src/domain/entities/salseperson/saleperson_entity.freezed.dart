@@ -22,11 +22,13 @@ SalePersonEntity _$SalePersonEntityFromJson(Map<String, dynamic> json) {
 mixin _$SalePersonEntity {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get imgUrl => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "identification_id")
   String? get nationalId => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
+  @JsonKey(name: "note")
   String? get description => throw _privateConstructorUsedError;
   AddressModel get address => throw _privateConstructorUsedError;
   SalePersonStatus get status => throw _privateConstructorUsedError;
@@ -46,12 +48,12 @@ abstract class $SalePersonEntityCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String? imageUrl,
+      String? imgUrl,
       String? email,
       String? phone,
-      String? nationalId,
+      @JsonKey(name: "identification_id") String? nationalId,
       String? password,
-      String? description,
+      @JsonKey(name: "note") String? description,
       AddressModel address,
       SalePersonStatus status});
 
@@ -73,7 +75,7 @@ class _$SalePersonEntityCopyWithImpl<$Res, $Val extends SalePersonEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = freezed,
+    Object? imgUrl = freezed,
     Object? email = freezed,
     Object? phone = freezed,
     Object? nationalId = freezed,
@@ -91,9 +93,9 @@ class _$SalePersonEntityCopyWithImpl<$Res, $Val extends SalePersonEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      imgUrl: freezed == imgUrl
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -146,12 +148,12 @@ abstract class _$$SalePersonEntityImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      String? imageUrl,
+      String? imgUrl,
       String? email,
       String? phone,
-      String? nationalId,
+      @JsonKey(name: "identification_id") String? nationalId,
       String? password,
-      String? description,
+      @JsonKey(name: "note") String? description,
       AddressModel address,
       SalePersonStatus status});
 
@@ -172,7 +174,7 @@ class __$$SalePersonEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? imageUrl = freezed,
+    Object? imgUrl = freezed,
     Object? email = freezed,
     Object? phone = freezed,
     Object? nationalId = freezed,
@@ -190,9 +192,9 @@ class __$$SalePersonEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      imgUrl: freezed == imgUrl
+          ? _value.imgUrl
+          : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -235,12 +237,12 @@ class _$SalePersonEntityImpl
   const _$SalePersonEntityImpl(
       {required this.id,
       required this.name,
-      this.imageUrl,
+      this.imgUrl,
       this.email,
       this.phone,
-      this.nationalId,
+      @JsonKey(name: "identification_id") this.nationalId,
       this.password,
-      this.description,
+      @JsonKey(name: "note") this.description,
       required this.address,
       this.status = SalePersonStatus.active});
 
@@ -252,16 +254,18 @@ class _$SalePersonEntityImpl
   @override
   final String name;
   @override
-  final String? imageUrl;
+  final String? imgUrl;
   @override
   final String? email;
   @override
   final String? phone;
   @override
+  @JsonKey(name: "identification_id")
   final String? nationalId;
   @override
   final String? password;
   @override
+  @JsonKey(name: "note")
   final String? description;
   @override
   final AddressModel address;
@@ -271,7 +275,7 @@ class _$SalePersonEntityImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SalePersonEntity(id: $id, name: $name, imageUrl: $imageUrl, email: $email, phone: $phone, nationalId: $nationalId, password: $password, description: $description, address: $address, status: $status)';
+    return 'SalePersonEntity(id: $id, name: $name, imgUrl: $imgUrl, email: $email, phone: $phone, nationalId: $nationalId, password: $password, description: $description, address: $address, status: $status)';
   }
 
   @override
@@ -281,7 +285,7 @@ class _$SalePersonEntityImpl
       ..add(DiagnosticsProperty('type', 'SalePersonEntity'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl))
+      ..add(DiagnosticsProperty('imgUrl', imgUrl))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('nationalId', nationalId))
@@ -298,8 +302,7 @@ class _$SalePersonEntityImpl
             other is _$SalePersonEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.nationalId, nationalId) ||
@@ -314,7 +317,7 @@ class _$SalePersonEntityImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, imageUrl, email, phone,
+  int get hashCode => Object.hash(runtimeType, id, name, imgUrl, email, phone,
       nationalId, password, description, address, status);
 
   @JsonKey(ignore: true)
@@ -336,12 +339,12 @@ abstract class _SalePersonEntity implements SalePersonEntity {
   const factory _SalePersonEntity(
       {required final int id,
       required final String name,
-      final String? imageUrl,
+      final String? imgUrl,
       final String? email,
       final String? phone,
-      final String? nationalId,
+      @JsonKey(name: "identification_id") final String? nationalId,
       final String? password,
-      final String? description,
+      @JsonKey(name: "note") final String? description,
       required final AddressModel address,
       final SalePersonStatus status}) = _$SalePersonEntityImpl;
 
@@ -353,16 +356,18 @@ abstract class _SalePersonEntity implements SalePersonEntity {
   @override
   String get name;
   @override
-  String? get imageUrl;
+  String? get imgUrl;
   @override
   String? get email;
   @override
   String? get phone;
   @override
+  @JsonKey(name: "identification_id")
   String? get nationalId;
   @override
   String? get password;
   @override
+  @JsonKey(name: "note")
   String? get description;
   @override
   AddressModel get address;

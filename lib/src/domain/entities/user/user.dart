@@ -13,9 +13,9 @@ class UserEntity with _$UserEntity {
     required String name,
     String? email,
     String? phone,
-    String? imageUrl,
+    @JsonKey(name: "image_url") String? imageUrl,
     String? lang,
-    required UserType type ,
+    required UserType type,
   }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

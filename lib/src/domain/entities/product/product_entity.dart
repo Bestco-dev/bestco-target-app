@@ -12,12 +12,12 @@ abstract class ProductEntity with _$ProductEntity {
   const factory ProductEntity({
     required int id,
     required String name,
-    String? imageUrl,
+    @Default('') String imageUrl,
     String? description,
     double? price,
     String? department,
     String? brochureLink,
-    @Default(ProductType.consu) ProductType type,//consu,service
+    @Default(ProductType.consu) ProductType type, //consu,service
   }) = _ProductEntity;
 
   factory ProductEntity.fromJson(Map<String, dynamic> json) =>

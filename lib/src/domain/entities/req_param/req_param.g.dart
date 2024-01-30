@@ -8,7 +8,7 @@ part of 'req_param.dart';
 
 _$ReqParamImpl _$$ReqParamImplFromJson(Map<String, dynamic> json) =>
     _$ReqParamImpl(
-      url: json['url'] as String,
+      url: json['url'] as String? ?? '',
       action: $enumDecodeNullable(_$RequestActionEnumMap, json['action']) ??
           RequestAction.request,
       method: $enumDecodeNullable(_$RequestMethodEnumMap, json['method']) ??

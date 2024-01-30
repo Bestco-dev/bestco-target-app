@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -47,7 +48,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
   bool get isUnauthorisedRequest => this == const UnauthorisedRequest();
 
   static NetworkExceptions parse(error, {StackTrace? stack}) {
-    // log("Error:", error: error, name: "Network exceptions");
+    log("Error:", error: error, name: "Network exceptions");
     if (error is Exception) {
       try {
         NetworkExceptions networkExceptions;

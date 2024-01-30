@@ -15,7 +15,7 @@ ProductEntity getProduct() {
     name: name,
     type: type,
     imageUrl: FakeImages.randomImage(),
-    price: faker.randomGenerator.decimal(min: 1000,scale: 1).floorToDouble(),
+    price: faker.randomGenerator.decimal(min: 1000, scale: 1).floorToDouble(),
     department: department,
     description: description,
   );

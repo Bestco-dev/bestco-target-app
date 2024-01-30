@@ -9,7 +9,8 @@ import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../demo/salepersons.dart';
 import 'data_source.dart';
 
-final salePersonsRemoteDataSourceProvider = Provider<_RemoteDataSourceImplementer>(
+final salePersonsRemoteDataSourceProvider =
+    Provider<_RemoteDataSourceImplementer>(
   (ref) => _RemoteDataSourceImplementer(ref.read(dioClientProvider)),
 );
 
@@ -19,7 +20,7 @@ class _RemoteDataSourceImplementer implements SalepersonDataSource {
   @override
   Future<ResponseState<SalePersonEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.get("");
+      final res = await _client.post("/saleperson/create",data: param.data);
       return ResponseState.success(
         data: SalePersonEntity.fromJson(param.data),
       );
@@ -33,11 +34,16 @@ class _RemoteDataSourceImplementer implements SalepersonDataSource {
   @override
   Future<ResponseState<List<SalePersonEntity>>> load() async {
     try {
-      final res = await _client.get("");
+      final res = await _client.get("/get_salepersons");
       return ResponseState.success(
-        data: getSalepersonsList(),
+        data: (res.data as List)
+            .map((e) => SalePersonEntity.fromJson(e))
+            .toList(),
+        // data: getSalepersonsList(),
       );
     } catch (e, _) {
+      // print(e);
+      // print(err);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );
@@ -53,7 +59,7 @@ class _RemoteDataSourceImplementer implements SalepersonDataSource {
   @override
   Future<ResponseState<bool>> update(ReqParam param) async {
     try {
-      final res = await _client.get('', data: param.data);
+      final res = await _client.post(param.url, data: param.data);
       return const ResponseState.success(data: true);
     } catch (e, _) {
       return ResponseState.failure(

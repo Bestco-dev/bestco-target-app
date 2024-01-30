@@ -8,7 +8,7 @@ class ReqParam with _$ReqParam {
   const ReqParam._(); // Added constructor
 
   factory ReqParam({
-    required String url,
+    @Default('') String url,
     @Default(RequestAction.request) RequestAction action,
     @Default(RequestMethod.get) RequestMethod method,
     @Default(0) int offset,
@@ -22,6 +22,7 @@ class ReqParam with _$ReqParam {
       _$ReqParamFromJson(json);
 
   bool get isPost => method == RequestMethod.post;
+  // bool getData=
 }
 
 enum RequestMethod {

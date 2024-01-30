@@ -37,7 +37,7 @@ CustomerEntity getCustomer() {
     name: name,
     type: type,
     phone: phone,
-    imageUrl: FakeImages.randomImage(isUser: true),
+    imgUrl: FakeImages.randomImage(isUser: true),
     address: getAddress(),
   );
 }

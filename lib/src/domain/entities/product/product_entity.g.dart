@@ -10,7 +10,7 @@ _$ProductEntityImpl _$$ProductEntityImplFromJson(Map<String, dynamic> json) =>
     _$ProductEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      imageUrl: json['image_url'] as String?,
+      imageUrl: json['image_url'] as String? ?? '',
       description: json['description'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       department: json['department'] as String?,

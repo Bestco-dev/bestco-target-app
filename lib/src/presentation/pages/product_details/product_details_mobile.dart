@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
@@ -30,15 +31,7 @@ class _CheckMobilePageState extends ConsumerState<ProductDetailsMobilePage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: 220,
-            // color: Colors.grey[200],
-            child: Image.network(
-              FakeImages.randomImage(),
-              fit: BoxFit.fill,
-            ),
-          ),
+          _images(),
           const SizedBox(height: 16),
           CustomInfoItem(
               title: "نوع المنتج", info: product.type.name, isBold: true),
@@ -83,13 +76,14 @@ class _CheckMobilePageState extends ConsumerState<ProductDetailsMobilePage> {
           // const SizedBox(height: 40)
           TitledTextField(
             title: "الوصف",
-            child: Text(
-              product.description ?? '',
-              style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+            child: HtmlWidget(product.description ?? ''),
+            // child: Text(
+            //   product.description ?? '',
+            //   style: const TextStyle(
+            //       fontSize: 14,
+            //       color: Colors.black,
+            //       fontWeight: FontWeight.bold),
+            // ),
           ),
           const SizedBox(height: 20),
           Container(
@@ -114,8 +108,20 @@ class _CheckMobilePageState extends ConsumerState<ProductDetailsMobilePage> {
             ),
           ),
           // const SizedBox(height: 10),
-
         ],
+      ),
+    );
+  }
+
+  Widget _images() {
+    return SizedBox(
+      width: double.infinity,
+      height: 220,
+      // color: Colors.grey[200],
+      child: Image.network(
+        product.imageUrl ?? '',
+        // FakeImages.randomImage(),
+        fit: BoxFit.fill,
       ),
     );
   }

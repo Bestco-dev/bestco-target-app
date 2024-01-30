@@ -9,13 +9,13 @@ part of 'key_value_option.dart';
 _$KeyValueOptionEntityImpl _$$KeyValueOptionEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$KeyValueOptionEntityImpl(
-      key: json['key'] as String,
-      value: json['value'] as String?,
+      key: json['id'],
+      value: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$KeyValueOptionEntityImplToJson(
         _$KeyValueOptionEntityImpl instance) =>
     <String, dynamic>{
-      'key': instance.key,
-      'value': instance.value,
+      'id': instance.key,
+      'name': instance.value,
     };

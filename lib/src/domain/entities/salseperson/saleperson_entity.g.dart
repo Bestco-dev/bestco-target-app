@@ -11,12 +11,12 @@ _$SalePersonEntityImpl _$$SalePersonEntityImplFromJson(
     _$SalePersonEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      imageUrl: json['image_url'] as String?,
+      imgUrl: json['img_url'] as String?,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
-      nationalId: json['national_id'] as String?,
+      nationalId: json['identification_id'] as String?,
       password: json['password'] as String?,
-      description: json['description'] as String?,
+      description: json['note'] as String?,
       address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
       status: $enumDecodeNullable(_$SalePersonStatusEnumMap, json['status']) ??
           SalePersonStatus.active,
@@ -27,12 +27,12 @@ Map<String, dynamic> _$$SalePersonEntityImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image_url': instance.imageUrl,
+      'img_url': instance.imgUrl,
       'email': instance.email,
       'phone': instance.phone,
-      'national_id': instance.nationalId,
+      'identification_id': instance.nationalId,
       'password': instance.password,
-      'description': instance.description,
+      'note': instance.description,
       'address': instance.address.toJson(),
       'status': _$SalePersonStatusEnumMap[instance.status]!,
     };

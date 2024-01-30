@@ -1,10 +1,11 @@
-
-
 import '../../../locales/localization/l10n.dart';
 
-enum UserType { saleperson, supervisor }
-enum ProductType { service, consu }//consu,service
+enum UserType { saleperson, supervisor, admin }
+
+enum ProductType { service, consu } //consu,service
+
 enum CustomerType { person, company }
+
 enum SalePersonStatus { active, unActive }
 
 extension UserTypeEx on UserType {
@@ -16,15 +17,15 @@ extension UserTypeEx on UserType {
     switch (this) {
       case UserType.supervisor:
         return "مشرف";
-    // return i18n.scheduled;
+      // return i18n.scheduled;
       case UserType.saleperson:
         return "مندوب";
-    // return i18n.emergency;
-
+      case UserType.admin:
+        return "مدير";
+      // return i18n.emergency;
     }
   }
 }
-
 
 extension SalePersonStausEx on SalePersonStatus {
   bool get isActive => this == SalePersonStatus.active;
@@ -35,14 +36,14 @@ extension SalePersonStausEx on SalePersonStatus {
     switch (this) {
       case SalePersonStatus.active:
         return "نشظ";
-    // return i18n.scheduled;
+      // return i18n.scheduled;
       case SalePersonStatus.unActive:
         return "غير نشط";
-    // return i18n.emergency;
-
+      // return i18n.emergency;
     }
   }
 }
+
 extension CustomerTypeEx on CustomerType {
   bool get isIndividual => this == CustomerType.person;
   bool get isCompany => this == CustomerType.company;
@@ -52,16 +53,13 @@ extension CustomerTypeEx on CustomerType {
     switch (this) {
       case CustomerType.person:
         return "فرد";
-        // return i18n.scheduled;
+      // return i18n.scheduled;
       case CustomerType.company:
         return "مؤسسة";
-        // return i18n.emergency;
-
+      // return i18n.emergency;
     }
   }
 }
-
-
 
 extension ProductTypeEx on ProductType {
   bool get isService => this == ProductType.service;
@@ -72,11 +70,10 @@ extension ProductTypeEx on ProductType {
     switch (this) {
       case ProductType.service:
         return "خدمي";
-    // return i18n.scheduled;
+      // return i18n.scheduled;
       case ProductType.consu:
         return "إستهلاكي";
-    // return i18n.emergency;
-
+      // return i18n.emergency;
     }
   }
 }

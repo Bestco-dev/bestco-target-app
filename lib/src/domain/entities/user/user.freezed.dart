@@ -24,6 +24,7 @@ mixin _$UserEntity {
   String get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_url")
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
   UserType get type => throw _privateConstructorUsedError;
@@ -45,7 +46,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String name,
       String? email,
       String? phone,
-      String? imageUrl,
+      @JsonKey(name: "image_url") String? imageUrl,
       String? lang,
       UserType type});
 }
@@ -117,7 +118,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       String name,
       String? email,
       String? phone,
-      String? imageUrl,
+      @JsonKey(name: "image_url") String? imageUrl,
       String? lang,
       UserType type});
 }
@@ -182,7 +183,7 @@ class _$UserEntityImpl extends _UserEntity {
       required this.name,
       this.email,
       this.phone,
-      this.imageUrl,
+      @JsonKey(name: "image_url") this.imageUrl,
       this.lang,
       required this.type})
       : super._();
@@ -199,6 +200,7 @@ class _$UserEntityImpl extends _UserEntity {
   @override
   final String? phone;
   @override
+  @JsonKey(name: "image_url")
   final String? imageUrl;
   @override
   final String? lang;
@@ -250,7 +252,7 @@ abstract class _UserEntity extends UserEntity {
       required final String name,
       final String? email,
       final String? phone,
-      final String? imageUrl,
+      @JsonKey(name: "image_url") final String? imageUrl,
       final String? lang,
       required final UserType type}) = _$UserEntityImpl;
   _UserEntity._() : super._();
@@ -267,6 +269,7 @@ abstract class _UserEntity extends UserEntity {
   @override
   String? get phone;
   @override
+  @JsonKey(name: "image_url")
   String? get imageUrl;
   @override
   String? get lang;

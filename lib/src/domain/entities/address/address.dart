@@ -7,9 +7,10 @@ part 'address.g.dart';
 
 @freezed
 class AddressModel with _$AddressModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const AddressModel._(); // Added constructor
   factory AddressModel({
-    required int id,
+    @Default(0) int id,
     KeyValueOptionEntity? country,
     KeyValueOptionEntity? state,
     String? city,

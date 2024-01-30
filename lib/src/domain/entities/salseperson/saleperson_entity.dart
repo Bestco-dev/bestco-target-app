@@ -13,13 +13,13 @@ abstract class SalePersonEntity with _$SalePersonEntity {
   const factory SalePersonEntity(
           {required int id,
           required String name,
-          String? imageUrl,
+          String? imgUrl,
           String? email,
           String? phone,
-          String? nationalId,
+          @JsonKey(name: "identification_id") String? nationalId,
           String? password,
-          String? description,
-         required AddressModel address,
+          @JsonKey(name: "note") String? description,
+          required AddressModel address,
           @Default(SalePersonStatus.active) SalePersonStatus status}) =
       _SalePersonEntity;
 

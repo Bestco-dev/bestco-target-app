@@ -224,7 +224,7 @@ class __$$AddressModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddressModelImpl extends _AddressModel {
   _$AddressModelImpl(
-      {required this.id,
+      {this.id = 0,
       this.country,
       this.state,
       this.city,
@@ -238,6 +238,7 @@ class _$AddressModelImpl extends _AddressModel {
       _$$AddressModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final int id;
   @override
   final KeyValueOptionEntity? country;
@@ -299,7 +300,7 @@ class _$AddressModelImpl extends _AddressModel {
 
 abstract class _AddressModel extends AddressModel {
   factory _AddressModel(
-      {required final int id,
+      {final int id,
       final KeyValueOptionEntity? country,
       final KeyValueOptionEntity? state,
       final String? city,

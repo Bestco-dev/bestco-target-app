@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -19,22 +20,25 @@ class InterceptorImplementer implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    log(options.baseUrl + options.path, name: "Request url");
-    log("${options.data}", name: "Request data");
     String? token = ref.read(authTokenProvider).getToken;
     if (token != null) {
       options.headers.addAll({
         'Authorization': "Bearer $token",
       });
     }
+
+    options.data =
+        json.encode(options.data); //encode data before sending to data
+    log("[${options.method}] - ${options.baseUrl}${options.path}", name: "Request url");
+    log("${options.headers}", name: "Request header");
+    log("${options.data}", name: "Request data");
     return handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     log("status code:${response.statusCode}", name: "Response");
-    // log("body :${response.data}",
-    //     name: "Response");
+    log("body :${response.data}", name: "Response");
 
     return handler.next(response);
   }

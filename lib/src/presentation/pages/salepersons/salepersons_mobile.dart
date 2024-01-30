@@ -14,6 +14,7 @@ import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_tag.dart';
+import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/salepersons/details_view_model.dart';
@@ -73,6 +74,10 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
             itemBuilder: (context, index) => _salepersonWidget(data[index]),
           ),
         ),
+        error: (error) => ErrorPage(
+          message: error.message,
+          onReload:()=> stateRead.load(),
+        ),
       ),
     );
   }
@@ -100,7 +105,8 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
           child: ClipOval(
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: FakeImages.randomImage(isUser: true),
+              image:saleperson.imgUrl??'',
+              // image: FakeImages.randomImage(isUser: true),
             ),
           ),
         ),

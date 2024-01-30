@@ -23,7 +23,7 @@ class AddressRemoteDataSourceImplementer implements AddressDataSource {
   @override
   Future<ResponseState<AddressModel>> create(ReqParam param) async {
     try {
-      final res = await _client.get("");
+      final res = await _client.post(param.url, data: param.data);
       return ResponseState.success(
         data: AddressModel.fromJson(param.data),
       );
@@ -57,7 +57,7 @@ class AddressRemoteDataSourceImplementer implements AddressDataSource {
   @override
   Future<ResponseState<bool>> update(ReqParam param) async {
     try {
-      final res = await _client.get('', data: param.data);
+      final res = await _client.get(param.url, data: param.data);
       return const ResponseState.success(data: true);
     } catch (e, _) {
       return ResponseState.failure(
@@ -76,9 +76,12 @@ class AddressRemoteDataSourceImplementer implements AddressDataSource {
   Future<ResponseState<List<KeyValueOptionEntity>>> loadOptions(
       ReqParam param) async {
     try {
-      final res = await _client.get("");
+      final res = await _client.get(param.url);
       return ResponseState.success(
-        data: List.generate(4, (index) => getKeyOption()),
+        data: (res.data as List)
+            .map((e) => KeyValueOptionEntity.fromJson(e))
+            .toList(),
+        // data: List.generate(4, (index) => getKeyOption()),
       );
     } catch (e, _) {
       return ResponseState.failure(

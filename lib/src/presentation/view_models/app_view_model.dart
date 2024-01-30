@@ -253,6 +253,7 @@ class RouterNotifier extends AutoDisposeAsyncNotifier<AppState>
       String? user = await SharedPrefUtil.getUser();
       if (user == null) const AppState.unauthenticated();
       if (user != null) {
+        developer.log(user);
         ref
             .read(userViewModelProvider.notifier)
             .setUser(UserEntity.fromJson(json.decode(user)));

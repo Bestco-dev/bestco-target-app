@@ -18,7 +18,6 @@ import '../products/products.dart';
 import '../profile/profile.dart';
 import '../salepersons/salepersons.dart';
 
-
 class HomeMobilePage extends ConsumerStatefulWidget {
   const HomeMobilePage({Key? key}) : super(key: key);
 
@@ -50,7 +49,9 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
         children: [
           _HomeIcons(),
           SizedBox(height: 20),
-          NewsCarousel(),
+          CarouselImages(
+            images: [],
+          ),
         ],
       ),
     );

@@ -92,7 +92,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
             child: ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: customer.imageUrl ?? '',
+                image: customer.imgUrl ?? '',
                 // image: customer.imageUrl ?? '',
               ),
             ),
@@ -238,14 +238,14 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               title: "رقم الجوال", info: customer.phone, isBold: true),
           // CustomInfoItem(
           //     title: "رقم الهاتف", info: "0 123 456 7891", isBold: true),
-          if (customer.type.isIndividual)
-            CustomInfoItem(
-                title: "رقم الهوية", info: customer.nationalId, isBold: true),
+          // if (customer.type.isIndividual)
+          //   CustomInfoItem(
+          //       title: "رقم الهوية", info: customer.nationalId, isBold: true),
 
           if (customer.type.isCompany)
             if (customer.type.isIndividual)
               CustomInfoItem(
-                  title: "الرقم الضريبي", info: customer.taxId, isBold: true),
+                  title: "الرقم الضريبي", info: customer.vat, isBold: true),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {

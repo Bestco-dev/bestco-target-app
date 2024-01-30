@@ -12,7 +12,7 @@ _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       email: json['email'] as String?,
       phone: json['phone'] as String?,
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['image_url'] as String?,
       lang: json['lang'] as String?,
       type: $enumDecode(_$UserTypeEnumMap, json['type']),
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
       'lang': instance.lang,
       'type': _$UserTypeEnumMap[instance.type]!,
     };
@@ -31,4 +31,5 @@ Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
 const _$UserTypeEnumMap = {
   UserType.saleperson: 'saleperson',
   UserType.supervisor: 'supervisor',
+  UserType.admin: 'admin',
 };

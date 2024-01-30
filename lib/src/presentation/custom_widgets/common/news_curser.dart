@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/demo/images.dart';
 
-class NewsCarousel extends StatefulWidget {
-  const NewsCarousel({super.key});
+class CarouselImages extends StatefulWidget {
+  final List<String> images;
+  final double height;
+
+  const CarouselImages({super.key, required this.images, this.height = 250});
 
   @override
   State<StatefulWidget> createState() {
@@ -13,14 +16,14 @@ class NewsCarousel extends StatefulWidget {
   }
 }
 
-class _CarouselWithIndicatorState extends State<NewsCarousel> {
+class _CarouselWithIndicatorState extends State<CarouselImages> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: widget.height,
       width: context.width,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const Text(
@@ -35,7 +38,8 @@ class _CarouselWithIndicatorState extends State<NewsCarousel> {
         const SizedBox(height: 10),
         Expanded(
           child: CarouselSlider(
-            items: [1, 2, 3, 4, 5].map((i) {
+            items:[1,2,3,4].map((i) {
+            // items: widget.images.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(

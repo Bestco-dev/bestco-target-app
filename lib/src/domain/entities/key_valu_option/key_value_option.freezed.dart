@@ -20,7 +20,9 @@ KeyValueOptionEntity _$KeyValueOptionEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KeyValueOptionEntity {
-  String get key => throw _privateConstructorUsedError;
+  @JsonKey(name: "id")
+  dynamic get key => throw _privateConstructorUsedError;
+  @JsonKey(name: "name")
   String? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,8 @@ abstract class $KeyValueOptionEntityCopyWith<$Res> {
           $Res Function(KeyValueOptionEntity) then) =
       _$KeyValueOptionEntityCopyWithImpl<$Res, KeyValueOptionEntity>;
   @useResult
-  $Res call({String key, String? value});
+  $Res call(
+      {@JsonKey(name: "id") dynamic key, @JsonKey(name: "name") String? value});
 }
 
 /// @nodoc
@@ -52,14 +55,14 @@ class _$KeyValueOptionEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
+    Object? key = freezed,
     Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      key: null == key
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -76,7 +79,8 @@ abstract class _$$KeyValueOptionEntityImplCopyWith<$Res>
       __$$KeyValueOptionEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, String? value});
+  $Res call(
+      {@JsonKey(name: "id") dynamic key, @JsonKey(name: "name") String? value});
 }
 
 /// @nodoc
@@ -90,14 +94,14 @@ class __$$KeyValueOptionEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
+    Object? key = freezed,
     Object? value = freezed,
   }) {
     return _then(_$KeyValueOptionEntityImpl(
-      key: null == key
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -112,14 +116,18 @@ class __$$KeyValueOptionEntityImplCopyWithImpl<$Res>
 class _$KeyValueOptionEntityImpl
     with DiagnosticableTreeMixin
     implements _KeyValueOptionEntity {
-  const _$KeyValueOptionEntityImpl({required this.key, this.value});
+  const _$KeyValueOptionEntityImpl(
+      {@JsonKey(name: "id") required this.key,
+      @JsonKey(name: "name") this.value});
 
   factory _$KeyValueOptionEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyValueOptionEntityImplFromJson(json);
 
   @override
-  final String key;
+  @JsonKey(name: "id")
+  final dynamic key;
   @override
+  @JsonKey(name: "name")
   final String? value;
 
   @override
@@ -141,13 +149,14 @@ class _$KeyValueOptionEntityImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$KeyValueOptionEntityImpl &&
-            (identical(other.key, key) || other.key == key) &&
+            const DeepCollectionEquality().equals(other.key, key) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, key, value);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(key), value);
 
   @JsonKey(ignore: true)
   @override
@@ -167,15 +176,17 @@ class _$KeyValueOptionEntityImpl
 
 abstract class _KeyValueOptionEntity implements KeyValueOptionEntity {
   const factory _KeyValueOptionEntity(
-      {required final String key,
-      final String? value}) = _$KeyValueOptionEntityImpl;
+      {@JsonKey(name: "id") required final dynamic key,
+      @JsonKey(name: "name") final String? value}) = _$KeyValueOptionEntityImpl;
 
   factory _KeyValueOptionEntity.fromJson(Map<String, dynamic> json) =
       _$KeyValueOptionEntityImpl.fromJson;
 
   @override
-  String get key;
+  @JsonKey(name: "id")
+  dynamic get key;
   @override
+  @JsonKey(name: "name")
   String? get value;
   @override
   @JsonKey(ignore: true)

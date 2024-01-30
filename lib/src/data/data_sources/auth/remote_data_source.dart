@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/utils/exception/network_exceptions/network_exceptions.dart';
 import '../../../common/utils/http_client/http_clinet.dart';
+import '../../../common/utils/http_client/token_provider.dart';
+import '../../../common/utils/storage/shared_pref_util.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
 import '../../../domain/entities/user/user.dart';
@@ -10,19 +15,23 @@ import '../../demo/user.dart';
 import 'auth_data_source.dart';
 
 final authRemoteDataSourceProvider = Provider<AuthRemoteDataSourceImplementer>(
-  (ref) => AuthRemoteDataSourceImplementer(ref.read(dioClientProvider)),
+  (ref) => AuthRemoteDataSourceImplementer(ref.read(dioClientProvider), ref),
 );
 
 class AuthRemoteDataSourceImplementer implements AuthDataSource {
   final Dio _client;
-  AuthRemoteDataSourceImplementer(this._client);
+  final Ref ref;
+  AuthRemoteDataSourceImplementer(this._client, this.ref);
 
   @override
   Future<ResponseState<UserEntity>> doLogin(ReqParam param) async {
     try {
-      final res = await _client.get("/products/1");
+      final res = await _client.post("/bestco/login", data: param.data);
+      final String accessToken = res.data['access_token'];
+      ref.read(authTokenProvider).setToken(accessToken);
+      SharedPrefUtil.saveAuthToken(accessToken);
       return ResponseState.success(
-        data: getUser(),
+        data: UserEntity.fromJson(res.data['user_data']),
       );
     } catch (e, _) {
       return ResponseState.failure(
