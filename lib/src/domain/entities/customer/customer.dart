@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../common/utils/extensions/map.dart';
 import '../../../data/types/types_enums.dart';
 import '../address/address.dart';
 
@@ -22,10 +23,20 @@ class CustomerEntity with _$CustomerEntity {
     String? vat,
     // String? taxId,
     String? imgUrl,
-    @JsonKey(name: "comment")String? description,
+    @JsonKey(name: "comment") String? description,
     required AddressModel address,
   }) = _CustomerEntity;
 
   factory CustomerEntity.fromJson(Map<String, dynamic> json) =>
       _$CustomerEntityFromJson(json);
+
+  Map<String, dynamic> get curdJson => {
+        "id": id,
+        "name": name,
+        "email": email,
+        "website": website,
+        "phone": phone,
+        "vat": vat,
+        "company_id": type.name,
+      }.removeNulls();
 }

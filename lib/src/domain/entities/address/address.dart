@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../common/utils/extensions/map.dart';
 import '../key_valu_option/key_value_option.dart';
 
 part 'address.freezed.dart';
@@ -25,4 +26,12 @@ class AddressModel with _$AddressModel {
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
       _$AddressModelFromJson(json);
+  Map<String, dynamic> get curdJson => {
+        // "id": id,
+        "country_id": country?.key,
+        "state_id": state?.key,
+        "city": city,
+        "street": street,
+        "description": description,
+      }.removeNulls();
 }

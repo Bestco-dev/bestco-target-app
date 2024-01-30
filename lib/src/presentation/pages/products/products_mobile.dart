@@ -134,9 +134,23 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
               ),
             ],
           ),
+          if(product.hasImage)Expanded(
+            // height: 100,
+            // width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.network(
+                product.imageUrl ?? '',
+                // FakeImages.randomImage(),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
           Text(
             product.name,
-            textAlign: TextAlign.right,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
             style: const TextStyle(
               color: Color(0xFF555B6A),
               fontSize: 15,

@@ -48,7 +48,7 @@ extension CustomerTypeEx on CustomerType {
   bool get isIndividual => this == CustomerType.person;
   bool get isCompany => this == CustomerType.company;
 
-  String get name {
+  String get value {
     final i18n = Localization.current;
     switch (this) {
       case CustomerType.person:

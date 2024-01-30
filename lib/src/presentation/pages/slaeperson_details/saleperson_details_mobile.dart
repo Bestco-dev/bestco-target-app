@@ -88,7 +88,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
             child: ClipOval(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: saleperson.imgUrl??'',
+                image: saleperson.imgUrl ?? '',
                 // image: FakeImages.randomImage(isUser: true),
               ),
             ),
@@ -312,7 +312,10 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
                   CustomModalSheet.showModalSheet(
                     context,
                     title: "تفاصيل العنوان",
-                    child: AddressCurd(address: saleperson.address),
+                    child: AddressCurd(
+                        address: saleperson.address,
+                        customerId: saleperson.id,
+                        isCustomer: false),
                     height: context.height * .9,
                   );
                 },

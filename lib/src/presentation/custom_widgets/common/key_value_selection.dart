@@ -17,7 +17,7 @@ import 'list_tile_error.dart';
 class KeyValueSelection extends ConsumerStatefulWidget {
   final KeyValueOptionEntity? selectedItem;
   final String? title;
-  final Function? onRefresh;
+  final Function()? onRefresh;
   final UiState<List<KeyValueOptionEntity>> stateProvider;
   final Function(KeyValueOptionEntity? value)? onSelect;
   const KeyValueSelection(
@@ -59,7 +59,12 @@ class _BranchesState extends ConsumerState<KeyValueSelection> {
           data: (data) => _items(data),
           error: (error) => ListTileErrorWidget(
             message: error.message,
-            onReCheck: () => widget.onRefresh,
+            // onReCheck: () {
+            //   print("dool...");
+            //   print(widget.onRefresh==null);
+            //  widget.onRefresh!();
+            // },
+            onReCheck: () =>  widget.onRefresh!(),
           ),
         ),
         // _item(

@@ -162,7 +162,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
                   CustomModalSheet.showModalSheet(
                     context,
                     title: "تفاصيل العنوان",
-                    child: _addressInfo(customer.address),
+                    child: _addressInfo(customer.address,customer.id),
                     height: context.height * .7,
                   );
                 },
@@ -174,7 +174,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
     );
   }
 
-  Widget _addressInfo(AddressModel address) {
+  Widget _addressInfo(AddressModel address,int id) {
     // final customer = ref.watch(customerProvider(widget.customer));
     // final state = ref.watch(addressDetailsProvider);
     return SingleChildScrollView(
@@ -197,7 +197,7 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
               CustomModalSheet.showModalSheet(
                 context,
                 title: "تعديل العنوان",
-                child: AddressCurd(address: address),
+                child: AddressCurd(address: address,customerId: id),
                 height: context.height * .9,
               );
             },
@@ -282,7 +282,9 @@ class _CheckMobilePageState extends ConsumerState<CustomerDetailsMobilePage> {
 
 class AddressCurd extends ConsumerWidget {
   final AddressModel address;
-  const AddressCurd({super.key, required this.address});
+  final int customerId;
+  final bool isCustomer;
+  const AddressCurd({super.key, required this.address,required this.customerId,this.isCustomer=true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -313,6 +315,7 @@ class AddressCurd extends ConsumerWidget {
                 title: "المنظقة",
                 child: KeyValueSelection(
                   stateProvider: ref.watch(statesProvider),
+
                   onRefresh: () => ref.read(statesProvider.notifier).load(),
                   title: "المنظقة",
 
@@ -381,7 +384,7 @@ class AddressCurd extends ConsumerWidget {
                 child: AppBtn(
                   text: "حفظ",
                   onPressed: () async {
-                    final bool = await stateRead.update();
+                    final bool = await stateRead.update(customerId,isCustomer: isCustomer);
                     if (bool && context.mounted) Navigator.pop(context);
                   },
                 ),

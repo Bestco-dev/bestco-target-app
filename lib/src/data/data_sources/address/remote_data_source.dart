@@ -57,7 +57,7 @@ class AddressRemoteDataSourceImplementer implements AddressDataSource {
   @override
   Future<ResponseState<bool>> update(ReqParam param) async {
     try {
-      final res = await _client.get(param.url, data: param.data);
+      final res = await _client.post(param.url, data: param.data);
       return const ResponseState.success(data: true);
     } catch (e, _) {
       return ResponseState.failure(

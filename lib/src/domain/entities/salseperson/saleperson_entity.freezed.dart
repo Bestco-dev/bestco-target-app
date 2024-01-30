@@ -231,9 +231,8 @@ class __$$SalePersonEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$SalePersonEntityImpl
-    with DiagnosticableTreeMixin
-    implements _SalePersonEntity {
+class _$SalePersonEntityImpl extends _SalePersonEntity
+    with DiagnosticableTreeMixin {
   const _$SalePersonEntityImpl(
       {required this.id,
       required this.name,
@@ -244,7 +243,8 @@ class _$SalePersonEntityImpl
       this.password,
       @JsonKey(name: "note") this.description,
       required this.address,
-      this.status = SalePersonStatus.active});
+      this.status = SalePersonStatus.active})
+      : super._();
 
   factory _$SalePersonEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$SalePersonEntityImplFromJson(json);
@@ -335,7 +335,7 @@ class _$SalePersonEntityImpl
   }
 }
 
-abstract class _SalePersonEntity implements SalePersonEntity {
+abstract class _SalePersonEntity extends SalePersonEntity {
   const factory _SalePersonEntity(
       {required final int id,
       required final String name,
@@ -347,6 +347,7 @@ abstract class _SalePersonEntity implements SalePersonEntity {
       @JsonKey(name: "note") final String? description,
       required final AddressModel address,
       final SalePersonStatus status}) = _$SalePersonEntityImpl;
+  const _SalePersonEntity._() : super._();
 
   factory _SalePersonEntity.fromJson(Map<String, dynamic> json) =
       _$SalePersonEntityImpl.fromJson;

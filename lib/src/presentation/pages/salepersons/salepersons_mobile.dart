@@ -20,6 +20,7 @@ import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/salepersons/details_view_model.dart';
 import '../../view_models/salepersons/list_view_model.dart';
 import '../customer_curd/customer_curd.dart';
+import '../saleperson_curd/saleperson_curd.dart';
 import '../slaeperson_details/saleperson_details.dart';
 
 class SalePersonsMobilePage extends ConsumerStatefulWidget {
@@ -43,7 +44,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonsMobilePage> {
             CustomModalSheet.showModalSheet(
               context,
               title: "ملعومات المندوب",
-              child: const CustomerCurdPage(),
+              child: const SalePersonCurdPage(),
               height: context.height * .90,
             );
             return;

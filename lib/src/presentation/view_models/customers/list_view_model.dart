@@ -26,7 +26,7 @@ class ViewModel extends StateNotifier<UiState<List<CustomerEntity>>> {
       } else {
         print("has data ${data.length}");
 
-        state = UiState.data(data: data.reversed.toList());
+        state = UiState.data(data: data.toList());
       }
     }, failure: (error) {
       print("has error ${error.message}");

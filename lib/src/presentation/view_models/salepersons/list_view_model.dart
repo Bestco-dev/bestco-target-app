@@ -26,7 +26,7 @@ class ViewModel extends StateNotifier<UiState<List<SalePersonEntity>>> {
       if (data.isEmpty) {
         state = const UiState.empty();
       } else {
-        state = UiState.data(data: data.reversed.toList());
+        state = UiState.data(data: data.toList());
       }
     }, failure: (error) {
       state = UiState.error(error: error);

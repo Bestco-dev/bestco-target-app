@@ -20,9 +20,9 @@ class _RemoteDataSourceImplementer implements SalepersonDataSource {
   @override
   Future<ResponseState<SalePersonEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.post("/saleperson/create",data: param.data);
+      final res = await _client.post("/saleperson",data: param.data);
       return ResponseState.success(
-        data: SalePersonEntity.fromJson(param.data),
+        data: SalePersonEntity.fromJson(res.data),
       );
     } catch (e, _) {
       return ResponseState.failure(
@@ -59,7 +59,7 @@ class _RemoteDataSourceImplementer implements SalepersonDataSource {
   @override
   Future<ResponseState<bool>> update(ReqParam param) async {
     try {
-      final res = await _client.post(param.url, data: param.data);
+      final res = await _client.put(param.url, data: param.data);
       return const ResponseState.success(data: true);
     } catch (e, _) {
       return ResponseState.failure(

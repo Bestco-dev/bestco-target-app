@@ -190,9 +190,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$ProductEntityImpl
-    with DiagnosticableTreeMixin
-    implements _ProductEntity {
+class _$ProductEntityImpl extends _ProductEntity with DiagnosticableTreeMixin {
   const _$ProductEntityImpl(
       {required this.id,
       required this.name,
@@ -201,7 +199,8 @@ class _$ProductEntityImpl
       this.price,
       this.department,
       this.brochureLink,
-      this.type = ProductType.consu});
+      this.type = ProductType.consu})
+      : super._();
 
   factory _$ProductEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductEntityImplFromJson(json);
@@ -283,7 +282,7 @@ class _$ProductEntityImpl
   }
 }
 
-abstract class _ProductEntity implements ProductEntity {
+abstract class _ProductEntity extends ProductEntity {
   const factory _ProductEntity(
       {required final int id,
       required final String name,
@@ -293,6 +292,7 @@ abstract class _ProductEntity implements ProductEntity {
       final String? department,
       final String? brochureLink,
       final ProductType type}) = _$ProductEntityImpl;
+  const _ProductEntity._() : super._();
 
   factory _ProductEntity.fromJson(Map<String, dynamic> json) =
       _$ProductEntityImpl.fromJson;

@@ -50,7 +50,7 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
     ProgressBar.show();
     final result = await ref
         .read(customersRemoteUseCaseProvider)
-        .update(ReqParam(url: '/saleperson/${state.id}', data: state.toJson()));
+        .update(ReqParam(url: '/saleperson/${state.id}', data: state.curdJson));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");
@@ -70,7 +70,7 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
     ProgressBar.show();
     final result = await ref
         .read(salepersonsRemoteUseCaseProvider)
-        .create(ReqParam(url: '', data: state.toJson()));
+        .create(ReqParam(url: '', data: state.curdJson..remove("id")));
     ProgressBar.hide();
     return result.when(success: (data) {
       log("create done ...");

@@ -35,14 +35,11 @@ class _ViewModel extends StateNotifier<AddressModel> {
   void updateDescription(String value) =>
       state = state.copyWith(description: value);
 
-  Future<bool> update() async {
+  Future<bool> update(int id, {bool isCustomer = true}) async {
     ProgressBar.show();
     final result = await ref.read(addressRemoteUseCaseProvider).update(ReqParam(
-          url: '/customer/update',
-          data: {
-            "id": 51,
-            "address": state.toJson(),
-          },
+          url: isCustomer ? '/customer/$id' : '/saleperson/$id',
+          data: state.curdJson,
         ));
     ProgressBar.hide();
     return result.when(success: (data) {

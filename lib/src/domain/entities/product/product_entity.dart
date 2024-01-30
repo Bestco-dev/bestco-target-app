@@ -8,6 +8,7 @@ part 'product_entity.g.dart';
 
 @freezed
 abstract class ProductEntity with _$ProductEntity {
+  const ProductEntity._();
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory ProductEntity({
     required int id,
@@ -22,4 +23,6 @@ abstract class ProductEntity with _$ProductEntity {
 
   factory ProductEntity.fromJson(Map<String, dynamic> json) =>
       _$ProductEntityFromJson(json);
+
+  bool get hasImage => imageUrl.isNotEmpty;
 }
