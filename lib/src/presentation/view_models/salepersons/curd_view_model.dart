@@ -54,9 +54,14 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
     ProgressBar.hide();
     return result.when(success: (data) {
       log("update1 done ...");
+      CustomSnakeBars.showInfoSnakeBar("تم تحديث البيانات بنجاح");
       updateDetailsAndList();
       return true;
     }, failure: (error) {
+      AppCustomDialogs.showInfoDialog(
+        type: DialogType.error,
+        message: error.message,
+      );
       log("update Error ...");
       return false;
     });
@@ -67,6 +72,15 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
       CustomSnakeBars.showErrorSnakeBar("الرجاء ادخال اسم المندوب");
       return false;
     }
+    if (state.phone == null || state.phone!.isEmpty) {
+      CustomSnakeBars.showErrorSnakeBar("الرجاء ادخال رقم الهاتف");
+      return false;
+    }
+    if (state.phone == null || state.phone!.isEmpty) {
+      CustomSnakeBars.showErrorSnakeBar("الرحاء ادخال كلمة المرور");
+      return false;
+    }
+
     ProgressBar.show();
     final result = await ref
         .read(salepersonsRemoteUseCaseProvider)
@@ -81,6 +95,11 @@ class _ViewModel extends StateNotifier<SalePersonEntity> {
       );
       return true;
     }, failure: (error) {
+      // error.isUnauthorisedRequest;
+      AppCustomDialogs.showInfoDialog(
+        type: DialogType.error,
+        message: error.message,
+      );
       log("create Error ...");
       return false;
     });

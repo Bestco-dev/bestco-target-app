@@ -24,7 +24,7 @@ class AuthRemoteDataSourceImplementer implements CustomersDataSource {
     try {
       final res = await _client.post(param.url, data: param.data);
       return ResponseState.success(
-        data: CustomerEntity.fromJson(param.data),
+        data: CustomerEntity.fromJson(res.data),
       );
     } catch (e, _) {
       return ResponseState.failure(

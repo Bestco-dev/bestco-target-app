@@ -57,6 +57,7 @@ class AuthViewModel extends StateNotifier<UiState<UserEntity>> {
         );
       } else {
         AppCustomDialogs.showInfoDialog(
+
           type: DialogType.error,
           message: err.message,
         );

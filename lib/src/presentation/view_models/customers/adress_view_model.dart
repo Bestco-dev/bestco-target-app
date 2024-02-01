@@ -9,6 +9,9 @@ import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/address_use_case.dart';
 import '../../../domain/use_cases/customers_use_case.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
+import '../../custom_widgets/common/snack_bars.dart';
+import '../salepersons/curd_view_model.dart';
+import '../salepersons/details_view_model.dart';
 import 'curd_view_model.dart';
 import 'details_view_model.dart';
 import 'list_view_model.dart';
@@ -43,25 +46,49 @@ class _ViewModel extends StateNotifier<AddressModel> {
         ));
     ProgressBar.hide();
     return result.when(success: (data) {
-      log("update1 done ...");
+      // log("update1 done ...");
+      CustomSnakeBars.showInfoSnakeBar("تم تحديث البيانات بنجاح");
       ref.read(addressDetailsProvider.notifier).state =
           UiState.data(data: state);
-      ref.read(customerDetailsProvider).maybeWhen(
-          orElse: () {},
-          data: (customer) {
-            ref.read(customerDetailsProvider.notifier).state =
-                UiState.data(data: customer.copyWith(address: state));
-            ref
-                .read(customerCurdProvider(customer).notifier)
-                .updateAddress(state);
-            ref
-                .read(customerCurdProvider(customer).notifier)
-                .updateDetailsAndList();
-          });
+      if (isCustomer) {
+        _updateCustomerUi();
+      } else {
+        _updateSalePersonUI();
+      }
       return true;
     }, failure: (error) {
       log("update Error ...");
       return false;
     });
+  }
+
+  void _updateCustomerUi() {
+    ref.read(customerDetailsProvider).maybeWhen(
+        orElse: () {},
+        data: (customer) {
+          ref.read(customerDetailsProvider.notifier).state =
+              UiState.data(data: customer.copyWith(address: state));
+          ref
+              .read(customerCurdProvider(customer).notifier)
+              .updateAddress(state);
+          ref
+              .read(customerCurdProvider(customer).notifier)
+              .updateDetailsAndList();
+        });
+  }
+
+  void _updateSalePersonUI() {
+    ref.read(salepersonDetailsProvider).maybeWhen(
+        orElse: () {},
+        data: (saleperson) {
+          ref.read(salepersonDetailsProvider.notifier).state =
+              UiState.data(data: saleperson.copyWith(address: state));
+          ref
+              .read(salepersonCurdProvider(saleperson).notifier)
+              .updateAddress(state);
+          ref
+              .read(salepersonCurdProvider(saleperson).notifier)
+              .updateDetailsAndList();
+        });
   }
 }

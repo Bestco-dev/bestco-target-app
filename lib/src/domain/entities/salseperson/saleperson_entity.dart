@@ -29,12 +29,12 @@ abstract class SalePersonEntity with _$SalePersonEntity {
       _$SalePersonEntityFromJson(json);
 
   Map<String, dynamic> get curdJson => {
-    "id": id,
-    "name": name,
-    "email": email,
-    "phone": phone,
-    "password":password,
-    "nationalId":nationalId,
-    "description":description,
-  }.removeNulls();
+        "id": id,
+        "name": name,
+        // "login": phone,
+        "phone": phone,
+        "password": password,
+        "identification": nationalId,
+        "comment": description,
+      }.removeNulls();
 }

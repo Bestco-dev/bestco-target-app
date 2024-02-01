@@ -46,6 +46,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
 
   String get message => getErrorMessage(this);
   bool get isUnauthorisedRequest => this == const UnauthorisedRequest();
+  bool get isConflict => this == const Conflict();
 
   static NetworkExceptions parse(error, {StackTrace? stack}) {
     log("Error:", error: error, name: "Network exceptions");

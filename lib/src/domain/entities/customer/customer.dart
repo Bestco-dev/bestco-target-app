@@ -37,6 +37,6 @@ class CustomerEntity with _$CustomerEntity {
         "website": website,
         "phone": phone,
         "vat": vat,
-        "company_id": type.name,
+        "company_type": type.name,
       }.removeNulls();
 }

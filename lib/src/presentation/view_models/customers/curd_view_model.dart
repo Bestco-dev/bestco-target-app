@@ -50,10 +50,14 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
         .update(ReqParam(url: '/customer/${state.id}', data: state.curdJson));
     ProgressBar.hide();
     return result.when(success: (data) {
-      log("update1 done ...");
+      CustomSnakeBars.showInfoSnakeBar("تم تحديث البيانات بنجاح");
       updateDetailsAndList();
       return true;
     }, failure: (error) {
+      AppCustomDialogs.showInfoDialog(
+        type: DialogType.error,
+        message: error.message,
+      );
       log("update Error ...");
       return false;
     });
@@ -80,6 +84,10 @@ class _ViewModel extends StateNotifier<CustomerEntity> {
       );
       return true;
     }, failure: (error) {
+      AppCustomDialogs.showInfoDialog(
+        type: DialogType.error,
+        message: error.message,
+      );
       log("create Error ...");
       return false;
     });
