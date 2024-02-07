@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomersTabletPage extends StatefulWidget {
-  const CustomersTabletPage({Key? key}) : super(key: key);
+  final bool isSelection;
+  const CustomersTabletPage({Key? key,this.isSelection=false}) : super(key: key);
   @override
   State<CustomersTabletPage> createState() => _CustomersTabletPageState();
 }

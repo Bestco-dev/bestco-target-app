@@ -25,6 +25,7 @@ import '../pages/index/index.dart';
 import '../pages/login/login.dart';
 import '../pages/order_curd/order_curd.dart';
 import '../pages/order_details/order_details.dart';
+import '../pages/order_service_curd/order_service_curd.dart';
 import '../pages/orders/orders.dart';
 import '../pages/product_details/product_details.dart';
 import '../pages/products/products.dart';
@@ -53,7 +54,9 @@ List<ShellRoute> get routes => [
                 path: "customers",
                 name: CustomersPage.pageName,
                 builder: (context, state) {
-                  return const CustomersPage();
+                  return CustomersPage(
+                    isSelection: state.extra as bool?,
+                  );
                 },
                 routes: [
                   GoRoute(
@@ -82,20 +85,41 @@ List<ShellRoute> get routes => [
                   return const OrdersPage();
                 },
                 routes: [
+                  // GoRoute(
+                  //   path: OrderCurdPage.pageName,
+                  //   name: OrderDetailsPage.pageName,
+                  //   builder: (context, state) {
+                  //     return const OrderCurdPage();
+                  //   },
+                  // ),
                   GoRoute(
-                    path: "order_details",
-                    name: OrderDetailsPage.pageName,
+                    path: OrderServiceCurdPage.pageName,
+                    name: OrderServiceCurdPage.pageName,
                     builder: (context, state) {
-                      return const OrderDetailsPage();
+                      return OrderServiceCurdPage(
+                          contract: state.extra as ContractEntity);
                     },
                   ),
                   GoRoute(
-                    path: "order_curd",
+                    path: OrderCurdPage.pageName,
                     name: OrderCurdPage.pageName,
                     builder: (context, state) {
+                      print("go in curd path");
                       return OrderCurdPage(
-                          contract: state.extra as ContractEntity);
+                          contract: state.extra as ContractEntity?);
                     },
+                    routes: [
+                      // GoRoute(
+                      //   path: CustomersPage.selectionPageName,
+                      //   name: CustomersPage.selectionPageName,
+                      //   builder: (context, state) {
+                      //     print("go in selection path");
+                      //     return CustomersPage(
+                      //       isSelection: state.pathParameters['isSelected'] as bool?,
+                      //     );
+                      //   },
+                      // ),
+                    ],
                   ),
                 ],
               ),

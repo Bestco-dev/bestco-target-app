@@ -5,8 +5,8 @@ import 'customers_mobile.dart';
 import 'customers_tablet.dart';
 
 class CustomersPage extends StatelessWidget implements IResponsiveUIState {
-
-  const CustomersPage({Key? key}) : super(key: key);
+  final bool? isSelection;
+  const CustomersPage({Key? key, this.isSelection = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -18,11 +18,16 @@ class CustomersPage extends StatelessWidget implements IResponsiveUIState {
 
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
-      const CustomersMobilePage();
+      CustomersMobilePage(
+        isSelection: isSelection ?? false,
+      );
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>
-      const CustomersTabletPage();
+      CustomersTabletPage(
+        isSelection: isSelection ?? false,
+      );
 
   static String pageName = 'customers';
+  static String selectionPageName = 'selection_customers';
 }

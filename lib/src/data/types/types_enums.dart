@@ -12,7 +12,7 @@ extension UserTypeEx on UserType {
   bool get isSaleperson => this == UserType.saleperson;
   bool get isSupervisor => this == UserType.supervisor;
 
-  String get lable {
+  String get label {
     final i18n = Localization.current;
     switch (this) {
       case UserType.supervisor:

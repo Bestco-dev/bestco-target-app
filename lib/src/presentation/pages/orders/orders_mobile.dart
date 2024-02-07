@@ -4,12 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../common/res/gaps.dart';
+import '../../../common/utils/extensions/context.dart';
 import '../../custom_widgets/common/add_new.dart';
 import '../../custom_widgets/common/card.dart';
+import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
+import '../order_curd/order_curd.dart';
 import '../order_details/order_details.dart';
 
 class OrdersMobilePage extends ConsumerStatefulWidget {
@@ -78,7 +81,37 @@ class _OrdersListWidgetState extends State<OrdersListWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AddNewBtn(
                 label: "اضافة طلب",
-                onPress: () {},
+                onPress: () {
+                  CustomModalSheet.showModalSheet(
+                    context,
+                    title: "نوع الطلب",
+                    child: Column(
+                      children: [
+                        ColoredBox(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: const Text("طلب منتج"),
+                            trailing:const Icon(Icons.add),
+                            onTap: () {
+                              Navigator.pop(context);
+                              context.goNamed(OrderCurdPage.pageName);
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        ColoredBox(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: const  Text("طلب خدمة"),
+                            trailing:const Icon(Icons.add),
+                            onTap: () {},
+                          ),
+                        ),
+                      ],
+                    ),
+                    height: context.height * .3,
+                  );
+                },
               ),
             ),
           SizedBox(

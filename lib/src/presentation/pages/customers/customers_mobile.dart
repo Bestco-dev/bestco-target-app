@@ -16,34 +16,71 @@ import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/customers/list_view_model.dart';
+import '../../view_models/orders/selected_customer.dart';
 import '../customer_curd/customer_curd.dart';
 import '../customer_details/customer_details.dart';
 
 class CustomersMobilePage extends ConsumerStatefulWidget {
-  const CustomersMobilePage({Key? key}) : super(key: key);
+  final bool isSelection;
+  const CustomersMobilePage({Key? key, this.isSelection = false})
+      : super(key: key);
   @override
   ConsumerState<CustomersMobilePage> createState() => _CheckMobilePageState();
 }
 
 class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
+  late CustomerEntity? _selectedCustomer;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _selectedCustomer = ref.read(orderSelectedCustomerViewModel.notifier).state;
+  // }
+
   @override
   Widget build(BuildContext context) {
+    _selectedCustomer =
+        ref.watch(orderSelectedCustomerViewModel.notifier).state;
     final state = ref.watch(customersListViewModelProvider);
     final stateRead = ref.read(customersListViewModelProvider.notifier);
     return CustomAppScaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10),
-        child: AppBtn(
-          text: "اضافة عميل",
-          icon: Icons.add,
-          onPressed: () {
-            CustomModalSheet.showModalSheet(
-              context,
-              title: "ملعومات العميل",
-              child: const CustomerCurdPage(),
-              height: context.height * .90,
-            );
-          },
+        child: Row(
+          // mainAxisAlignment: Ma,
+          children: [
+            Expanded(
+              child: AppBtn(
+                text: "اضافة عميل",
+                icon: Icons.add,
+                onPressed: () {
+                  CustomModalSheet.showModalSheet(
+                    context,
+                    title: "ملعومات العميل",
+                    child: const CustomerCurdPage(),
+                    height: context.height * .90,
+                  );
+                },
+              ),
+            ),
+            if (widget.isSelection)
+              Expanded(
+                child: Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 5),
+                    Expanded(
+                      child: AppBtn(
+                        text: "اختيار",
+                        backgroundColor: Colors.blueAccent,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
         ),
       ),
       appBar: CustomAppBar(
@@ -81,13 +118,22 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
   }
 
   Widget _customerWidget(CustomerEntity customer) {
+    print(widget.isSelection && _selectedCustomer?.id == customer.id);
+    print(_selectedCustomer?.id);
     return CustomCard(
       radius: 10,
       vp: 0,
       vm: 8,
       child: ListTile(
-        onTap: () =>
-            context.goNamed(CustomerDetailsPage.pageName, extra: customer),
+        onTap: () {
+          if (widget.isSelection) {
+            print("set slectedin");
+            ref.read(orderSelectedCustomerViewModel.notifier).state = customer;
+            setState(() {});
+            return;
+          }
+          context.goNamed(CustomerDetailsPage.pageName, extra: customer);
+        },
         contentPadding: EdgeInsets.zero,
         leading: Container(
           height: 50,
@@ -100,12 +146,24 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
               color: const Color(0xffe8e8e8),
             ),
           ),
-          child: ClipOval(
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: customer.imgUrl ?? '',
-            ),
-          ),
+          child: widget.isSelection && _selectedCustomer?.id == customer.id
+              ? Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.green,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : ClipOval(
+                  child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: customer.imgUrl ?? '',
+                )),
         ),
         title: Text(
           customer.name,

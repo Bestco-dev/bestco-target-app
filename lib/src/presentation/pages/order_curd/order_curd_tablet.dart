@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/entities/contract/contract_entity.dart';
 
-class CustomerCurdTabletPage extends StatefulWidget {
+class OrderCurdTabletPage extends StatefulWidget {
   final ContractEntity? contract;
-  const CustomerCurdTabletPage({Key? key,required this.contract}) : super(key: key);
+  const OrderCurdTabletPage({Key? key,required this.contract}) : super(key: key);
   @override
-  State<CustomerCurdTabletPage> createState() => _CustomerCurdTabletPageState();
+  State<OrderCurdTabletPage> createState() => _OrderCurdTabletPageState();
 }
 
-class _CustomerCurdTabletPageState extends State<CustomerCurdTabletPage> {
+class _OrderCurdTabletPageState extends State<OrderCurdTabletPage> {
   @override
   Widget build(BuildContext context) {
     return const Text('Check');

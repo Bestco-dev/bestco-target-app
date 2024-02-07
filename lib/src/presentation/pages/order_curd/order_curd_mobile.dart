@@ -4,110 +4,61 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../domain/entities/contract/contract_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
+import '../../custom_widgets/common/card.dart';
+import '../../custom_widgets/common/custom_app_bar.dart';
+import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/select_customer.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
+import '../../view_models/orders/selected_customer.dart';
 
-class CustomerCurdMobilePage extends ConsumerStatefulWidget {
+class OrderCurdMobilePage extends ConsumerStatefulWidget {
   final ContractEntity? contract;
-  const CustomerCurdMobilePage({Key? key, this.contract}) : super(key: key);
+  const OrderCurdMobilePage({Key? key, this.contract}) : super(key: key);
   @override
-  ConsumerState<CustomerCurdMobilePage> createState() =>
-      _CheckMobilePageState();
+  ConsumerState<OrderCurdMobilePage> createState() => _CheckMobilePageState();
 }
 
-class _CheckMobilePageState extends ConsumerState<CustomerCurdMobilePage> {
+class _CheckMobilePageState extends ConsumerState<OrderCurdMobilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xfff7f7f7),
-      body:SingleChildScrollView(
+    return CustomAppScaffold(
+      hasPadding: false,
+      appBar: const CustomAppBar(
+        title: "اضافة طلب",
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
+            SelectingCustomerWidget(
+              onSelected: (customer) {
+                // ref.read(orderSelectedCustomerViewModel.notifier).state =
+                //     customer;
+              },
+              customer:
+                  ref.watch(orderSelectedCustomerViewModel.notifier).state,
+            ),
             const SizedBox(height: 20),
-            TitledTextField(
-              title: "اسم العميل",
-              isRequired: true,
-              child: TextFormField(
-                decoration:
-                const InputDecoration(hintText: "اسم العميل"),
-                validator: MultiValidator([
-                  RequiredValidator(
-                    errorText: 'اسم العميل مطلوب',
-                  ),
-                ]),
+            CustomCard(
+              vp: 4,
+              hp: 4,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                onTap: (){
+
+                },
+                title: Text("اضافة منتج"),
+                leading: Icon(
+                  Icons.add,
+                  size: 40,
+                ),
               ),
             ),
-            TitledTextField(
-              title: "نوع العميل",
-              child: TextFormField(
-                decoration:
-                const InputDecoration(hintText: "نوع العميل"),
-                // validator: MultiValidator([
-                //   RequiredValidator(
-                //     errorText: '',
-                //   ),
-                // ]),
-              ),
-            ),
-            TitledTextField(
-              title: "رقم الجوال",
-              child: TextFormField(
-                decoration:
-                const InputDecoration(hintText: "رقم الجوال"),
-                // validator: MultiValidator([
-                //   RequiredValidator(
-                //     errorText: '',
-                //   ),
-                // ]),
-              ),
-            ),
-            TitledTextField(
-              title: "رقم الهوية",
-              child: TextFormField(
-                decoration:
-                const InputDecoration(hintText: "رقم الهوية"),
-                // validator: MultiValidator([
-                //   RequiredValidator(
-                //     errorText: '',
-                //   ),
-                // ]),
-              ),
-            ),
-            TitledTextField(
-              title: "البريد الالكتروني",
-              child: TextFormField(
-                decoration: const InputDecoration(
-                    hintText: "البريد الالكتروني"),
-                // validator: MultiValidator([
-                //   RequiredValidator(
-                //     errorText: '',
-                //   ),
-                // ]),
-              ),
-            ),
-            TitledTextField(
-              title: "اضف ملاحظة",
-              child: TextFormField(
-                maxLines: 4,
-                decoration:
-                const InputDecoration(hintText: "اضف ملاحظة"),
-              ),
-            ),
-            // const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              color: Colors.white,
-              child: AppBtn(
-                text: "اضافة",
-                onPressed: () {},
-              ),
-            ),
-            const SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
-
   // Widget _item(
   //     {required Widget child, required String title, bool isRequired = true}) {
   //   return Container(

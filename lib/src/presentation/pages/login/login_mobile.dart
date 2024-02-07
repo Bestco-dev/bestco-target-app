@@ -10,9 +10,11 @@ import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
+import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/language_tile.dart';
 import '../../view_models/auth/auth_view_model.dart';
 import '../../view_models/language_view_model.dart';
+import '../join_us/join_us.dart';
 
 class LoginMobilePage extends ConsumerStatefulWidget {
   const LoginMobilePage({Key? key}) : super(key: key);
@@ -108,7 +110,6 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                               style: TextStyle(
                                 color: Color(0xFF224D6F),
                                 fontSize: 20,
-
                                 fontWeight: FontWeight.w400,
                                 height: 0.04,
                               ),
@@ -165,7 +166,8 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                       ),
                                     ),
                                     validator: MultiValidator([
-                                      RequiredValidator(errorText: 'كلمة المرور مطلوبة'
+                                      RequiredValidator(
+                                          errorText: 'كلمة المرور مطلوبة'
                                           // errorText:
                                           //     Localization.of(context).required,
                                           ),
@@ -174,8 +176,8 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                   ResVerticalGap.gap05,
 
                                   GestureDetector(
-                                    onTap: (){},
-                                    child:const Row(
+                                    onTap: () {},
+                                    child: const Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(
@@ -195,7 +197,7 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                   AppBtn(
                                     text: "تسجيل دخول",
                                     backgroundColor: Colors.green,
-                                    onPressed: (){
+                                    onPressed: () {
                                       FocusScope.of(context)
                                           .requestFocus(FocusNode());
                                       if (_formKey.currentState!.validate()) {
@@ -206,18 +208,25 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                             _passwordController.text;
                                         ref
                                             .read(
-                                            authViewModelProvider.notifier)
+                                                authViewModelProvider.notifier)
                                             .login(username, password, url);
                                       }
                                     },
                                   ),
-                                  const SizedBox(height: 10),
-                                  // AppBtn(
-                                  //   text: "انضم إلينا",
-                                  //   isPlane: true,
-                                  //   borderColor: Colors.grey,
-                                  //   onPressed: (){},
-                                  // ),
+                                  const SizedBox(height: 20),
+                                  AppBtn(
+                                    text: "انضم إلينا",
+                                    isPlane: true,
+                                    borderColor: Colors.grey,
+                                    onPressed: () {
+                                      CustomModalSheet.showModalSheet(
+                                        context,
+                                        title: "إنظم الينا",
+                                        child: const JoinUsPage(),
+                                        height: context.height * .9,
+                                      );
+                                    },
+                                  ),
 
                                   // MaterialButton(
                                   //   onPressed: () async {
@@ -245,8 +254,6 @@ class _LoginMobilePageState extends ConsumerState<LoginMobilePage> {
                                   //       style: context.textTheme.labelLarge
                                   //           ?.copyWith(color: Colors.white)),
                                   // ),
-
-
                                 ],
                               ),
                             ),

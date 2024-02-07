@@ -27,7 +27,7 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
     return CustomAppScaffold(
       isScroll: true,
       appBar: CustomAppBar(
-        title: "تفاصيل الطلب",
+        title: "تفاصيل الطلب٢",
         subTitle: _customerWidget(),
         // subTitle: AppBtn(text: "Testing"),
       ),
