@@ -30,11 +30,11 @@ class AppCustomCheckBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              width: 25,
-              height: 25,
+              width: size??25,
+              height: size??25,
               // padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                // borderRadius: BorderRadius.circular(8),
+                borderRadius: isRadio?null: BorderRadius.circular(4),
                 shape: isRadio ? BoxShape.circle : BoxShape.rectangle,
                 color: Colors.grey[300],
                 border: Border.all(

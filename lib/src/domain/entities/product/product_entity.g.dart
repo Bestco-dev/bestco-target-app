@@ -12,7 +12,7 @@ _$ProductEntityImpl _$$ProductEntityImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       imageUrl: json['image_url'] as String? ?? '',
       description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble() ?? 0,
       department: json['department'] as String?,
       brochureLink: json['brochure_link'] as String?,
       type: $enumDecodeNullable(_$ProductTypeEnumMap, json['type']) ??

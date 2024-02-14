@@ -15,7 +15,7 @@ abstract class ProductEntity with _$ProductEntity {
     required String name,
     @Default('') String imageUrl,
     String? description,
-    double? price,
+    @Default(0)double price,
     String? department,
     String? brochureLink,
     @Default(ProductType.consu) ProductType type, //consu,service

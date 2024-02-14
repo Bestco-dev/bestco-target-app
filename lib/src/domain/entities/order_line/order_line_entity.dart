@@ -14,6 +14,7 @@ abstract class OrderLineEntity with _$OrderLineEntity {
     @Default(0) int id,
     required ProductEntity product,
     @Default(1) double qtn,
+    @Default(0) double price,
   }) = _OrderLineEntity;
 
   factory OrderLineEntity.fromJson(Map<String, dynamic> json) =>

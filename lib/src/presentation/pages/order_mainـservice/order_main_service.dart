@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/contract/contract_entity.dart';
-import '../../../domain/entities/order/order_entity.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
-import 'order_curd_mobile.dart';
-import 'order_curd_tablet.dart';
+import 'order_main_service_mobile.dart';
+import 'order_main_service_tablet.dart';
 
-class OrderCurdPage extends StatelessWidget implements IResponsiveUIState {
-  final OrderEntity? order;
-  const OrderCurdPage({Key? key, this.order}) : super(key: key);
+class OrderMainServicePage extends StatelessWidget implements IResponsiveUIState {
+  final ContractEntity? contract;
+  const OrderMainServicePage({Key? key, this.contract}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -20,13 +19,13 @@ class OrderCurdPage extends StatelessWidget implements IResponsiveUIState {
 
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
-      OrderCurdMobilePage(
-        order: order,
+      OrderMainServiceMobilePage(
+        contract: contract,
       );
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>
-      OrderCurdTabletPage(order: order);
+      OrderMainServiceTabletPage(contract: contract);
 
-  static String pageName = 'order_curd';
+  static String pageName = 'order_service_curd';
 }

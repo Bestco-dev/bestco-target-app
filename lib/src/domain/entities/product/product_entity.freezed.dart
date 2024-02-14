@@ -24,7 +24,7 @@ mixin _$ProductEntity {
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
   String? get brochureLink => throw _privateConstructorUsedError;
   ProductType get type => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $ProductEntityCopyWith<$Res> {
       String name,
       String imageUrl,
       String? description,
-      double? price,
+      double price,
       String? department,
       String? brochureLink,
       ProductType type});
@@ -69,7 +69,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     Object? name = null,
     Object? imageUrl = null,
     Object? description = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? department = freezed,
     Object? brochureLink = freezed,
     Object? type = null,
@@ -91,10 +91,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       String name,
       String imageUrl,
       String? description,
-      double? price,
+      double price,
       String? department,
       String? brochureLink,
       ProductType type});
@@ -145,7 +145,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = null,
     Object? description = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? department = freezed,
     Object? brochureLink = freezed,
     Object? type = null,
@@ -167,10 +167,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$ProductEntityImpl extends _ProductEntity with DiagnosticableTreeMixin {
       required this.name,
       this.imageUrl = '',
       this.description,
-      this.price,
+      this.price = 0,
       this.department,
       this.brochureLink,
       this.type = ProductType.consu})
@@ -215,7 +215,8 @@ class _$ProductEntityImpl extends _ProductEntity with DiagnosticableTreeMixin {
   @override
   final String? description;
   @override
-  final double? price;
+  @JsonKey()
+  final double price;
   @override
   final String? department;
   @override
@@ -288,7 +289,7 @@ abstract class _ProductEntity extends ProductEntity {
       required final String name,
       final String imageUrl,
       final String? description,
-      final double? price,
+      final double price,
       final String? department,
       final String? brochureLink,
       final ProductType type}) = _$ProductEntityImpl;
@@ -306,7 +307,7 @@ abstract class _ProductEntity extends ProductEntity {
   @override
   String? get description;
   @override
-  double? get price;
+  double get price;
   @override
   String? get department;
   @override

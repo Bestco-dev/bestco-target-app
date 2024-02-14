@@ -38,21 +38,39 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userViewModelProvider);
-    return const CustomAppScaffold(
+    return  CustomAppScaffold(
       isScroll: true,
-      appBar: Column(
+      appBar: const Column(
         children: [
           _HomeHeader(),
         ],
       ),
       body: Column(
         children: [
-          _HomeIcons(),
-          SizedBox(height: 20),
-          CarouselImages(
-            images: [],
-          ),
+         const  _HomeIcons(),
+          const SizedBox(height: 40),
+          _news(),
+
+          // SizedBox(height: 20),
+          // CarouselImages(
+          //   images: [],
+          // ),
         ],
+      ),
+    );
+  }
+
+  Widget _news() {
+    return Container(
+
+      decoration: BoxDecoration(
+        // color: const Color(0xFFFFFFFF),
+        border: Border.all(color: Color(0xff555B6A),width: .4),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: const ListTile(
+        title: Text("الاخبار و العروض"),
+        trailing: Icon(Icons.arrow_forward_ios_outlined),
       ),
     );
   }

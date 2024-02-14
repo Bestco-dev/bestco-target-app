@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/customer/customer.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
 import 'customers_mobile.dart';
 import 'customers_tablet.dart';
 
 class CustomersPage extends StatelessWidget implements IResponsiveUIState {
-  final bool? isSelection;
-  const CustomersPage({Key? key, this.isSelection = false}) : super(key: key);
+  final CustomerEntity? selectedCustomer;
+  Function(CustomerEntity)? onSelected;
+  CustomersPage({Key? key, this.selectedCustomer , this.onSelected})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -19,13 +22,14 @@ class CustomersPage extends StatelessWidget implements IResponsiveUIState {
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
       CustomersMobilePage(
-        isSelection: isSelection ?? false,
+        selectedCustomer: selectedCustomer,
+        onSelected: onSelected,
       );
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>
       CustomersTabletPage(
-        isSelection: isSelection ?? false,
+        selectedCustomer: selectedCustomer,
       );
 
   static String pageName = 'customers';

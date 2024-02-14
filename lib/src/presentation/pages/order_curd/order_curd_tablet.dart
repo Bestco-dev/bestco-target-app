@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/contract/contract_entity.dart';
+import '../../../domain/entities/order/order_entity.dart';
 
 class OrderCurdTabletPage extends StatefulWidget {
-  final ContractEntity? contract;
-  const OrderCurdTabletPage({Key? key,required this.contract}) : super(key: key);
+  final OrderEntity? order;
+  const OrderCurdTabletPage({Key? key,required this.order}) : super(key: key);
   @override
   State<OrderCurdTabletPage> createState() => _OrderCurdTabletPageState();
 }

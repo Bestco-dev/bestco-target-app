@@ -23,6 +23,7 @@ mixin _$OrderLineEntity {
   int get id => throw _privateConstructorUsedError;
   ProductEntity get product => throw _privateConstructorUsedError;
   double get qtn => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $OrderLineEntityCopyWith<$Res> {
           OrderLineEntity value, $Res Function(OrderLineEntity) then) =
       _$OrderLineEntityCopyWithImpl<$Res, OrderLineEntity>;
   @useResult
-  $Res call({int id, ProductEntity product, double qtn});
+  $Res call({int id, ProductEntity product, double qtn, double price});
 
   $ProductEntityCopyWith<$Res> get product;
 }
@@ -57,6 +58,7 @@ class _$OrderLineEntityCopyWithImpl<$Res, $Val extends OrderLineEntity>
     Object? id = null,
     Object? product = null,
     Object? qtn = null,
+    Object? price = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -70,6 +72,10 @@ class _$OrderLineEntityCopyWithImpl<$Res, $Val extends OrderLineEntity>
       qtn: null == qtn
           ? _value.qtn
           : qtn // ignore: cast_nullable_to_non_nullable
+              as double,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -91,7 +97,7 @@ abstract class _$$OrderLineEntityImplCopyWith<$Res>
       __$$OrderLineEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, ProductEntity product, double qtn});
+  $Res call({int id, ProductEntity product, double qtn, double price});
 
   @override
   $ProductEntityCopyWith<$Res> get product;
@@ -111,6 +117,7 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? product = null,
     Object? qtn = null,
+    Object? price = null,
   }) {
     return _then(_$OrderLineEntityImpl(
       id: null == id
@@ -125,6 +132,10 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
           ? _value.qtn
           : qtn // ignore: cast_nullable_to_non_nullable
               as double,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -135,7 +146,7 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
 class _$OrderLineEntityImpl extends _OrderLineEntity
     with DiagnosticableTreeMixin {
   const _$OrderLineEntityImpl(
-      {this.id = 0, required this.product, this.qtn = 1})
+      {this.id = 0, required this.product, this.qtn = 1, this.price = 0})
       : super._();
 
   factory _$OrderLineEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -149,10 +160,13 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
   @override
   @JsonKey()
   final double qtn;
+  @override
+  @JsonKey()
+  final double price;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OrderLineEntity(id: $id, product: $product, qtn: $qtn)';
+    return 'OrderLineEntity(id: $id, product: $product, qtn: $qtn, price: $price)';
   }
 
   @override
@@ -162,7 +176,8 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
       ..add(DiagnosticsProperty('type', 'OrderLineEntity'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('product', product))
-      ..add(DiagnosticsProperty('qtn', qtn));
+      ..add(DiagnosticsProperty('qtn', qtn))
+      ..add(DiagnosticsProperty('price', price));
   }
 
   @override
@@ -172,12 +187,13 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
             other is _$OrderLineEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.product, product) || other.product == product) &&
-            (identical(other.qtn, qtn) || other.qtn == qtn));
+            (identical(other.qtn, qtn) || other.qtn == qtn) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, product, qtn);
+  int get hashCode => Object.hash(runtimeType, id, product, qtn, price);
 
   @JsonKey(ignore: true)
   @override
@@ -198,7 +214,8 @@ abstract class _OrderLineEntity extends OrderLineEntity {
   const factory _OrderLineEntity(
       {final int id,
       required final ProductEntity product,
-      final double qtn}) = _$OrderLineEntityImpl;
+      final double qtn,
+      final double price}) = _$OrderLineEntityImpl;
   const _OrderLineEntity._() : super._();
 
   factory _OrderLineEntity.fromJson(Map<String, dynamic> json) =
@@ -210,6 +227,8 @@ abstract class _OrderLineEntity extends OrderLineEntity {
   ProductEntity get product;
   @override
   double get qtn;
+  @override
+  double get price;
   @override
   @JsonKey(ignore: true)
   _$$OrderLineEntityImplCopyWith<_$OrderLineEntityImpl> get copyWith =>

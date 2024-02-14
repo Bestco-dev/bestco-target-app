@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/product/product_entity.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
 import 'products_mobile.dart';
 import 'products_tablet.dart';
 
 class ProductsPage extends StatelessWidget implements IResponsiveUIState {
+  final List<ProductEntity>? selectedProducts;
+  Function(List<ProductEntity>)? onSelected;
 
-  const ProductsPage({Key? key}) : super(key: key);
+  ProductsPage({Key? key, this.onSelected, this.selectedProducts})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -18,7 +22,10 @@ class ProductsPage extends StatelessWidget implements IResponsiveUIState {
 
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
-      const ProductsMobilePage();
+      ProductsMobilePage(
+        onSelected: onSelected,
+        selectedProducts: selectedProducts,
+      );
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>

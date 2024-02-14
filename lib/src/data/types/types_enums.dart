@@ -2,6 +2,18 @@ import '../../../locales/localization/l10n.dart';
 
 enum UserType { saleperson, supervisor, admin }
 
+enum QuestionType {
+  text_box,
+  char_box,
+  numerical_box,
+  date,
+  dateTime,
+  simple_choice,
+  multiple_choice,
+}
+
+
+// enum  OrderServiceType { service, consu } //consu,service
 enum ProductType { service, consu } //consu,service
 
 enum CustomerType { person, company }

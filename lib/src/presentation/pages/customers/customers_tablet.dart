@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/customer/customer.dart';
+
 class CustomersTabletPage extends StatefulWidget {
-  final bool isSelection;
-  const CustomersTabletPage({Key? key,this.isSelection=false}) : super(key: key);
+  final CustomerEntity? selectedCustomer;
+  Function(CustomerEntity)? onSelected;
+   CustomersTabletPage({Key? key,this.selectedCustomer,this.onSelected}) : super(key: key);
   @override
   State<CustomersTabletPage> createState() => _CustomersTabletPageState();
 }

@@ -12,6 +12,7 @@ import '../../common/utils/storage/shared_pref_util.dart';
 import '../../domain/entities/app_state/app_state.dart';
 import '../../domain/entities/contract/contract_entity.dart';
 import '../../domain/entities/customer/customer.dart';
+import '../../domain/entities/order/order_entity.dart';
 import '../../domain/entities/product/product_entity.dart';
 import '../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../domain/entities/user/user.dart';
@@ -55,7 +56,7 @@ List<ShellRoute> get routes => [
                 name: CustomersPage.pageName,
                 builder: (context, state) {
                   return CustomersPage(
-                    isSelection: state.extra as bool?,
+                    selectedCustomer: state.extra as CustomerEntity?,
                   );
                 },
                 routes: [
@@ -105,8 +106,7 @@ List<ShellRoute> get routes => [
                     name: OrderCurdPage.pageName,
                     builder: (context, state) {
                       print("go in curd path");
-                      return OrderCurdPage(
-                          contract: state.extra as ContractEntity?);
+                      return OrderCurdPage(order: state.extra as OrderEntity?);
                     },
                     routes: [
                       // GoRoute(
@@ -153,7 +153,7 @@ List<ShellRoute> get routes => [
                 path: "products",
                 name: ProductsPage.pageName,
                 builder: (context, state) {
-                  return const ProductsPage();
+                  return ProductsPage();
                 },
                 routes: [
                   GoRoute(

@@ -41,8 +41,9 @@ class _SelectingCustomerWidgetState extends State<SelectingCustomerWidget> {
               onTap: () {
                 appNavPush(
                   context,
-                  page: const CustomersPage(
-                    isSelection: true,
+                  page: CustomersPage(
+                    selectedCustomer: widget.customer,
+                    onSelected: widget.onSelected,
                   ),
                 );
                 // context
@@ -99,7 +100,7 @@ class _SelectingCustomerWidgetState extends State<SelectingCustomerWidget> {
                     style: TextStyle(
                       // fontFamily: 'Droid Arabic Kufi',
                       fontSize: 15,
-                      color:  Color(0xff000000),
+                      color: Color(0xff000000),
                       fontWeight: FontWeight.w700,
                     ),
                   )

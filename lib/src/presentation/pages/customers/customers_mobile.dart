@@ -21,25 +21,24 @@ import '../customer_curd/customer_curd.dart';
 import '../customer_details/customer_details.dart';
 
 class CustomersMobilePage extends ConsumerStatefulWidget {
-  final bool isSelection;
-  const CustomersMobilePage({Key? key, this.isSelection = false})
+  final CustomerEntity? selectedCustomer;
+  Function(CustomerEntity)? onSelected;
+  CustomersMobilePage({Key? key, this.selectedCustomer, this.onSelected})
       : super(key: key);
   @override
   ConsumerState<CustomersMobilePage> createState() => _CheckMobilePageState();
 }
 
 class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
-  late CustomerEntity? _selectedCustomer;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _selectedCustomer = ref.read(orderSelectedCustomerViewModel.notifier).state;
-  // }
+  late CustomerEntity? selectedCustomer;
+  @override
+  void initState() {
+    super.initState();
+     selectedCustomer = widget.selectedCustomer;
+  }
 
   @override
   Widget build(BuildContext context) {
-    _selectedCustomer =
-        ref.watch(orderSelectedCustomerViewModel.notifier).state;
     final state = ref.watch(customersListViewModelProvider);
     final stateRead = ref.read(customersListViewModelProvider.notifier);
     return CustomAppScaffold(
@@ -62,7 +61,7 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
                 },
               ),
             ),
-            if (widget.isSelection)
+            if (widget.onSelected != null)
               Expanded(
                 child: Row(
                   // mainAxisSize: MainAxisSize.min,
@@ -118,18 +117,18 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
   }
 
   Widget _customerWidget(CustomerEntity customer) {
-    print(widget.isSelection && _selectedCustomer?.id == customer.id);
-    print(_selectedCustomer?.id);
     return CustomCard(
       radius: 10,
       vp: 0,
       vm: 8,
       child: ListTile(
         onTap: () {
-          if (widget.isSelection) {
-            print("set slectedin");
-            ref.read(orderSelectedCustomerViewModel.notifier).state = customer;
-            setState(() {});
+          if (widget.onSelected != null) {
+            if (widget.onSelected != null) {
+              widget.onSelected!(customer);
+              selectedCustomer=customer;
+              setState(() {});
+            }
             return;
           }
           context.goNamed(CustomerDetailsPage.pageName, extra: customer);
@@ -146,24 +145,25 @@ class _CheckMobilePageState extends ConsumerState<CustomersMobilePage> {
               color: const Color(0xffe8e8e8),
             ),
           ),
-          child: widget.isSelection && _selectedCustomer?.id == customer.id
-              ? Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.check_circle,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              : ClipOval(
-                  child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: customer.imgUrl ?? '',
-                )),
+          child:
+              widget.onSelected != null && selectedCustomer?.id == customer.id
+                  ? Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.check_circle,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : ClipOval(
+                      child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: customer.imgUrl ?? '',
+                    )),
         ),
         title: Text(
           customer.name,

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../custom_widgets/common/add_new.dart';
+import '../../custom_widgets/common/app_nav.dart';
 import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
@@ -14,6 +15,7 @@ import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../order_curd/order_curd.dart';
 import '../order_details/order_details.dart';
+import '../order_mainـservice/order_main_service.dart';
 
 class OrdersMobilePage extends ConsumerStatefulWidget {
   const OrdersMobilePage({Key? key}) : super(key: key);
@@ -26,22 +28,6 @@ class _CheckMobilePageState extends ConsumerState<OrdersMobilePage> {
   Widget build(BuildContext context) {
     return CustomAppScaffold(
       hasPadding: false,
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.all(10),
-      //   child: AppBtn(
-      //     text: "اضافة طلب",
-      //     icon: Icons.add,
-      //     onPressed: () {
-      //       // CustomModalSheet.showModalSheet(
-      //       //   context,
-      //       //   title: "ملعومات العميل",
-      //       //   child: const CustomerCurdPage(),
-      //       //   height: context.height * .90,
-      //       // );
-      //       return;
-      //     },
-      //   ),
-      // ),
       appBar: CustomAppBar(
         title: "الطلبات",
         actions: [
@@ -70,6 +56,7 @@ class OrdersListWidget extends StatefulWidget {
 
 class _OrdersListWidgetState extends State<OrdersListWidget> {
   List<String> tags = [];
+  int selectedTap = 0;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -91,7 +78,7 @@ class _OrdersListWidgetState extends State<OrdersListWidget> {
                           color: Colors.white,
                           child: ListTile(
                             title: const Text("طلب منتج"),
-                            trailing:const Icon(Icons.add),
+                            trailing: const Icon(Icons.add),
                             onTap: () {
                               Navigator.pop(context);
                               context.goNamed(OrderCurdPage.pageName);
@@ -102,9 +89,14 @@ class _OrdersListWidgetState extends State<OrdersListWidget> {
                         ColoredBox(
                           color: Colors.white,
                           child: ListTile(
-                            title: const  Text("طلب خدمة"),
-                            trailing:const Icon(Icons.add),
-                            onTap: () {},
+                            title: const Text("طلب خدمة"),
+                            trailing: const Icon(Icons.add),
+                            onTap: () {
+                              appNavPush(
+                                context,
+                                page: const OrderMainServicePage(),
+                              );
+                            },
                           ),
                         ),
                       ],
@@ -114,40 +106,88 @@ class _OrdersListWidgetState extends State<OrdersListWidget> {
                 },
               ),
             ),
-          SizedBox(
-            width: double.infinity,
-            // height: 40,
-            child: _typeFitter(),
-            // color: Colors.grey,
-            // child: ListView.builder(
-            //   itemCount: 10,
-            //   padding: const EdgeInsets.symmetric(horizontal: 10),
-            //   scrollDirection: Axis.horizontal,
-            //   itemBuilder: (context, index) => Row(
-            //     mainAxisSize: MainAxisSize.min,
-            //     children: [
-            //       CustomSelectionTag(
-            //         info: "طلب بطاقة رعاية صحية",
-            //         isSelected: index == 1,
-            //       ),
-            //       const SizedBox(width: 10),
-            //     ],
-            //   ),
-            // ),
-          ),
-          const SizedBox(height: 16),
-          ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            itemCount: 10,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            // itemBuilder: (context, index) => Container(
-            //   padding: EdgeInsets.all(10),
-            //   color: Colors.blueAccent,
-            // ),
-            itemBuilder: (context, index) => _orderWidget(),
-          ),
+          _taps(),
+          selectedTap==0?_serviceOrders():_productsOrders(),
         ],
+      ),
+    );
+  }
+
+  Widget _productsOrders(){
+    return Column(
+      children: [
+
+        ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          itemCount: 10,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          // itemBuilder: (context, index) => Container(
+          //   padding: EdgeInsets.all(10),
+          //   color: Colors.blueAccent,
+          // ),
+          itemBuilder: (context, index) => _orderWidget(),
+        ),
+      ],
+    );
+  }
+
+
+  Widget _serviceOrders(){
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: _typeFitter(),
+        ),
+        const SizedBox(height: 16),
+        ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          itemCount: 10,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          // itemBuilder: (context, index) => Container(
+          //   padding: EdgeInsets.all(10),
+          //   color: Colors.blueAccent,
+          // ),
+          itemBuilder: (context, index) => _orderWidget(),
+        ),
+      ],
+    );
+  }
+
+  Widget _taps() {
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      child: Row(
+        children: [
+          Expanded(child: _tapItem(label: "الخدمات", index: 0)),
+          // const SizedBox()
+          Expanded(child: _tapItem(label: "المنتجات", index: 1)),
+        ],
+      ),
+    );
+  }
+
+  Widget _tapItem({required String label, required int index}) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedTap = index;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: index == selectedTap ? Colors.blue : Colors.blue[100],
+          // borderRadius: BorderRadius.circular(4),
+        ),
+        child: Center(
+          child: Text(label,style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: index == selectedTap ? Colors.white : Colors.black,
+          ),),
+        ),
       ),
     );
   }

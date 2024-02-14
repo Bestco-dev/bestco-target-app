@@ -9,18 +9,30 @@ import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/custom_checkbox.dart';
 import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/products/list_view_model.dart';
 import '../product_details/product_details.dart';
 
 class ProductsMobilePage extends ConsumerStatefulWidget {
-  const ProductsMobilePage({Key? key}) : super(key: key);
+  final List<ProductEntity>? selectedProducts;
+  Function(List<ProductEntity>)? onSelected;
+  ProductsMobilePage({Key? key, this.selectedProducts, this.onSelected})
+      : super(key: key);
   @override
   ConsumerState<ProductsMobilePage> createState() => _CheckMobilePageState();
 }
 
 class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
+  late List<ProductEntity> _selectedProducts;
+
+  @override
+  void initState() {
+    _selectedProducts = widget.selectedProducts ?? [];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomAppScaffold(
@@ -120,32 +132,53 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
                       ),
                     )
                   : const SizedBox(),
-              Container(
-                // padding: const EdgeInsets.all(10),
-                decoration: ShapeDecoration(
-                  color: Colors.white.withOpacity(0.28999999165534973),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0xFFDBDBDB)),
-                    borderRadius: BorderRadius.circular(37),
-                  ),
-                ),
-                child: const Center(
-                    child: Icon(Icons.keyboard_arrow_down_outlined)),
-              ),
+              widget.onSelected != null
+                  ? AppCustomCheckBox(
+                      isRadio: false,
+                      isChecked: isInList(product),
+                      color: Colors.green,
+                      onPress: () {
+                        print(isInList(product));
+                        // if( isInList(product))return;
+                        if (widget.onSelected != null) {
+                          if (isInList(product)) {
+                            _selectedProducts.remove(product);
+                          } else {
+                            _selectedProducts.add(product);
+                          }
+                          widget.onSelected!(_selectedProducts);
+                          setState(() {});
+                        }
+                      },
+                    )
+                  : Container(
+                      // padding: const EdgeInsets.all(10),
+                      decoration: ShapeDecoration(
+                        color: Colors.white.withOpacity(0.28999999165534973),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 1, color: Color(0xFFDBDBDB)),
+                          borderRadius: BorderRadius.circular(37),
+                        ),
+                      ),
+                      child: const Center(
+                          child: Icon(Icons.keyboard_arrow_down_outlined)),
+                    ),
             ],
           ),
-          if(product.hasImage)Expanded(
-            // height: 100,
-            // width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Image.network(
-                product.imageUrl ?? '',
-                // FakeImages.randomImage(),
-                fit: BoxFit.fill,
+          if (product.hasImage)
+            Expanded(
+              // height: 100,
+              // width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Image.network(
+                  product.imageUrl ?? '',
+                  // FakeImages.randomImage(),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
           Text(
             product.name,
             maxLines: 2,
@@ -161,6 +194,12 @@ class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
         ],
       ),
     );
+  }
+
+  bool isInList(ProductEntity product) {
+    int index =
+        _selectedProducts.indexWhere((element) => element.id == product.id);
+    return index != -1 ? true : false;
   }
 }
 
