@@ -3,14 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../data/demo/products.dart';
+import '../../../data/demo/services_main.dart';
 import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
+import '../../../domain/entities/service_main/main_service_entity.dart';
 import '../../custom_widgets/common/app_nav.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
+import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/custom_checkbox.dart';
+import '../../custom_widgets/common/empty_page.dart';
+import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
+import '../../view_models/orders/service/main_services_list_view_model.dart';
+import '../../view_models/orders/service/order_service_curd_view_model.dart';
 import '../order_sub_service/order_sub_service_mobile.dart';
 
 class OrderMainServiceMobilePage extends ConsumerStatefulWidget {
@@ -24,25 +31,10 @@ class OrderMainServiceMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(mainServicesListViewModelProvider);
+
+    final stateRead = ref.read(mainServicesListViewModelProvider.notifier);
     return CustomAppScaffold(
-      // hasPadding: false,
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.all(10),
-      //   child: AppBtn(
-      //     text: "التالي",
-      //     icon: Icons.add,
-      //     onPressed: () {
-      //       appNavPush(context, page: const OrderSubServiceMobilePage());
-      //       // CustomModalSheet.showModalSheet(
-      //       //   context,
-      //       //   title: "ملعومات العميل",
-      //       //   child: const CustomerCurdPage(),
-      //       //   height: context.height * .90,
-      //       // );
-      //       return;
-      //     },
-      //   ),
-      // ),
       appBar: CustomAppBar(
         title: "الخدمات",
         actions: [
@@ -56,30 +48,65 @@ class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
           ),
         ],
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 0.9,
+      body: state.maybeWhen(
+        orElse: () => const SizedBox.shrink(),
+        loading: () => const Center(
+          child: AppCircularLoading(),
         ),
-        itemBuilder: (_, index) => Container(
-          // padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              // color: const Color(0xffD8D8D8),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0xffD8D8D8))),
-          child: _productWidget(getProduct()),
+        empty: () => const EmptyPage(),
+        error: (error) => ErrorPage(
+          onReload: () => stateRead.load(),
         ),
-        itemCount: 4,
+        data: (data) => RefreshIndicator(
+          onRefresh: () => stateRead.load(),
+          child: GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.9,
+            ),
+            itemBuilder: (_, index) => Container(
+              // padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  // color: const Color(0xffD8D8D8),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: const Color(0xffD8D8D8))),
+              child: _productWidget(data[index]),
+            ),
+            itemCount: 4,
+          ),
+        ),
       ),
+      // body: GridView.builder(
+      //   padding: const EdgeInsets.symmetric(horizontal: 16),
+      //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //     crossAxisCount: 2,
+      //     crossAxisSpacing: 10,
+      //     mainAxisSpacing: 10,
+      //     childAspectRatio: 0.9,
+      //   ),
+      //   itemBuilder: (_, index) => Container(
+      //     // padding: const EdgeInsets.all(10),
+      //     decoration: BoxDecoration(
+      //         // color: const Color(0xffD8D8D8),
+      //         borderRadius: BorderRadius.circular(10),
+      //         border: Border.all(color: const Color(0xffD8D8D8))),
+      //     child: _productWidget(getMainServices()),
+      //   ),
+      //   itemCount: 4,
+      // ),
     );
   }
 
-  Widget _productWidget(ProductEntity product) {
+  Widget _productWidget(MainServiceEntity service) {
+    // return Container();
     return InkWell(
       onTap: () {
+        ref
+            .watch(selectedMainServiceProvider.notifier)
+            .update((state) => service);
         appNavPush(context, page: const OrderSubServiceMobilePage());
       },
       child: Column(
@@ -109,16 +136,16 @@ class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
               ),
             ],
           ),
-          if (product.hasImage)
+          if (service.hasImage)
             Expanded(
               // height: 100,
               // width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                  borderRadius: const BorderRadius.all(Radius.circular(4)),
                   child: Image.network(
-                    product.imageUrl ?? '',
+                    service.imageUrl ?? '',
                     // FakeImages.randomImage(),
                     fit: BoxFit.fill,
                   ),
@@ -126,7 +153,8 @@ class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
               ),
             ),
           Text(
-            product.name,
+            // "service.name",
+            service.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.start,

@@ -23,6 +23,7 @@ mixin _$OrderEntity {
   int get id => throw _privateConstructorUsedError;
   CustomerEntity? get customer => throw _privateConstructorUsedError;
   List<OrderLineEntity> get lines => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,11 @@ abstract class $OrderEntityCopyWith<$Res> {
           OrderEntity value, $Res Function(OrderEntity) then) =
       _$OrderEntityCopyWithImpl<$Res, OrderEntity>;
   @useResult
-  $Res call({int id, CustomerEntity? customer, List<OrderLineEntity> lines});
+  $Res call(
+      {int id,
+      CustomerEntity? customer,
+      List<OrderLineEntity> lines,
+      DateTime date});
 
   $CustomerEntityCopyWith<$Res>? get customer;
 }
@@ -57,6 +62,7 @@ class _$OrderEntityCopyWithImpl<$Res, $Val extends OrderEntity>
     Object? id = null,
     Object? customer = freezed,
     Object? lines = null,
+    Object? date = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,6 +77,10 @@ class _$OrderEntityCopyWithImpl<$Res, $Val extends OrderEntity>
           ? _value.lines
           : lines // ignore: cast_nullable_to_non_nullable
               as List<OrderLineEntity>,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
@@ -95,7 +105,11 @@ abstract class _$$OrderEntityImplCopyWith<$Res>
       __$$OrderEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, CustomerEntity? customer, List<OrderLineEntity> lines});
+  $Res call(
+      {int id,
+      CustomerEntity? customer,
+      List<OrderLineEntity> lines,
+      DateTime date});
 
   @override
   $CustomerEntityCopyWith<$Res>? get customer;
@@ -115,6 +129,7 @@ class __$$OrderEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? customer = freezed,
     Object? lines = null,
+    Object? date = null,
   }) {
     return _then(_$OrderEntityImpl(
       id: null == id
@@ -129,6 +144,10 @@ class __$$OrderEntityImplCopyWithImpl<$Res>
           ? _value._lines
           : lines // ignore: cast_nullable_to_non_nullable
               as List<OrderLineEntity>,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -140,7 +159,8 @@ class _$OrderEntityImpl with DiagnosticableTreeMixin implements _OrderEntity {
   const _$OrderEntityImpl(
       {this.id = 0,
       this.customer,
-      final List<OrderLineEntity> lines = const []})
+      final List<OrderLineEntity> lines = const [],
+      required this.date})
       : _lines = lines;
 
   factory _$OrderEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -161,8 +181,11 @@ class _$OrderEntityImpl with DiagnosticableTreeMixin implements _OrderEntity {
   }
 
   @override
+  final DateTime date;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OrderEntity(id: $id, customer: $customer, lines: $lines)';
+    return 'OrderEntity(id: $id, customer: $customer, lines: $lines, date: $date)';
   }
 
   @override
@@ -172,7 +195,8 @@ class _$OrderEntityImpl with DiagnosticableTreeMixin implements _OrderEntity {
       ..add(DiagnosticsProperty('type', 'OrderEntity'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('customer', customer))
-      ..add(DiagnosticsProperty('lines', lines));
+      ..add(DiagnosticsProperty('lines', lines))
+      ..add(DiagnosticsProperty('date', date));
   }
 
   @override
@@ -183,13 +207,14 @@ class _$OrderEntityImpl with DiagnosticableTreeMixin implements _OrderEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.customer, customer) ||
                 other.customer == customer) &&
-            const DeepCollectionEquality().equals(other._lines, _lines));
+            const DeepCollectionEquality().equals(other._lines, _lines) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, customer, const DeepCollectionEquality().hash(_lines));
+  int get hashCode => Object.hash(runtimeType, id, customer,
+      const DeepCollectionEquality().hash(_lines), date);
 
   @JsonKey(ignore: true)
   @override
@@ -209,7 +234,8 @@ abstract class _OrderEntity implements OrderEntity {
   const factory _OrderEntity(
       {final int id,
       final CustomerEntity? customer,
-      final List<OrderLineEntity> lines}) = _$OrderEntityImpl;
+      final List<OrderLineEntity> lines,
+      required final DateTime date}) = _$OrderEntityImpl;
 
   factory _OrderEntity.fromJson(Map<String, dynamic> json) =
       _$OrderEntityImpl.fromJson;
@@ -220,6 +246,8 @@ abstract class _OrderEntity implements OrderEntity {
   CustomerEntity? get customer;
   @override
   List<OrderLineEntity> get lines;
+  @override
+  DateTime get date;
   @override
   @JsonKey(ignore: true)
   _$$OrderEntityImplCopyWith<_$OrderEntityImpl> get copyWith =>

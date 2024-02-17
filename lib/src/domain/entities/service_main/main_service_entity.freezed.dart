@@ -22,6 +22,8 @@ MainServiceEntity _$MainServiceEntityFromJson(Map<String, dynamic> json) {
 mixin _$MainServiceEntity {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  MainServiceType get type => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,7 @@ abstract class $MainServiceEntityCopyWith<$Res> {
           MainServiceEntity value, $Res Function(MainServiceEntity) then) =
       _$MainServiceEntityCopyWithImpl<$Res, MainServiceEntity>;
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, String name, MainServiceType type, String imageUrl});
 }
 
 /// @nodoc
@@ -53,6 +55,8 @@ class _$MainServiceEntityCopyWithImpl<$Res, $Val extends MainServiceEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? type = null,
+    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -62,6 +66,14 @@ class _$MainServiceEntityCopyWithImpl<$Res, $Val extends MainServiceEntity>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MainServiceType,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +87,7 @@ abstract class _$$MainServiceEntityImplCopyWith<$Res>
       __$$MainServiceEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name});
+  $Res call({int id, String name, MainServiceType type, String imageUrl});
 }
 
 /// @nodoc
@@ -91,6 +103,8 @@ class __$$MainServiceEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? type = null,
+    Object? imageUrl = null,
   }) {
     return _then(_$MainServiceEntityImpl(
       id: null == id
@@ -101,6 +115,14 @@ class __$$MainServiceEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MainServiceType,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,10 +130,14 @@ class __$$MainServiceEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$MainServiceEntityImpl
-    with DiagnosticableTreeMixin
-    implements _MainServiceEntity {
-  const _$MainServiceEntityImpl({required this.id, required this.name});
+class _$MainServiceEntityImpl extends _MainServiceEntity
+    with DiagnosticableTreeMixin {
+  const _$MainServiceEntityImpl(
+      {required this.id,
+      required this.name,
+      required this.type,
+      this.imageUrl = ''})
+      : super._();
 
   factory _$MainServiceEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainServiceEntityImplFromJson(json);
@@ -120,10 +146,15 @@ class _$MainServiceEntityImpl
   final int id;
   @override
   final String name;
+  @override
+  final MainServiceType type;
+  @override
+  @JsonKey()
+  final String imageUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MainServiceEntity(id: $id, name: $name)';
+    return 'MainServiceEntity(id: $id, name: $name, type: $type, imageUrl: $imageUrl)';
   }
 
   @override
@@ -132,7 +163,9 @@ class _$MainServiceEntityImpl
     properties
       ..add(DiagnosticsProperty('type', 'MainServiceEntity'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name));
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('imageUrl', imageUrl));
   }
 
   @override
@@ -141,12 +174,15 @@ class _$MainServiceEntityImpl
         (other.runtimeType == runtimeType &&
             other is _$MainServiceEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, type, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -163,10 +199,13 @@ class _$MainServiceEntityImpl
   }
 }
 
-abstract class _MainServiceEntity implements MainServiceEntity {
+abstract class _MainServiceEntity extends MainServiceEntity {
   const factory _MainServiceEntity(
       {required final int id,
-      required final String name}) = _$MainServiceEntityImpl;
+      required final String name,
+      required final MainServiceType type,
+      final String imageUrl}) = _$MainServiceEntityImpl;
+  const _MainServiceEntity._() : super._();
 
   factory _MainServiceEntity.fromJson(Map<String, dynamic> json) =
       _$MainServiceEntityImpl.fromJson;
@@ -175,6 +214,10 @@ abstract class _MainServiceEntity implements MainServiceEntity {
   int get id;
   @override
   String get name;
+  @override
+  MainServiceType get type;
+  @override
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$MainServiceEntityImplCopyWith<_$MainServiceEntityImpl> get copyWith =>

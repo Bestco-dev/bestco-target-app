@@ -16,6 +16,7 @@ _$OrderEntityImpl _$$OrderEntityImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => OrderLineEntity.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      date: DateTime.parse(json['date'] as String),
     );
 
 Map<String, dynamic> _$$OrderEntityImplToJson(_$OrderEntityImpl instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$OrderEntityImplToJson(_$OrderEntityImpl instance) =>
       'id': instance.id,
       'customer': instance.customer?.toJson(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
+      'date': instance.date.toIso8601String(),
     };

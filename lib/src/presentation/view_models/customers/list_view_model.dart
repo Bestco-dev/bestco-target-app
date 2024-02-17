@@ -1,12 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/customers_use_case.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
-import 'curd_view_model.dart';
-import 'details_view_model.dart';
+
 
 final customersListViewModelProvider =
     StateNotifierProvider<ViewModel, UiState<List<CustomerEntity>>>(

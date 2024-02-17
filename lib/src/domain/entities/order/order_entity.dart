@@ -14,6 +14,7 @@ abstract class OrderEntity with _$OrderEntity {
     @Default(0) int id,
     CustomerEntity? customer,
     @Default([])List<OrderLineEntity> lines,
+    required DateTime date,
   }) = _OrderEntity;
 
   factory OrderEntity.fromJson(Map<String, dynamic> json) =>

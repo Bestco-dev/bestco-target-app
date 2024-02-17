@@ -17,6 +17,7 @@ abstract class OrderServiceEntity with _$OrderServiceEntity {
     CustomerEntity? customer,
     required MainServiceEntity mainService,
     required SubServiceEntity subService,
+    required DateTime date,
     @Default([]) List<QuestionEntity> questions,
   }) = _OrderServiceEntity;
 

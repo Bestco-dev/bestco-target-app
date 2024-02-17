@@ -5,6 +5,7 @@ import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/product/product_entity.dart';
+import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
@@ -25,17 +26,43 @@ class ProductsMobilePage extends ConsumerStatefulWidget {
 }
 
 class _CheckMobilePageState extends ConsumerState<ProductsMobilePage> {
-  late List<ProductEntity> _selectedProducts;
+  final List<ProductEntity> _selectedProducts = [];
 
   @override
   void initState() {
-    _selectedProducts = widget.selectedProducts ?? [];
+    // _selectedProducts = widget.selectedProducts ?? [];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomAppScaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          // mainAxisAlignment: Ma,
+          children: [
+            if (widget.onSelected != null&&_selectedProducts.isNotEmpty)
+              Expanded(
+                child: Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 5),
+                    Expanded(
+                      child: AppBtn(
+                        text: "اختيار",
+                        backgroundColor: Colors.blueAccent,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
       appBar: CustomAppBar(
         title: "المنتجات",
         actions: [

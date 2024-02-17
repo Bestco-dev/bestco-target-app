@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../locales/localization/l10n.dart';
@@ -5,20 +7,26 @@ import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_line/order_line_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
+import '../../../domain/entities/req_param/req_param.dart';
+import '../../../domain/use_cases/orders_prodcuts_use_case.dart';
 import '../../custom_widgets/common/custom_dialogs_bar.dart';
+import '../../custom_widgets/common/custom_progress_bar.dart';
 import '../../custom_widgets/common/snack_bars.dart';
 import 'line_view_model.dart';
+import 'orders_products_list_view_model.dart';
 
-final orderViewModelProvider =
-    StateNotifierProvider<_StateNotifier, OrderEntity>((ref) {
-  return _StateNotifier(ref);
+final orderViewModelProvider = StateNotifierProvider.family
+    .autoDispose<_StateNotifier, OrderEntity, OrderEntity?>((ref, model) {
+  return _StateNotifier(
+      model ?? OrderEntity(id: -1, date: DateTime.now()), ref);
 });
 
 class _StateNotifier extends StateNotifier<OrderEntity> {
   final Ref ref;
   _StateNotifier(
+    state,
     this.ref,
-  ) : super(OrderEntity(id: -1));
+  ) : super(state);
 
   bool get hasLines => state.lines.isNotEmpty;
   bool get hasOneLine => state.lines.length == 1;
@@ -30,19 +38,49 @@ class _StateNotifier extends StateNotifier<OrderEntity> {
       CustomSnakeBars.showErrorSnakeBar("لا توجد منتجات");
       return false;
     }
-    const check=true;
-    // final bool check =
-    //     await ref.read(ordersViewModelProvider.notifier).createOrder(
-    //           validCartModel,
-    //         );
-    if (check) {
-      for (final line in state.lines) {
-        ref.invalidate(lineViewModelProvider(getLine(line.product)));
-      }
-      ref.invalidate(orderViewModelProvider);
+    if (validCartModel.customer?.id == -1 || validCartModel.customer == null) {
+      CustomSnakeBars.showErrorSnakeBar("الرجاء اضافة العميل");
+      return false;
     }
+    final lines =
+        validCartModel.lines.map((e) => e.toJson()..remove("product")).toList();
+    final data = validCartModel.toJson()
+      ..remove("lines")
+      ..remove('customer')
+      ..remove("id")
+      ..addAll({"customer_id": validCartModel.customer?.id, "lines": lines});
 
-    return check;
+    ProgressBar.show();
+    final result = await ref
+        .read(ordersProductsRemoteUseCaseProvider)
+        .create(ReqParam(url: "/create"));
+    ProgressBar.hide();
+
+    return result.when(
+      success: (data) {
+        for (final line in state.lines) {
+          ref.invalidate(lineViewModelProvider(getLine(line.product)));
+        }
+        ref.invalidate(orderViewModelProvider);
+
+        ref
+            .read(ordersProductsListViewModelProvider(null).notifier)
+            .addToUi(data);
+
+        AppCustomDialogs.showInfoDialog(
+          type: DialogType.success,
+          message: "تم اضافة الطلب بنحاح",
+        );
+        return true;
+      },
+      failure: (error) {
+        AppCustomDialogs.showInfoDialog(
+          type: DialogType.error,
+          message: error.message,
+        );
+        return false;
+      },
+    );
   }
 
   void cancelOrder() async {
@@ -50,9 +88,11 @@ class _StateNotifier extends StateNotifier<OrderEntity> {
   }
 
   void addLine(ProductEntity product) {
-    state = state.copyWith(
-      lines: [getLine(product), ...state.lines],
-    );
+    if (!isProductOnCart(product)) {
+      state = state.copyWith(
+        lines: [getLine(product), ...state.lines],
+      );
+    }
   }
 
   void removeLine(ProductEntity product) {

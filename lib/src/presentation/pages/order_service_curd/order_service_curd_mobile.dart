@@ -6,15 +6,19 @@ import '../../../data/demo/question_demo.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/question_entity/question_entity.dart';
+import '../../../domain/entities/service_sub/sub_service.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_checkbox.dart';
 import '../../custom_widgets/common/select_customer.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/orders/selected_customer.dart';
+import '../../view_models/orders/service/order_service_curd_view_model.dart';
+import '../../view_models/orders/service/question_view_Model.dart';
 
 class OrderServiceCurdMobilePage extends ConsumerStatefulWidget {
-  final ContractEntity? contract;
-  const OrderServiceCurdMobilePage({Key? key, this.contract}) : super(key: key);
+  final SubServiceEntity? subSubService;
+  const OrderServiceCurdMobilePage({Key? key, this.subSubService})
+      : super(key: key);
   @override
   ConsumerState<OrderServiceCurdMobilePage> createState() =>
       _CheckMobilePageState();
@@ -23,6 +27,8 @@ class OrderServiceCurdMobilePage extends ConsumerStatefulWidget {
 class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
   @override
   Widget build(BuildContext context) {
+    final questionsList = ref.watch(subServiceQuestionsProvider);
+    print("lenth .. ${questionsList.length}");
     return Scaffold(
       backgroundColor: const Color(0xfff7f7f7),
       body: SingleChildScrollView(
@@ -32,24 +38,39 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
             SelectingCustomerWidget(
               onSelected: (customer) {
                 ref
-                    .read(orderSelectedCustomerViewModel.notifier)
+                    .read(orderSelectedCustomerProvider.notifier)
                     .update((state) => customer);
               },
-              customer: ref.watch(orderSelectedCustomerViewModel),
+              customer: ref.watch(orderSelectedCustomerProvider),
             ),
             const SizedBox(height: 10),
             ListView.builder(
-              itemBuilder: (context, index) => Container(
-                child: _questionWidget(getQuestion()),
-              ),
+              itemBuilder: (context, index) {
+                // final q
+                return Container(
+                  child: _questionWidget(questionsList[index]),
+                );
+              },
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
+              itemCount: questionsList.length,
               shrinkWrap: true,
             ),
             const SizedBox(height: 10),
             AppBtn(
               text: "إرسال",
-              onPressed: () {},
+              onPressed: () async {
+                final check = await ref
+                    .read(orderServiceViewModelProvider.notifier)
+                    .create();
+
+                if (check && mounted) Navigator.pop(context);
+                // print("----------------------------");
+                // print()
+                // for (final question in questionsList) {
+                //   // print(question.answer);
+                //   print(ref.read(questionProvider(question)).answer);
+                // }
+              },
             ),
           ],
         ),
@@ -79,33 +100,41 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
   }
 
   Widget _questionTypeWidget(QuestionEntity question) {
-    switch (question.type) {
+    final state = ref.watch(questionProvider(question));
+    final stateRead = ref.read(questionProvider(question).notifier);
+    switch (state.type) {
       case QuestionType.char_box:
         return TextFormField(
           decoration: InputDecoration(
-            labelText: question.title,
+            labelText: state.title,
           ),
         );
       case QuestionType.text_box:
         return TextFormField(
           maxLines: 4,
+          onChanged: stateRead.makeAnswer,
           decoration: InputDecoration(
-            hintText: question.title,
+            hintText: state.title,
           ),
         );
       case QuestionType.numerical_box:
         return TextFormField(
           keyboardType: TextInputType.number,
+          onChanged: stateRead.makeAnswer,
           decoration: InputDecoration(
-            hintText: question.title,
+            hintText: state.title,
           ),
         );
       case QuestionType.simple_choice:
         return Wrap(
           children: [
-            ...question.valuesStrings.map(
+            ...state.valuesStrings.map(
               (e) => AppCustomCheckBox(
                 label: e,
+                isChecked: e == state.answer,
+                onPress: () {
+                  stateRead.makeAnswer(e);
+                },
               ),
             ),
           ],
@@ -113,10 +142,14 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
       case QuestionType.multiple_choice:
         return Wrap(
           children: [
-            ...question.valuesStrings.map(
+            ...state.valuesStrings.map(
               (e) => AppCustomCheckBox(
                 label: e,
                 isRadio: false,
+                isChecked: ((state.answer as List?) ?? []).contains(e),
+                onPress: () {
+                  stateRead.makeAnswer(e);
+                },
               ),
             ),
           ],
@@ -124,15 +157,17 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
       case QuestionType.date:
         return TextFormField(
           keyboardType: TextInputType.datetime,
+          onChanged: stateRead.makeAnswer,
           decoration: InputDecoration(
-            hintText: question.title,
+            hintText: state.title,
           ),
         );
       case QuestionType.dateTime:
         return TextFormField(
           keyboardType: TextInputType.datetime,
+          onChanged: stateRead.makeAnswer,
           decoration: InputDecoration(
-            hintText: question.title,
+            hintText: state.title,
           ),
         );
       default:

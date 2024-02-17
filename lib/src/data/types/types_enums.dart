@@ -12,8 +12,16 @@ enum QuestionType {
   multiple_choice,
 }
 
+enum MainServiceType {
+  finance,
+  marking,
+  cleaning,
+  health,
+  digital,
+  consult,
+  other
+} //consu,service
 
-// enum  OrderServiceType { service, consu } //consu,service
 enum ProductType { service, consu } //consu,service
 
 enum CustomerType { person, company }

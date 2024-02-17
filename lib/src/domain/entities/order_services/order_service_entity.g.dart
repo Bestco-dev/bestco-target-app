@@ -17,6 +17,7 @@ _$OrderServiceEntityImpl _$$OrderServiceEntityImplFromJson(
           json['main_service'] as Map<String, dynamic>),
       subService: SubServiceEntity.fromJson(
           json['sub_service'] as Map<String, dynamic>),
+      date: DateTime.parse(json['date'] as String),
       questions: (json['questions'] as List<dynamic>?)
               ?.map((e) => QuestionEntity.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -30,5 +31,6 @@ Map<String, dynamic> _$$OrderServiceEntityImplToJson(
       'customer': instance.customer?.toJson(),
       'main_service': instance.mainService.toJson(),
       'sub_service': instance.subService.toJson(),
+      'date': instance.date.toIso8601String(),
       'questions': instance.questions.map((e) => e.toJson()).toList(),
     };

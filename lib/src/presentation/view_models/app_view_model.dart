@@ -15,6 +15,7 @@ import '../../domain/entities/customer/customer.dart';
 import '../../domain/entities/order/order_entity.dart';
 import '../../domain/entities/product/product_entity.dart';
 import '../../domain/entities/salseperson/saleperson_entity.dart';
+import '../../domain/entities/service_sub/sub_service.dart';
 import '../../domain/entities/user/user.dart';
 import '../pages/about_app/about_app.dart';
 import '../pages/change_password/change_password.dart';
@@ -98,7 +99,7 @@ List<ShellRoute> get routes => [
                     name: OrderServiceCurdPage.pageName,
                     builder: (context, state) {
                       return OrderServiceCurdPage(
-                          contract: state.extra as ContractEntity);
+                          contract: state.extra as SubServiceEntity);
                     },
                   ),
                   GoRoute(

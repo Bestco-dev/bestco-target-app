@@ -11,6 +11,10 @@ _$SubServiceEntityImpl _$$SubServiceEntityImplFromJson(
     _$SubServiceEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
+      questions: (json['questions'] as List<dynamic>?)
+              ?.map((e) => QuestionEntity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$SubServiceEntityImplToJson(
@@ -18,4 +22,5 @@ Map<String, dynamic> _$$SubServiceEntityImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'questions': instance.questions.map((e) => e.toJson()).toList(),
     };
