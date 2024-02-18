@@ -23,8 +23,8 @@ class AuthViewModel extends StateNotifier<UiState<UserEntity>> {
   final AuthUseCase _useCase;
   final Ref ref;
 
-  // final db = "bestco";
-  final db = "Bestco";
+  final db = "bestco";
+  // final db = "Bestco";
   // final db = "bestcostaging";
 
   final accessToken =
@@ -57,7 +57,6 @@ class AuthViewModel extends StateNotifier<UiState<UserEntity>> {
         );
       } else {
         AppCustomDialogs.showInfoDialog(
-
           type: DialogType.error,
           message: err.message,
         );

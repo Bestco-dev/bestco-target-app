@@ -10,16 +10,15 @@ import '../../../../domain/use_cases/customers_use_case.dart';
 import '../../../../domain/use_cases/orders_prodcuts_use_case.dart';
 import '../../../custom_widgets/common/custom_progress_bar.dart';
 
-
 final selectedServiceOrderViewModel =
-StateProvider.autoDispose<OrderServiceEntity?>((ref) {
+    StateProvider.autoDispose<OrderServiceEntity?>((ref) {
   return null;
 });
 
 final ordersServicesListViewModelProvider = StateNotifierProvider.family<
     ViewModel,
     UiState<List<OrderServiceEntity>>,
-    int?>((ref, id) => ViewModel(ref: ref));
+    int?>((ref, id) => ViewModel(ref: ref, salePersonId: id));
 
 class ViewModel extends StateNotifier<UiState<List<OrderServiceEntity>>> {
   final Ref ref;
@@ -30,8 +29,11 @@ class ViewModel extends StateNotifier<UiState<List<OrderServiceEntity>>> {
   }
   load() async {
     state = const UiState.loading();
-    final result =
-        await ref.read(ordersServicesRemoteDataSourceProvider).load(ReqParam());
+    final result = await ref.read(ordersServicesRemoteDataSourceProvider).load(
+          ReqParam(
+            url: "/request/detatils/${salePersonId ?? ''}",
+          ),
+        );
     result.when(success: (data) {
       if (data.isEmpty) {
         state = const UiState.empty();
@@ -73,7 +75,9 @@ class ViewModel extends StateNotifier<UiState<List<OrderServiceEntity>>> {
   refresh() async {
     ProgressBar.show();
     final result =
-        await ref.read(ordersServicesRemoteDataSourceProvider).load(ReqParam());
+        await ref.read(ordersServicesRemoteDataSourceProvider).load(ReqParam(
+              url: "/request/detatils/${salePersonId ?? ''}",
+            ));
     ProgressBar.hide();
     result.when(success: (data) {
       load();

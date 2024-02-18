@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 import '../../../locales/localization/l10n.dart';
 
 enum UserType { saleperson, supervisor, admin }
@@ -10,6 +14,14 @@ enum QuestionType {
   dateTime,
   simple_choice,
   multiple_choice,
+}
+
+enum OrderProductState {
+  draft,
+  sent,
+  sale,
+  done,
+  cancelled,
 }
 
 enum MainServiceType {
@@ -27,6 +39,41 @@ enum ProductType { service, consu } //consu,service
 enum CustomerType { person, company }
 
 enum SalePersonStatus { active, unActive }
+
+extension OrderProductStateEx on OrderProductState {
+  bool get isDraft => this == OrderProductState.draft;
+  bool get isDone => this == OrderProductState.done;
+
+  String get label {
+    final i18n = Localization.current;
+    switch (this) {
+      case OrderProductState.draft:
+        return "مبدئية";
+      // return i18n.scheduled;
+      case OrderProductState.sent:
+        return "تم الارسال";
+      case OrderProductState.sale:
+        return "امر بيع";
+      case OrderProductState.done:
+        return "مكتملة";
+      case OrderProductState.cancelled:
+        return "ملغية";
+    }
+  }
+
+  Color get color {
+    switch (this) {
+      case OrderProductState.draft:
+        return Colors.blue;
+
+      case OrderProductState.cancelled:
+        return Colors.black;
+
+      default:
+        return Colors.blueGrey;
+    }
+  }
+}
 
 extension UserTypeEx on UserType {
   bool get isSaleperson => this == UserType.saleperson;

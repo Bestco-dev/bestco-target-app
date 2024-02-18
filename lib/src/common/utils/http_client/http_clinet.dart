@@ -9,8 +9,8 @@ final dioClientProvider = Provider<Dio>(
   (ref) {
     return Dio(
       BaseOptions(
-        // baseUrl: "http://192.168.1.115:8069",
-        baseUrl: "http://104.248.15.130:8069",
+        baseUrl: "http://192.168.1.115:8069",
+        // baseUrl: "http://104.248.15.130:8069",
         // baseUrl: 'https://dummyjson.com',
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),

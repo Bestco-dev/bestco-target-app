@@ -28,8 +28,11 @@ class ViewModel extends StateNotifier<UiState<List<OrderEntity>>> {
   }
   load() async {
     state = const UiState.loading();
-    final result =
-        await ref.read(ordersProductsRemoteUseCaseProvider).load(ReqParam());
+    final result = await ref.read(ordersProductsRemoteUseCaseProvider).load(
+          ReqParam(
+            url: "/order/detatils/${salePersonId ?? ''}",
+          ),
+        );
     result.when(success: (data) {
       if (data.isEmpty) {
         state = const UiState.empty();
@@ -71,7 +74,9 @@ class ViewModel extends StateNotifier<UiState<List<OrderEntity>>> {
   refresh() async {
     ProgressBar.show();
     final result =
-        await ref.read(ordersProductsRemoteUseCaseProvider).load(ReqParam());
+        await ref.read(ordersProductsRemoteUseCaseProvider).load(ReqParam(
+              url: "/order/detatils/${salePersonId ?? ''}",
+            ));
     ProgressBar.hide();
     result.when(success: (data) {
       load();

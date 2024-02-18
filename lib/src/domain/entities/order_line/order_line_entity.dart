@@ -13,12 +13,20 @@ abstract class OrderLineEntity with _$OrderLineEntity {
   const factory OrderLineEntity({
     @Default(0) int id,
     required ProductEntity product,
-    @Default(1) double qtn,
-    @Default(0) double price,
+    @Default(1) @JsonKey(name: "qty") double qtn,
+    @Default(0) double priceUnit,
+    @Default(0) double totalPrice,
   }) = _OrderLineEntity;
 
   factory OrderLineEntity.fromJson(Map<String, dynamic> json) =>
       _$OrderLineEntityFromJson(json);
 
   double get price => product.price ?? 0;
+
+  Map<String, dynamic> get curdJson => {
+        "product_id": product.id,
+        "qty": qtn,
+        "price_unit": priceUnit,
+        "description": product.name,
+      };
 }

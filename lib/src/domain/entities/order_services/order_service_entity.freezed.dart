@@ -25,6 +25,7 @@ mixin _$OrderServiceEntity {
   MainServiceEntity get mainService => throw _privateConstructorUsedError;
   SubServiceEntity get subService => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
+  String? get state => throw _privateConstructorUsedError;
   List<QuestionEntity> get questions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $OrderServiceEntityCopyWith<$Res> {
       MainServiceEntity mainService,
       SubServiceEntity subService,
       DateTime date,
+      String? state,
       List<QuestionEntity> questions});
 
   $CustomerEntityCopyWith<$Res>? get customer;
@@ -70,6 +72,7 @@ class _$OrderServiceEntityCopyWithImpl<$Res, $Val extends OrderServiceEntity>
     Object? mainService = null,
     Object? subService = null,
     Object? date = null,
+    Object? state = freezed,
     Object? questions = null,
   }) {
     return _then(_value.copyWith(
@@ -93,6 +96,10 @@ class _$OrderServiceEntityCopyWithImpl<$Res, $Val extends OrderServiceEntity>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
       questions: null == questions
           ? _value.questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -143,6 +150,7 @@ abstract class _$$OrderServiceEntityImplCopyWith<$Res>
       MainServiceEntity mainService,
       SubServiceEntity subService,
       DateTime date,
+      String? state,
       List<QuestionEntity> questions});
 
   @override
@@ -169,6 +177,7 @@ class __$$OrderServiceEntityImplCopyWithImpl<$Res>
     Object? mainService = null,
     Object? subService = null,
     Object? date = null,
+    Object? state = freezed,
     Object? questions = null,
   }) {
     return _then(_$OrderServiceEntityImpl(
@@ -192,6 +201,10 @@ class __$$OrderServiceEntityImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
       questions: null == questions
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -212,6 +225,7 @@ class _$OrderServiceEntityImpl
       required this.mainService,
       required this.subService,
       required this.date,
+      this.state,
       final List<QuestionEntity> questions = const []})
       : _questions = questions;
 
@@ -229,6 +243,8 @@ class _$OrderServiceEntityImpl
   final SubServiceEntity subService;
   @override
   final DateTime date;
+  @override
+  final String? state;
   final List<QuestionEntity> _questions;
   @override
   @JsonKey()
@@ -240,7 +256,7 @@ class _$OrderServiceEntityImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OrderServiceEntity(id: $id, customer: $customer, mainService: $mainService, subService: $subService, date: $date, questions: $questions)';
+    return 'OrderServiceEntity(id: $id, customer: $customer, mainService: $mainService, subService: $subService, date: $date, state: $state, questions: $questions)';
   }
 
   @override
@@ -253,6 +269,7 @@ class _$OrderServiceEntityImpl
       ..add(DiagnosticsProperty('mainService', mainService))
       ..add(DiagnosticsProperty('subService', subService))
       ..add(DiagnosticsProperty('date', date))
+      ..add(DiagnosticsProperty('state', state))
       ..add(DiagnosticsProperty('questions', questions));
   }
 
@@ -269,6 +286,7 @@ class _$OrderServiceEntityImpl
             (identical(other.subService, subService) ||
                 other.subService == subService) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.state, state) || other.state == state) &&
             const DeepCollectionEquality()
                 .equals(other._questions, _questions));
   }
@@ -276,7 +294,7 @@ class _$OrderServiceEntityImpl
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, customer, mainService,
-      subService, date, const DeepCollectionEquality().hash(_questions));
+      subService, date, state, const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
@@ -300,6 +318,7 @@ abstract class _OrderServiceEntity implements OrderServiceEntity {
       required final MainServiceEntity mainService,
       required final SubServiceEntity subService,
       required final DateTime date,
+      final String? state,
       final List<QuestionEntity> questions}) = _$OrderServiceEntityImpl;
 
   factory _OrderServiceEntity.fromJson(Map<String, dynamic> json) =
@@ -315,6 +334,8 @@ abstract class _OrderServiceEntity implements OrderServiceEntity {
   SubServiceEntity get subService;
   @override
   DateTime get date;
+  @override
+  String? get state;
   @override
   List<QuestionEntity> get questions;
   @override

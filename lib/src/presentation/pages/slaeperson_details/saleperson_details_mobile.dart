@@ -49,7 +49,7 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
   Widget build(BuildContext context) {
     final state = ref.watch(salepersonDetailsProvider);
     return CustomAppScaffold(
-      isScroll: true,
+      isScroll: false,
       hasPadding: false,
       // floatingActionButton: const Padding(
       //   padding: EdgeInsets.all(10),
@@ -66,7 +66,13 @@ class _CheckMobilePageState extends ConsumerState<SalePersonDetailsMobilePage> {
           // subTitle: AppBtn(text: "Testing"),
         ),
       ),
-      body: const OrdersListWidget(canAddNew: false),
+      body: state.maybeWhen(
+        orElse: () => const SizedBox.shrink(),
+        data: (saleperson) =>
+            OrdersListWidget(canAddNew: false, salepersonId: saleperson.id),
+      ),
+
+      // body: const OrdersListWidget(canAddNew: false,salepersonId: ),
     );
   }
 

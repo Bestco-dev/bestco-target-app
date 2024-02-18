@@ -22,8 +22,10 @@ OrderLineEntity _$OrderLineEntityFromJson(Map<String, dynamic> json) {
 mixin _$OrderLineEntity {
   int get id => throw _privateConstructorUsedError;
   ProductEntity get product => throw _privateConstructorUsedError;
+  @JsonKey(name: "qty")
   double get qtn => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  double get priceUnit => throw _privateConstructorUsedError;
+  double get totalPrice => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +39,12 @@ abstract class $OrderLineEntityCopyWith<$Res> {
           OrderLineEntity value, $Res Function(OrderLineEntity) then) =
       _$OrderLineEntityCopyWithImpl<$Res, OrderLineEntity>;
   @useResult
-  $Res call({int id, ProductEntity product, double qtn, double price});
+  $Res call(
+      {int id,
+      ProductEntity product,
+      @JsonKey(name: "qty") double qtn,
+      double priceUnit,
+      double totalPrice});
 
   $ProductEntityCopyWith<$Res> get product;
 }
@@ -58,7 +65,8 @@ class _$OrderLineEntityCopyWithImpl<$Res, $Val extends OrderLineEntity>
     Object? id = null,
     Object? product = null,
     Object? qtn = null,
-    Object? price = null,
+    Object? priceUnit = null,
+    Object? totalPrice = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,9 +81,13 @@ class _$OrderLineEntityCopyWithImpl<$Res, $Val extends OrderLineEntity>
           ? _value.qtn
           : qtn // ignore: cast_nullable_to_non_nullable
               as double,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      priceUnit: null == priceUnit
+          ? _value.priceUnit
+          : priceUnit // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -97,7 +109,12 @@ abstract class _$$OrderLineEntityImplCopyWith<$Res>
       __$$OrderLineEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, ProductEntity product, double qtn, double price});
+  $Res call(
+      {int id,
+      ProductEntity product,
+      @JsonKey(name: "qty") double qtn,
+      double priceUnit,
+      double totalPrice});
 
   @override
   $ProductEntityCopyWith<$Res> get product;
@@ -117,7 +134,8 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? product = null,
     Object? qtn = null,
-    Object? price = null,
+    Object? priceUnit = null,
+    Object? totalPrice = null,
   }) {
     return _then(_$OrderLineEntityImpl(
       id: null == id
@@ -132,9 +150,13 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
           ? _value.qtn
           : qtn // ignore: cast_nullable_to_non_nullable
               as double,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      priceUnit: null == priceUnit
+          ? _value.priceUnit
+          : priceUnit // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -146,7 +168,11 @@ class __$$OrderLineEntityImplCopyWithImpl<$Res>
 class _$OrderLineEntityImpl extends _OrderLineEntity
     with DiagnosticableTreeMixin {
   const _$OrderLineEntityImpl(
-      {this.id = 0, required this.product, this.qtn = 1, this.price = 0})
+      {this.id = 0,
+      required this.product,
+      @JsonKey(name: "qty") this.qtn = 1,
+      this.priceUnit = 0,
+      this.totalPrice = 0})
       : super._();
 
   factory _$OrderLineEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -158,15 +184,18 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
   @override
   final ProductEntity product;
   @override
-  @JsonKey()
+  @JsonKey(name: "qty")
   final double qtn;
   @override
   @JsonKey()
-  final double price;
+  final double priceUnit;
+  @override
+  @JsonKey()
+  final double totalPrice;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OrderLineEntity(id: $id, product: $product, qtn: $qtn, price: $price)';
+    return 'OrderLineEntity(id: $id, product: $product, qtn: $qtn, priceUnit: $priceUnit, totalPrice: $totalPrice)';
   }
 
   @override
@@ -177,7 +206,8 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('product', product))
       ..add(DiagnosticsProperty('qtn', qtn))
-      ..add(DiagnosticsProperty('price', price));
+      ..add(DiagnosticsProperty('priceUnit', priceUnit))
+      ..add(DiagnosticsProperty('totalPrice', totalPrice));
   }
 
   @override
@@ -188,12 +218,16 @@ class _$OrderLineEntityImpl extends _OrderLineEntity
             (identical(other.id, id) || other.id == id) &&
             (identical(other.product, product) || other.product == product) &&
             (identical(other.qtn, qtn) || other.qtn == qtn) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.priceUnit, priceUnit) ||
+                other.priceUnit == priceUnit) &&
+            (identical(other.totalPrice, totalPrice) ||
+                other.totalPrice == totalPrice));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, product, qtn, price);
+  int get hashCode =>
+      Object.hash(runtimeType, id, product, qtn, priceUnit, totalPrice);
 
   @JsonKey(ignore: true)
   @override
@@ -214,8 +248,9 @@ abstract class _OrderLineEntity extends OrderLineEntity {
   const factory _OrderLineEntity(
       {final int id,
       required final ProductEntity product,
-      final double qtn,
-      final double price}) = _$OrderLineEntityImpl;
+      @JsonKey(name: "qty") final double qtn,
+      final double priceUnit,
+      final double totalPrice}) = _$OrderLineEntityImpl;
   const _OrderLineEntity._() : super._();
 
   factory _OrderLineEntity.fromJson(Map<String, dynamic> json) =
@@ -226,9 +261,12 @@ abstract class _OrderLineEntity extends OrderLineEntity {
   @override
   ProductEntity get product;
   @override
+  @JsonKey(name: "qty")
   double get qtn;
   @override
-  double get price;
+  double get priceUnit;
+  @override
+  double get totalPrice;
   @override
   @JsonKey(ignore: true)
   _$$OrderLineEntityImplCopyWith<_$OrderLineEntityImpl> get copyWith =>

@@ -4,6 +4,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
 import '../../../common/utils/extensions/datetime.dart';
+import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_line/order_line_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
@@ -32,7 +33,7 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
     return CustomAppScaffold(
       isScroll: true,
       appBar: CustomAppBar(
-        title: "تفاصيل الطلب",
+        title: "طلبية منتجات",
         subTitle: _customerWidget(),
         // subTitle: AppBtn(text: "Testing"),
       ),
@@ -41,8 +42,7 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
         children: [
           SelectingCustomerWidget(
             isEditable: false,
-            onSelected: (customer) {
-            },
+            onSelected: (customer) {},
             customer: order.customer,
           ),
           const SizedBox(height: 30),
@@ -98,7 +98,7 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
                         ),
                         children: [
                           TextSpan(
-                            text: '${line.product.price ?? ''}',
+                            text: '${line.totalPrice ?? ''}',
                           ),
                           const TextSpan(text: ' '),
                           const TextSpan(
@@ -140,9 +140,9 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
       children: [
         ListTile(
           contentPadding: EdgeInsets.zero,
-          title: const Text(
-            'طلب شراء منتج',
-            style: TextStyle(
+          title:  Text(
+            order.name,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.bold,
@@ -162,10 +162,10 @@ class _CheckMobilePageState extends ConsumerState<OrderDetailsMobilePage> {
               ),
             ],
           ),
-          trailing: const Row(
+          trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomTag(info: "مؤكدة", color: Colors.blueAccent),
+              CustomTag(info: order.state.label, color: order.state.color),
               // SizedBox(width: 5),
               // Icon(Icons.arrow_forward_ios, color: Colors.white),
             ],

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,18 +43,35 @@ class _StateNotifier extends StateNotifier<OrderEntity> {
       CustomSnakeBars.showErrorSnakeBar("الرجاء اضافة العميل");
       return false;
     }
-    final lines =
-        validCartModel.lines.map((e) => e.toJson()..remove("product")).toList();
-    final data = validCartModel.toJson()
-      ..remove("lines")
-      ..remove('customer')
-      ..remove("id")
-      ..addAll({"customer_id": validCartModel.customer?.id, "lines": lines});
+    final lines = validCartModel.lines
+        .map((e) => json.encode(e.curdJson)
+            // (e) => json.encode(
+            //   e.toJson()
+            //     ..remove("product")
+            //     ..remove("id")
+            //     ..addAll(
+            //       {"name": e.product.name, "product_id": e.product.id},
+            //     ),
+            // ),
+            )
+        .toList();
+    // final data = validCartModel.toJson()
+    //   ..remove("lines")
+    //   ..remove("name")
+    //   ..remove("state")..remove("date")
+    //   ..remove('customer')
+    //   ..remove("id")
+    //   ..addAll({"customer": validCartModel.customer?.id, "lines": lines});
+
+    final data = {
+      "customer": validCartModel.customer?.id,
+      "lines": lines.toString()
+    };
 
     ProgressBar.show();
     final result = await ref
         .read(ordersProductsRemoteUseCaseProvider)
-        .create(ReqParam(url: "/create"));
+        .create(ReqParam(data: data));
     ProgressBar.hide();
 
     return result.when(
@@ -168,7 +186,7 @@ class _StateNotifier extends StateNotifier<OrderEntity> {
       // id: product.id,
       product: product,
       // unitPrice: 0,
-      price: product.price,
+      priceUnit: product.price,
     );
   }
 }

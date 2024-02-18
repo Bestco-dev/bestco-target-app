@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
 import '../../../common/utils/extensions/datetime.dart';
+import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_services/order_service_entity.dart';
@@ -155,7 +156,7 @@ class _OrdersListWidgetState extends ConsumerState<OrdersListWidget> {
         ref.watch(ordersServicesListViewModelProvider(widget.salepersonId));
 
     final stateRead = ref.read(
-        ordersProductsListViewModelProvider(widget.salepersonId).notifier);
+        ordersServicesListViewModelProvider(widget.salepersonId).notifier);
 
     return state.maybeWhen(
         orElse: () => const SizedBox.shrink(),
@@ -363,9 +364,10 @@ class _OrdersListWidgetState extends ConsumerState<OrdersListWidget> {
           appNavPush(context, page: const OrderDetailsPage());
         },
         contentPadding: EdgeInsets.zero,
-        title: const Text(
-          'طلب شراء منتجات',
-          style: TextStyle(
+        title:  Text(
+            "#${order.name}",
+          // 'طلب شراء منتجات',
+          style: const TextStyle(
             color: Color(0xFF555B6A),
             fontSize: 15,
             fontWeight: FontWeight.bold,
@@ -374,6 +376,15 @@ class _OrdersListWidgetState extends ConsumerState<OrdersListWidget> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Text(
+            //   order.name,
+            //   style: const TextStyle(
+            //     color: Color(0xFF555B6A),
+            //     fontSize: 15,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+
             Text(
               order.customer?.name ?? '',
               style: const TextStyle(
@@ -398,12 +409,12 @@ class _OrdersListWidgetState extends ConsumerState<OrdersListWidget> {
             ),
           ],
         ),
-        trailing: const Row(
+        trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CustomTag(info: "مؤكدة", color: Colors.blueAccent),
-            SizedBox(width: 5),
-            Icon(Icons.arrow_forward_ios, color: Colors.black),
+            CustomTag(info: order.state.label, color: order.state.color),
+            const SizedBox(width: 5),
+            const Icon(Icons.arrow_forward_ios, color: Colors.black),
           ],
         ),
       ),
@@ -420,41 +431,43 @@ class SystemsPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ...List.generate(
-          5,
-          (index) => Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            margin: const EdgeInsets.only(bottom: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              // border: Border.all(color: Colors.grey[300]!, width: 1)
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RoundedSkeleton(width: 46, height: 46),
-                ResHorizontalGap.gap05,
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RoundedSkeleton(width: 100, height: 20),
-                      ResVerticalGap.gap03,
-                      RoundedSkeleton(width: 200, height: 26),
-                    ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ...List.generate(
+            5,
+            (index) => Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                // border: Border.all(color: Colors.grey[300]!, width: 1)
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RoundedSkeleton(width: 46, height: 46),
+                  ResHorizontalGap.gap05,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RoundedSkeleton(width: 100, height: 20),
+                        ResVerticalGap.gap03,
+                        RoundedSkeleton(width: 200, height: 26),
+                      ],
+                    ),
                   ),
-                ),
-                RoundedSkeleton(width: 20, height: 20),
-              ],
+                  RoundedSkeleton(width: 20, height: 20),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

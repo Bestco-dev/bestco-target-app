@@ -49,5 +49,5 @@ class _StateNotifier extends StateNotifier<OrderLineEntity> {
   }
 
   updateUnitPrice(String price) =>
-      state = state.copyWith(price: double.tryParse(price.trim()) ?? 0);
+      state = state.copyWith(priceUnit: double.tryParse(price.trim()) ?? 0);
 }

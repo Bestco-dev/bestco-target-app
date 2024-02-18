@@ -50,6 +50,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
 
   static NetworkExceptions parse(error, {StackTrace? stack}) {
     log("Error:", error: error, name: "Network exceptions");
+    // log("Error:", error: stack, name: "Network exceptions");
     if (error is Exception) {
       try {
         NetworkExceptions networkExceptions;

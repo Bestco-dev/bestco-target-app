@@ -51,6 +51,7 @@ class _RemoteDataSourceImplementer implements OrdersServicesDataSource {
   Future<ResponseState<List<OrderServiceEntity>>> load(ReqParam param) async {
     try {
       final res = await _client.get("/products");
+      // final res = await _client.get(param.url);
       return ResponseState.success(
         // data: (res.data as List)
         //     .map((e) => OrderServiceEntity.fromJson(e))

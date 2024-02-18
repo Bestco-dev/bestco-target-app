@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,13 +29,18 @@ class _RemoteDataSourceImplementer implements OrdersProductsDataSource {
   @override
   Future<ResponseState<OrderEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.get("/products", data: param.data);
+      final res = await _client.post(
+        "/order",
+        data: param.data,
+        // data: json.encode(param.data),
+      );
       // final res = await _client.post("/create", data: param.data);
       return ResponseState.success(
-        data: getOrdersProducts(),
-        // data: OrderEntity.fromJson(param.data),
+        // data: getOrdersProducts(),
+        data: OrderEntity.fromJson(res.data),
       );
-    } catch (e, _) {
+    } catch (e, ee) {
+      print(ee);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );
@@ -43,12 +50,14 @@ class _RemoteDataSourceImplementer implements OrdersProductsDataSource {
   @override
   Future<ResponseState<List<OrderEntity>>> load(ReqParam param) async {
     try {
-      final res = await _client.get("/products");
+      final res = await _client.get(param.url);
       return ResponseState.success(
-        // data: (res.data as List).map((e) => OrderEntity.fromJson(e)).toList(),
-        data: getOrdersProductsList(length: 2),
+        data: (res.data as List).map((e) => OrderEntity.fromJson(e)).toList(),
+        // data: getOrdersProductsList(length: 2),
       );
-    } catch (e, _) {
+    } catch (e, err) {
+      print("home lan ....");
+      print(err);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );

@@ -8,6 +8,7 @@ import 'customers.dart';
 import 'date.dart';
 import 'images.dart';
 import 'orders_products.dart';
+import 'question_demo.dart';
 import 'services_main.dart';
 import 'services_sub.dart';
 
@@ -25,11 +26,11 @@ OrderServiceEntity getOrdersServices() {
     mainService: getMainServices(),
     subService: getSubService(),
     date: getDate(),
+    questions: getQuestionsList(length: 3),
+
     // name: name,
   );
 }
-
-
 
 List<OrderServiceEntity> getOrdersServiceList({int length = 50}) {
   final list = <OrderServiceEntity>[];

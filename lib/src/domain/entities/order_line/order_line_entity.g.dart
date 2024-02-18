@@ -11,8 +11,9 @@ _$OrderLineEntityImpl _$$OrderLineEntityImplFromJson(
     _$OrderLineEntityImpl(
       id: json['id'] as int? ?? 0,
       product: ProductEntity.fromJson(json['product'] as Map<String, dynamic>),
-      qtn: (json['qtn'] as num?)?.toDouble() ?? 1,
-      price: (json['price'] as num?)?.toDouble() ?? 0,
+      qtn: (json['qty'] as num?)?.toDouble() ?? 1,
+      priceUnit: (json['price_unit'] as num?)?.toDouble() ?? 0,
+      totalPrice: (json['total_price'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$OrderLineEntityImplToJson(
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$OrderLineEntityImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'product': instance.product.toJson(),
-      'qtn': instance.qtn,
-      'price': instance.price,
+      'qty': instance.qtn,
+      'price_unit': instance.priceUnit,
+      'total_price': instance.totalPrice,
     };
