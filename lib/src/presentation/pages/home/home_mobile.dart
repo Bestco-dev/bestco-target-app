@@ -7,12 +7,14 @@ import '../../../../generated/assets.dart';
 import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
+import '../../custom_widgets/common/app_nav.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/news_curser.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
 import '../customers/customers.dart';
+import '../news/news.dart';
 import '../orders/orders.dart';
 import '../products/products.dart';
 import '../profile/profile.dart';
@@ -38,7 +40,7 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userViewModelProvider);
-    return  CustomAppScaffold(
+    return CustomAppScaffold(
       isScroll: true,
       appBar: const Column(
         children: [
@@ -47,7 +49,7 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
       ),
       body: Column(
         children: [
-         const  _HomeIcons(),
+          const _HomeIcons(),
           const SizedBox(height: 40),
           _news(),
 
@@ -62,15 +64,15 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
 
   Widget _news() {
     return Container(
-
       decoration: BoxDecoration(
         // color: const Color(0xFFFFFFFF),
-        border: Border.all(color: Color(0xff555B6A),width: .4),
+        border: Border.all(color: const Color(0xff555B6A), width: .4),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: const ListTile(
-        title: Text("الاخبار و العروض"),
-        trailing: Icon(Icons.arrow_forward_ios_outlined),
+      child: ListTile(
+        onTap: () => appNavPush(context, page: const NewsPage()),
+        title: const Text("الاخبار و العروض"),
+        trailing: const Icon(Icons.arrow_forward_ios_outlined),
       ),
     );
   }

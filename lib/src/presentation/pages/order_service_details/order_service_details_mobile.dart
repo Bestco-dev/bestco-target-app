@@ -33,7 +33,6 @@ class _CheckMobilePageState
   late OrderServiceEntity order;
   @override
   Widget build(BuildContext context) {
-
     order = ref.watch(selectedServiceOrderViewModel)!;
     log(order.toJson().toString());
     return CustomAppScaffold(
@@ -85,7 +84,7 @@ class _CheckMobilePageState
         ...List.generate(order.questions.length, (index) {
           QuestionEntity question = order.questions[index];
           return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -104,7 +103,6 @@ class _CheckMobilePageState
   }
 
   Widget _answer(QuestionEntity question) {
-
     switch (question.type) {
       case QuestionType.multiple_choice:
         return Wrap(
@@ -121,7 +119,10 @@ class _CheckMobilePageState
       default:
         return Wrap(
           children: [
-            CustomTag(info: question.answer ?? 'غير مجاوب',color: Colors.blue,),
+            CustomTag(
+              info: question.answer ?? 'غير مجاوب',
+              color: question.type.color,
+            ),
           ],
         );
     }

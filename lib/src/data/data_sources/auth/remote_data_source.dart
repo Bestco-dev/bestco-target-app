@@ -140,4 +140,19 @@ class AuthRemoteDataSourceImplementer implements AuthDataSource {
       );
     }
   }
+
+  @override
+  Future<ResponseState<bool>> joinUs(ReqParam param) async {
+    try {
+      // final res = await _client.post("/update", data: param.data);
+      final res = await _client.get("");
+      return const ResponseState.success(
+        data: true,
+      );
+    } catch (e, _) {
+      return ResponseState.failure(
+        error: NetworkExceptions.parse(e),
+      );
+    }
+  }
 }

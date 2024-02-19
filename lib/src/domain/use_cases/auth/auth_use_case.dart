@@ -52,4 +52,9 @@ class AuthUseCase implements AuthRepo {
   Future<ResponseState<UserEntity>> update(ReqParam param) {
     return repo.update(param);
   }
+
+  @override
+  Future<ResponseState<bool>> joinUs(ReqParam param) {
+    return repo.joinUs(param);
+  }
 }

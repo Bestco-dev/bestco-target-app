@@ -40,6 +40,24 @@ enum CustomerType { person, company }
 
 enum SalePersonStatus { active, unActive }
 
+extension QuestionTypeEx on QuestionType {
+  Color get color {
+    switch (this) {
+      case QuestionType.multiple_choice:
+        return Colors.blue;
+
+      case QuestionType.simple_choice:
+        return Colors.blueGrey;
+
+      case QuestionType.date || QuestionType.dateTime:
+        return Colors.black;
+
+      default:
+        return Colors.teal;
+    }
+  }
+}
+
 extension OrderProductStateEx on OrderProductState {
   bool get isDraft => this == OrderProductState.draft;
   bool get isDone => this == OrderProductState.done;

@@ -1,5 +1,6 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/res/colors.dart';
@@ -7,17 +8,20 @@ import '../../../data/types/types_enums.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/spinner.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
+import '../../view_models/auth/join_us_view_model.dart';
 
-class JoinUsMobilePage extends StatefulWidget {
+class JoinUsMobilePage extends ConsumerStatefulWidget {
   const JoinUsMobilePage({Key? key}) : super(key: key);
 
   @override
-  State<JoinUsMobilePage> createState() => _JoinUsMobilePageState();
+  ConsumerState<JoinUsMobilePage> createState() => _JoinUsMobilePageState();
 }
 
-class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
+class _JoinUsMobilePageState extends ConsumerState<JoinUsMobilePage> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(joinUsProvider);
+    final stateRead = ref.read(joinUsProvider.notifier);
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -27,10 +31,12 @@ class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
             _title("البيانات الأساسية"),
             const SizedBox(height: 16),
             TextFormField(
+              onChanged: stateRead.updateName,
               decoration: const InputDecoration(
                 hintText: "اسم الكريم",
                 labelText: "اسم الكريم",
               ),
+
               validator: MultiValidator([
                 RequiredValidator(
                   errorText: 'الاسم مطلوب',
@@ -40,6 +46,8 @@ class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              onChanged: stateRead.updatePhone,
+              keyboardType: TextInputType.phone,
               decoration: const InputDecoration(
                 hintText: "رقم الجوال",
                 labelText: "رقم الجوال",
@@ -53,6 +61,7 @@ class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              onChanged: stateRead.updateCity,
               decoration: const InputDecoration(
                 hintText: "المدينة",
                 labelText: "المدينة",
@@ -68,13 +77,19 @@ class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
             const SizedBox(height: 16),
             TextFormField(
               keyboardType: TextInputType.number,
+              onChanged: stateRead.updateExperienceYears,
               decoration: const InputDecoration(
                 hintText: "عدد سنوات الخبرة",
                 labelText: "عدد سنوات الخبرة",
               ),
             ),
             const SizedBox(height: 30),
-            const AppBtn(text: "إرسال")
+            AppBtn(
+              text: "إرسال",
+              onPressed: () {
+                stateRead.create();
+              },
+            )
           ],
         ),
       ),
@@ -95,12 +110,14 @@ class _JoinUsMobilePageState extends State<JoinUsMobilePage> {
   }
 
   Widget _userType() {
-    // final state = ref.watch(customerCurdProvider(customer));
-    // final stateRead = ref.watch(customerCurdProvider(customer).notifier);
+    final state = ref.watch(joinUsProvider);
+    final stateRead = ref.read(joinUsProvider.notifier);
     return ChipsChoice<UserType>.single(
-      value: UserType.saleperson,
+      value: state.type,
       // value: state.type,
-      onChanged: (value) {},
+      onChanged: (value) {
+        stateRead.updateType(value);
+      },
       // onChanged: (val) => setState(() => tags = val),
       choiceItems: C2Choice.listFrom<UserType, UserType>(
         source: UserType.values,

@@ -11,13 +11,13 @@ import '../../demo/customers.dart';
 import 'data_source.dart';
 
 final customersRemoteDataSourceProvider =
-    Provider<AuthRemoteDataSourceImplementer>(
-  (ref) => AuthRemoteDataSourceImplementer(ref.read(dioClientProvider)),
+    Provider<_RemoteDataSourceImplementer>(
+  (ref) => _RemoteDataSourceImplementer(ref.read(dioClientProvider)),
 );
 
-class AuthRemoteDataSourceImplementer implements CustomersDataSource {
+class _RemoteDataSourceImplementer implements CustomersDataSource {
   final Dio _client;
-  AuthRemoteDataSourceImplementer(this._client);
+  _RemoteDataSourceImplementer(this._client);
 
   @override
   Future<ResponseState<CustomerEntity>> create(ReqParam param) async {

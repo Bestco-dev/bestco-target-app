@@ -56,4 +56,9 @@ class AuthRepositoryImpl extends AuthRepo {
   Future<ResponseState<UserEntity>> update(ReqParam param) {
     return datasource.update(param);
   }
+
+  @override
+  Future<ResponseState<bool>> joinUs(ReqParam param) {
+    return datasource.joinUs(param);
+  }
 }

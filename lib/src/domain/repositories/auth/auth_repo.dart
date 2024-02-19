@@ -10,5 +10,6 @@ abstract class AuthRepo {
   Future<ResponseState<UserEntity>> confirmVerificationCode(ReqParam param);
   Future<ResponseState<bool>> resetPassword(ReqParam param);
   Future<ResponseState<UserEntity>> update(ReqParam param);
+  Future<ResponseState<bool>> joinUs(ReqParam param);
   Future<ResponseState<String>> refreshToken();
 }
