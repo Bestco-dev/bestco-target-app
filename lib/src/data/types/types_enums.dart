@@ -21,7 +21,7 @@ enum OrderProductState {
   sent,
   sale,
   done,
-  cancelled,
+  cancel,
 }
 
 enum MainServiceType {
@@ -74,7 +74,7 @@ extension OrderProductStateEx on OrderProductState {
         return "امر بيع";
       case OrderProductState.done:
         return "مكتملة";
-      case OrderProductState.cancelled:
+      case OrderProductState.cancel:
         return "ملغية";
     }
   }
@@ -84,7 +84,7 @@ extension OrderProductStateEx on OrderProductState {
       case OrderProductState.draft:
         return Colors.blue;
 
-      case OrderProductState.cancelled:
+      case OrderProductState.cancel:
         return Colors.black;
 
       default:

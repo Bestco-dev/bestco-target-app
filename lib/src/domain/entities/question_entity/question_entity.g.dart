@@ -10,9 +10,9 @@ _$QuestionEntityImpl _$$QuestionEntityImplFromJson(Map<String, dynamic> json) =>
     _$QuestionEntityImpl(
       id: json['id'] as int,
       title: json['title'] as String,
-      values: json['values'],
+      values: json['value'],
       answer: json['answer'],
-      type: $enumDecode(_$QuestionTypeEnumMap, json['type']),
+      type: $enumDecode(_$QuestionTypeEnumMap, json['question_type']),
     );
 
 Map<String, dynamic> _$$QuestionEntityImplToJson(
@@ -20,9 +20,9 @@ Map<String, dynamic> _$$QuestionEntityImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'values': instance.values,
+      'value': instance.values,
       'answer': instance.answer,
-      'type': _$QuestionTypeEnumMap[instance.type]!,
+      'question_type': _$QuestionTypeEnumMap[instance.type]!,
     };
 
 const _$QuestionTypeEnumMap = {

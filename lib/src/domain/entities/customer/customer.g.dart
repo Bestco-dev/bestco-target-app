@@ -11,7 +11,8 @@ _$CustomerEntityImpl _$$CustomerEntityImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       rate: (json['rate'] as num?)?.toDouble() ?? 3,
-      type: $enumDecode(_$CustomerTypeEnumMap, json['company_type']),
+      type: $enumDecodeNullable(_$CustomerTypeEnumMap, json['company_type']) ??
+          CustomerType.company,
       phone: json['phone'] as String?,
       email: json['email'] as String?,
       website: json['website'] as String?,

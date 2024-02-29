@@ -99,7 +99,7 @@ List<ShellRoute> get routes => [
                     name: OrderServiceCurdPage.pageName,
                     builder: (context, state) {
                       return OrderServiceCurdPage(
-                          contract: state.extra as SubServiceEntity);
+                          subService: state.extra as SubServiceEntity);
                     },
                   ),
                   GoRoute(

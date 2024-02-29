@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../../generated/assets.dart';
@@ -49,9 +50,13 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
       ),
       body: Column(
         children: [
+
+          _loginLogout(),
+          const SizedBox(height: 20),
           const _HomeIcons(),
           const SizedBox(height: 40),
           _news(),
+          const SizedBox(height: 20),
 
           // SizedBox(height: 20),
           // CarouselImages(
@@ -61,6 +66,47 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
       ),
     );
   }
+  Widget _loginLogout(){
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.green,
+              border: Border.all(color: Colors.blue)),
+          child: const Center(
+            child: Icon(
+              Iconsax.logout,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          'تَسجيل الوصول',
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Color(0xFF252525),
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          '12:05:44',
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Color(0xFF0885D1),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
 
   Widget _news() {
     return Container(
@@ -83,213 +129,229 @@ class _HomeHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userViewModelProvider);
-    return Column(
+    return Stack(
       children: [
-        ListTile(
-          onTap: () {
-            context.goNamed(ProfilePage.pageName);
-          },
-          contentPadding: EdgeInsets.zero,
-          leading: Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white70,
-              border: Border.all(
-                width: 1,
-                color: const Color(0xffe8e8e8),
-              ),
-            ),
-            child: ClipOval(
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image: user?.imageUrl ?? '',
-              ),
-            ),
-          ),
-          title: Text(
-            Localization.of(context).hiName(''),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          subtitle: Text(
-            user?.name ?? '',
-            // Localization.of(context).welcome,
-            maxLines: 1,
-            softWrap: true,
-            style: context.textTheme.titleSmall?.copyWith(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          trailing: const Icon(
-            Icons.notifications,
-            color: Colors.white,
-            size: 32,
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: [
-            Column(
-              children: [
-                Container(
-                  width: context.width / 2,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff0885D1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'المستهدف الشهري',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Text(
-                        '200,000 ر.س',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'FF Shamel Family',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+            ListTile(
+              onTap: () {
+                context.goNamed(ProfilePage.pageName);
+              },
+              contentPadding: EdgeInsets.zero,
+              leading: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white70,
+                  border: Border.all(
+                    width: 1,
+                    color: const Color(0xffe8e8e8),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Container(
-                  width: context.width / 2,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff0885D1),
-                    borderRadius: BorderRadius.circular(10),
+                child: ClipOval(
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: user?.imageUrl ?? '',
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'العمولة',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                ),
+              ),
+              title: Text(
+                Localization.of(context).hiName(''),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              subtitle: Text(
+                user?.name ?? '',
+                // Localization.of(context).welcome,
+                maxLines: 1,
+                softWrap: true,
+                style: context.textTheme.titleSmall?.copyWith(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              trailing: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+                size: 32,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: context.width / 2,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xff0885D1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'المستهدف الشهري',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            '200,000 ر.س',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'FF Shamel Family',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      width: context.width / 2,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff0885D1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'العمولة',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  '200,000 ر.س',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'FF Shamel Family',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
                               ),
                             ),
-                            Text(
-                              '200,000 ر.س',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'FF Shamel Family',
-                                fontWeight: FontWeight.w400,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'سحب العمولة',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xFF0885D1),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Color(0xFF0885D1),
+                                ),
+                              ],
                             ),
-                          ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.,
+                  children: [
+                    CircularPercentIndicator(
+                      radius: 60.0,
+                      lineWidth: 15.0,
+                      percent: 0.8,
+                      center: const Text(
+                        '80%',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 23,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                      progressColor: const Color(0xff7ad3ff),
+                      backgroundColor: const Color(0xff1165b7),
+                      circularStrokeCap: CircularStrokeCap.round,
+                    ),
+                    const SizedBox(height: 10),
+                    const Column(
+                      children: [
+                        Text(
+                          'المستهدف المحقق',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'سحب العمولة',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Color(0xFF0885D1),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: Color(0xFF0885D1),
-                            ),
-                          ],
+                        Text(
+                          '150,000 ر.س',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.,
-              children: [
-                CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 15.0,
-                  percent: 0.8,
-                  center: const Text(
-                    '80%',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  progressColor: const Color(0xff7ad3ff),
-                  backgroundColor: const Color(0xff1165b7),
-                  circularStrokeCap: CircularStrokeCap.round,
-                ),
-                const SizedBox(height: 10),
-                const Column(
-                  children: [
-                    Text(
-                      'المستهدف المحقق',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      '150,000 ر.س',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      ],
                     ),
                   ],
                 ),
               ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
-        const SizedBox(height: 20),
+        //
+        // Positioned(
+        // bottom: -100,
+        //   child: Container(
+        //     width: 100,
+        //     height: 100,
+        //     decoration: const BoxDecoration(
+        //       shape: BoxShape.circle,
+        //       color: Colors.green,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

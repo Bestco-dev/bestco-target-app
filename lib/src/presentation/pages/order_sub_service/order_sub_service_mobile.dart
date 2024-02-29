@@ -17,6 +17,7 @@ import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/orders/service/main_services_list_view_model.dart';
 import '../../view_models/orders/service/order_service_curd_view_model.dart';
 import '../../view_models/orders/service/sub_services_list_view_model.dart';
+import '../order_service_curd/order_service_curd.dart';
 import '../order_service_curd/order_service_curd_mobile.dart';
 
 class OrderSubServiceMobilePage extends ConsumerStatefulWidget {
@@ -62,6 +63,7 @@ class _CheckMobilePageState extends ConsumerState<OrderSubServiceMobilePage> {
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             itemBuilder: (context, index) => _subService(data[index]),
+            itemCount: data.length,
           ),
         ),
       ),
@@ -72,8 +74,10 @@ class _CheckMobilePageState extends ConsumerState<OrderSubServiceMobilePage> {
     return GestureDetector(
       onTap: () {
         ref
-            .read(selectedSubServiceProvider.notifier)
+            .watch(selectedSubServiceProvider.notifier)
             .update((state) => service);
+
+        print("changed.... ${service.id}");
 
         ref
             .watch(subServiceQuestionsProvider.notifier)
@@ -83,7 +87,7 @@ class _CheckMobilePageState extends ConsumerState<OrderSubServiceMobilePage> {
           context,
           title: service.name,
           hasMarginBottom: false,
-          child: const OrderServiceCurdMobilePage(),
+          child: OrderServiceCurdPage(subService: service),
           height: context.height * .90,
         );
       },
@@ -94,7 +98,7 @@ class _CheckMobilePageState extends ConsumerState<OrderSubServiceMobilePage> {
           border: Border.all(color: const Color(0xff555B6A), width: .4),
           borderRadius: BorderRadius.circular(5),
         ),
-        child:  ListTile(
+        child: ListTile(
           title: Text(service.name),
           trailing: const Icon(Icons.circle_outlined, color: Colors.black26),
         ),

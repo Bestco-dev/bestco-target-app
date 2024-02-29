@@ -14,7 +14,8 @@ abstract class MainServiceEntity with _$MainServiceEntity {
   const factory MainServiceEntity({
     required int id,
     required String name,
-    required MainServiceType type,
+    @Default('serviceType') String serviceType,
+    @Default(MainServiceType.cleaning) MainServiceType type,
     @Default('') String imageUrl,
 
   }) = _MainServiceEntity;

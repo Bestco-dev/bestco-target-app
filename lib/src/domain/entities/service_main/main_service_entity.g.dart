@@ -11,7 +11,9 @@ _$MainServiceEntityImpl _$$MainServiceEntityImplFromJson(
     _$MainServiceEntityImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      type: $enumDecode(_$MainServiceTypeEnumMap, json['type']),
+      serviceType: json['service_type'] as String? ?? 'serviceType',
+      type: $enumDecodeNullable(_$MainServiceTypeEnumMap, json['type']) ??
+          MainServiceType.cleaning,
       imageUrl: json['image_url'] as String? ?? '',
     );
 
@@ -20,6 +22,7 @@ Map<String, dynamic> _$$MainServiceEntityImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'service_type': instance.serviceType,
       'type': _$MainServiceTypeEnumMap[instance.type]!,
       'image_url': instance.imageUrl,
     };

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,25 +48,40 @@ class _StateNotifier extends StateNotifier<OrderServiceEntity?> {
     this.ref,
   ) : super(null);
 
-  Future<bool> create() async {
+  Future<bool> create(int subServiceId) async {
     CustomerEntity? customer = ref.read(orderSelectedCustomerProvider);
-                                        // orderSelectedCustomerViewModel
+    // orderSelectedCustomerViewModel
     if (customer?.id == -1 || customer == null) {
       CustomSnakeBars.showErrorSnakeBar("الرجاء اضافة العميل");
       return false;
     }
 
+    final questionsList = ref.read(subServiceQuestionsProvider);
+
+    final answers = questionsList
+        .map((question) =>
+            json.encode(ref.read(questionProvider(question)).toCurdJson))
+        .toList();
+
     ProgressBar.show();
-    final result = await ref
-        .read(ordersServiceRemoteUseCaseProvider)
-        .create(ReqParam(url: "/create"));
+    final result = await ref.read(ordersServiceRemoteUseCaseProvider).create(
+          ReqParam(
+            // url: "/serviceanswer/13",
+            url: "/serviceanswer/$subServiceId",
+            data: {
+              "customer": customer.id,
+              "answers": answers.toString(),
+            },
+          ),
+        );
     ProgressBar.hide();
 
     return result.when(
       success: (data) {
-        ref
-            .read(ordersServicesListViewModelProvider(null).notifier)
-            .addToUi(data);
+        // ref
+        //     .read(ordersServicesListViewModelProvider(null).notifier)
+        //     .addToUi(data);
+        ref.read(ordersServicesListViewModelProvider(null).notifier).load();
 
         AppCustomDialogs.showInfoDialog(
           type: DialogType.success,

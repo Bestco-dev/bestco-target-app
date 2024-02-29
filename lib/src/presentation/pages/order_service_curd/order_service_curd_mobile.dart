@@ -61,15 +61,9 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
               onPressed: () async {
                 final check = await ref
                     .read(orderServiceViewModelProvider.notifier)
-                    .create();
+                    .create(widget.subSubService?.id ?? 0);
 
                 if (check && mounted) Navigator.pop(context);
-                // print("----------------------------");
-                // print()
-                // for (final question in questionsList) {
-                //   // print(question.answer);
-                //   print(ref.read(questionProvider(question)).answer);
-                // }
               },
             ),
           ],
@@ -105,6 +99,7 @@ class _CheckMobilePageState extends ConsumerState<OrderServiceCurdMobilePage> {
     switch (state.type) {
       case QuestionType.char_box:
         return TextFormField(
+          onChanged: stateRead.makeAnswer,
           decoration: InputDecoration(
             labelText: state.title,
           ),

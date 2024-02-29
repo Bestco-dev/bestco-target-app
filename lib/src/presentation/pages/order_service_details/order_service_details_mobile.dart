@@ -69,6 +69,7 @@ class _CheckMobilePageState
   }
 
   Widget _info() {
+    print(order.subService.questions);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -81,8 +82,8 @@ class _CheckMobilePageState
         ),
         const SizedBox(height: 5),
         const SizedBox(height: 5),
-        ...List.generate(order.questions.length, (index) {
-          QuestionEntity question = order.questions[index];
+        ...List.generate(order.subService.questions.length, (index) {
+          QuestionEntity question = order.subService.questions[index];
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             margin: const EdgeInsets.only(bottom: 10),
@@ -112,7 +113,7 @@ class _CheckMobilePageState
             ...List.generate(
                 (question.answer as List).length,
                 (index) =>
-                    CustomTag(info: (question.answer as List<String>)[index]))
+                    CustomTag(info: (question.answer)[index].toString()))
           ],
         );
 
@@ -120,7 +121,7 @@ class _CheckMobilePageState
         return Wrap(
           children: [
             CustomTag(
-              info: question.answer ?? 'غير مجاوب',
+              info: "${question.answer}" ?? 'غير مجاوب',
               color: question.type.color,
             ),
           ],

@@ -37,5 +37,5 @@ const _$OrderProductStateEnumMap = {
   OrderProductState.sent: 'sent',
   OrderProductState.sale: 'sale',
   OrderProductState.done: 'done',
-  OrderProductState.cancelled: 'cancelled',
+  OrderProductState.cancel: 'cancel',
 };

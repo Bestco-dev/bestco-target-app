@@ -73,9 +73,9 @@ class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
                   // color: const Color(0xffD8D8D8),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: const Color(0xffD8D8D8))),
-              child: _productWidget(data[index]),
+              child: _serviceWidget(data[index]),
             ),
-            itemCount: 4,
+            itemCount: data.length,
           ),
         ),
       ),
@@ -100,7 +100,7 @@ class _CheckMobilePageState extends ConsumerState<OrderMainServiceMobilePage> {
     );
   }
 
-  Widget _productWidget(MainServiceEntity service) {
+  Widget _serviceWidget(MainServiceEntity service) {
     // return Container();
     return InkWell(
       onTap: () {

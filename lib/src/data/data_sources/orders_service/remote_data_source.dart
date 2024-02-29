@@ -35,7 +35,7 @@ class _RemoteDataSourceImplementer implements OrdersServicesDataSource {
   @override
   Future<ResponseState<OrderServiceEntity>> create(ReqParam param) async {
     try {
-      final res = await _client.get("/products");
+      final res = await _client.post(param.url, data: param.data);
       return ResponseState.success(
         // data: OrderServiceEntity.fromJson(param.data),
         data: getOrdersServices(),
@@ -50,15 +50,17 @@ class _RemoteDataSourceImplementer implements OrdersServicesDataSource {
   @override
   Future<ResponseState<List<OrderServiceEntity>>> load(ReqParam param) async {
     try {
-      final res = await _client.get("/products");
+      final res = await _client.get("/request/details");
       // final res = await _client.get(param.url);
       return ResponseState.success(
-        // data: (res.data as List)
-        //     .map((e) => OrderServiceEntity.fromJson(e))
-        //     .toList(),
-        data: getOrdersServiceList(),
+        data: (res.data as List)
+            .map((e) => OrderServiceEntity.fromJson(e))
+            .toList(),
+        // data: getOrdersServiceList(),
       );
-    } catch (e, _) {
+    } catch (e, err) {
+      print("error happend..");
+      print(err);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );
@@ -93,14 +95,15 @@ class _RemoteDataSourceImplementer implements OrdersServicesDataSource {
   Future<ResponseState<List<MainServiceEntity>>> loadMainService(
       ReqParam param) async {
     try {
-      final res = await _client.get("/products");
+      final res = await _client.get("/services");
       return ResponseState.success(
-        // data: (res.data as List)
-        //     .map((e) => OrderServiceEntity.fromJson(e))
-        //     .toList(),
-        data: getMainServiceList(),
+        data: (res.data as List)
+            .map((e) => MainServiceEntity.fromJson(e))
+            .toList(),
+        // data: getMainServiceList(),
       );
-    } catch (e, _) {
+    } catch (e, er) {
+      print(er);
       return ResponseState.failure(
         error: NetworkExceptions.parse(e),
       );
@@ -129,12 +132,12 @@ class _RemoteDataSourceImplementer implements OrdersServicesDataSource {
   Future<ResponseState<List<SubServiceEntity>>> loadSubService(
       ReqParam param) async {
     try {
-      final res = await _client.get("/products");
+      final res = await _client.get(param.url);
       return ResponseState.success(
-        // data: (res.data as List)
-        //     .map((e) => OrderServiceEntity.fromJson(e))
-        //     .toList(),
-        data: getSubServiceList(),
+        data: (res.data as List)
+            .map((e) => SubServiceEntity.fromJson(e))
+            .toList(),
+        // data: getSubServiceList(),
       );
     } catch (e, _) {
       return ResponseState.failure(

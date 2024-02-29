@@ -13,13 +13,21 @@ abstract class QuestionEntity with _$QuestionEntity {
   const factory QuestionEntity({
     required int id,
     required String title,
-    dynamic values,
+    @JsonKey(name: "value") dynamic values,
     dynamic answer,
-    required QuestionType type,
+    @JsonKey(name: "question_type") required QuestionType type,
   }) = _QuestionEntity;
 
   factory QuestionEntity.fromJson(Map<String, dynamic> json) =>
       _$QuestionEntityFromJson(json);
 
-  List<String> get valuesStrings => (values as List<String>);
+  List<String> get valuesStrings =>
+      (values as List<dynamic>).map((e) => e.toString()).toList();
+  String get answerAsString => answer.toString();
+
+  Map<String, dynamic> get toCurdJson => {
+        "answer_type": type.name,
+        "question_id": id,
+        "answer": answer??'',
+      };
 }

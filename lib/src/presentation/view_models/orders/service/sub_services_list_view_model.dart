@@ -11,22 +11,24 @@ import '../../../../domain/entities/ui_state/ui_state.dart';
 import '../../../../domain/use_cases/customers_use_case.dart';
 import '../../../../domain/use_cases/orders_prodcuts_use_case.dart';
 import '../../../custom_widgets/common/custom_progress_bar.dart';
+import 'order_service_curd_view_model.dart';
 
-final subServicesListViewModelProvider = StateNotifierProvider<
-    ViewModel,
-    UiState<List<SubServiceEntity>>>((ref) => ViewModel( ref: ref));
+final subServicesListViewModelProvider =
+    StateNotifierProvider.autoDispose<ViewModel, UiState<List<SubServiceEntity>>>(
+        (ref) => ViewModel(ref: ref));
 
 class ViewModel extends StateNotifier<UiState<List<SubServiceEntity>>> {
   final Ref ref;
   // final int id;
-  ViewModel( {required this.ref}) : super(const UiState.initial()) {
+  ViewModel({required this.ref}) : super(const UiState.initial()) {
     load();
   }
   load() async {
     state = const UiState.loading();
     final result = await ref
         .read(ordersServicesRemoteDataSourceProvider)
-        .loadSubService(ReqParam());
+        .loadSubService(ReqParam(
+            url: "/subservices/${ref.read(selectedMainServiceProvider)?.id}"));
     result.when(success: (data) {
       if (data.isEmpty) {
         state = const UiState.empty();

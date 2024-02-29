@@ -22,8 +22,10 @@ QuestionEntity _$QuestionEntityFromJson(Map<String, dynamic> json) {
 mixin _$QuestionEntity {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "value")
   dynamic get values => throw _privateConstructorUsedError;
   dynamic get answer => throw _privateConstructorUsedError;
+  @JsonKey(name: "question_type")
   QuestionType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,9 +43,9 @@ abstract class $QuestionEntityCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
-      dynamic values,
+      @JsonKey(name: "value") dynamic values,
       dynamic answer,
-      QuestionType type});
+      @JsonKey(name: "question_type") QuestionType type});
 }
 
 /// @nodoc
@@ -101,9 +103,9 @@ abstract class _$$QuestionEntityImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
-      dynamic values,
+      @JsonKey(name: "value") dynamic values,
       dynamic answer,
-      QuestionType type});
+      @JsonKey(name: "question_type") QuestionType type});
 }
 
 /// @nodoc
@@ -156,9 +158,9 @@ class _$QuestionEntityImpl extends _QuestionEntity
   const _$QuestionEntityImpl(
       {required this.id,
       required this.title,
-      this.values,
+      @JsonKey(name: "value") this.values,
       this.answer,
-      required this.type})
+      @JsonKey(name: "question_type") required this.type})
       : super._();
 
   factory _$QuestionEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -169,10 +171,12 @@ class _$QuestionEntityImpl extends _QuestionEntity
   @override
   final String title;
   @override
+  @JsonKey(name: "value")
   final dynamic values;
   @override
   final dynamic answer;
   @override
+  @JsonKey(name: "question_type")
   final QuestionType type;
 
   @override
@@ -231,11 +235,12 @@ class _$QuestionEntityImpl extends _QuestionEntity
 
 abstract class _QuestionEntity extends QuestionEntity {
   const factory _QuestionEntity(
-      {required final int id,
-      required final String title,
-      final dynamic values,
-      final dynamic answer,
-      required final QuestionType type}) = _$QuestionEntityImpl;
+          {required final int id,
+          required final String title,
+          @JsonKey(name: "value") final dynamic values,
+          final dynamic answer,
+          @JsonKey(name: "question_type") required final QuestionType type}) =
+      _$QuestionEntityImpl;
   const _QuestionEntity._() : super._();
 
   factory _QuestionEntity.fromJson(Map<String, dynamic> json) =
@@ -246,10 +251,12 @@ abstract class _QuestionEntity extends QuestionEntity {
   @override
   String get title;
   @override
+  @JsonKey(name: "value")
   dynamic get values;
   @override
   dynamic get answer;
   @override
+  @JsonKey(name: "question_type")
   QuestionType get type;
   @override
   @JsonKey(ignore: true)

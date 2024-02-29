@@ -16,7 +16,7 @@ class CustomerEntity with _$CustomerEntity {
     required int id,
     required String name,
     @Default(3) @JsonKey(includeToJson: false) double rate,
-    @JsonKey(name: "company_type") required CustomerType type,
+    @JsonKey(name: "company_type") @Default(CustomerType.company) CustomerType type,
     String? phone,
     String? email,
     String? website,

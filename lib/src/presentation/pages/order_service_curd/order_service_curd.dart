@@ -8,8 +8,8 @@ import 'order_service_curd_tablet.dart';
 
 class OrderServiceCurdPage extends StatelessWidget
     implements IResponsiveUIState {
-  final SubServiceEntity? contract;
-  const OrderServiceCurdPage({Key? key, this.contract}) : super(key: key);
+  final SubServiceEntity? subService;
+  const OrderServiceCurdPage({Key? key, this.subService}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -22,12 +22,12 @@ class OrderServiceCurdPage extends StatelessWidget
   @override
   Widget buildMobileUI(BuildContext context, DeviceType deviceType) =>
       OrderServiceCurdMobilePage(
-        subSubService: contract,
+        subSubService: subService,
       );
 
   @override
   Widget buildTabletUI(BuildContext context, DeviceType deviceType) =>
-      OrderServiceCurdTabletPage(contract: contract);
+      OrderServiceCurdTabletPage(contract: subService);
 
   static String pageName = 'order_service_curd';
 }

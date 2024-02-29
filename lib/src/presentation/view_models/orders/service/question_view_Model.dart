@@ -20,6 +20,7 @@ class _KpiViewModel extends StateNotifier<QuestionEntity> {
 
 
   makeAnswer(dynamic value) {
+    print(value);
     value = value.toString().trim();
     switch (state.type) {
       case QuestionType.simple_choice:
