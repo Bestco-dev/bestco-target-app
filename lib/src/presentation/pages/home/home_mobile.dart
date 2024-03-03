@@ -8,12 +8,15 @@ import '../../../../generated/assets.dart';
 import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
+import '../../../common/utils/extensions/numbers.dart';
 import '../../custom_widgets/common/app_nav.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/news_curser.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
+import '../../view_models/targets/active_view_model.dart';
 import '../customers/customers.dart';
 import '../news/news.dart';
 import '../orders/orders.dart';
@@ -33,44 +36,55 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
   void initState() {
     super.initState();
     Future.microtask(() async {
-      // ref.read(visitsResentViewModelProvider.notifier).load();
+      ref.read(activeViewModelProvider.notifier).load();
       // ref.read(visitsWhatsComingViewModelProvider.notifier).load();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userViewModelProvider);
-    return CustomAppScaffold(
-      isScroll: true,
-      appBar: const Column(
-        children: [
-          _HomeHeader(),
-        ],
+    final stateRead = ref.read(activeViewModelProvider.notifier);
+    final state = ref.watch(activeViewModelProvider);
+    return state.maybeWhen(
+      error: (error) => ErrorPage(
+        paddingTop: .3,
+        message: error.message,
+        onReload: () => stateRead.load(),
       ),
-      body: Column(
-        children: [
+      orElse: () => RefreshIndicator(
+        onRefresh: () => stateRead.refresh(),
+        child: CustomAppScaffold(
+          isScroll: true,
+          appBar: const Column(
+            children: [
+              _HomeHeader(),
+            ],
+          ),
+          body: Column(
+            children: [
+              _loginLogout(),
+              const SizedBox(height: 20),
+              const _HomeIcons(),
+              const SizedBox(height: 40),
+              _news(),
+              const SizedBox(height: 20),
 
-          _loginLogout(),
-          const SizedBox(height: 20),
-          const _HomeIcons(),
-          const SizedBox(height: 40),
-          _news(),
-          const SizedBox(height: 20),
-
-          // SizedBox(height: 20),
-          // CarouselImages(
-          //   images: [],
-          // ),
-        ],
+              // SizedBox(height: 20),
+              // CarouselImages(
+              //   images: [],
+              // ),
+            ],
+          ),
+        ),
       ),
     );
   }
-  Widget _loginLogout(){
+
+  Widget _loginLogout() {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.green,
@@ -107,7 +121,6 @@ class _HomeMobilePageState extends ConsumerState<HomeMobilePage> {
     );
   }
 
-
   Widget _news() {
     return Container(
       decoration: BoxDecoration(
@@ -129,6 +142,7 @@ class _HomeHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userViewModelProvider);
+    final state = ref.watch(activeViewModelProvider);
     return Stack(
       children: [
         Column(
@@ -196,7 +210,7 @@ class _HomeHeader extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'المستهدف الشهري',
                             textAlign: TextAlign.right,
                             style: TextStyle(
@@ -205,14 +219,17 @@ class _HomeHeader extends ConsumerWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Text(
-                            '200,000 ر.س',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'FF Shamel Family',
-                              fontWeight: FontWeight.w400,
+                          state.maybeWhen(
+                            orElse: () => const RoundedSkeleton(
+                                width: double.infinity, height: 20, radius: 8),
+                            data: (data) => Text(
+                              "${data.target.toPriceFormat} ر.س",
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ],
@@ -234,7 +251,7 @@ class _HomeHeader extends ConsumerWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'العمولة',
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
@@ -243,29 +260,34 @@ class _HomeHeader extends ConsumerWidget {
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                Text(
-                                  '200,000 ر.س',
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontFamily: 'FF Shamel Family',
-                                    fontWeight: FontWeight.w400,
+                                state.maybeWhen(
+                                  orElse: () => const RoundedSkeleton(
+                                      width: double.infinity,
+                                      height: 20,
+                                      radius: 8),
+                                  data: (data) => Text(
+                                    "${data.commission.toPriceFormat} ر.س",
+                                    textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(10),
                                 bottomRight: Radius.circular(10),
                               ),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -289,69 +311,62 @@ class _HomeHeader extends ConsumerWidget {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.,
-                  children: [
-                    CircularPercentIndicator(
-                      radius: 60.0,
-                      lineWidth: 15.0,
-                      percent: 0.8,
-                      center: const Text(
-                        '80%',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 23,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      progressColor: const Color(0xff7ad3ff),
-                      backgroundColor: const Color(0xff1165b7),
-                      circularStrokeCap: CircularStrokeCap.round,
-                    ),
-                    const SizedBox(height: 10),
-                    const Column(
-                      children: [
-                        Text(
-                          'المستهدف المحقق',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Text(
-                          '150,000 ر.س',
+                state.maybeWhen(
+                  orElse: () => const RoundedSkeleton(
+                      width: 100, height: 120, radius: 100),
+                  // loading: ()=>  const RoundedSkeleton(width: double.infinity, height: 120, radius: 100),
+                  data: (data) => Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 60.0,
+                        lineWidth: 15.0,
+                        percent: 0.8,
+                        center:  Text(
+                          '${data.percentage}%',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 23,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                        progressColor: const Color(0xff7ad3ff),
+                        backgroundColor: const Color(0xff1165b7),
+                        circularStrokeCap: CircularStrokeCap.round,
+                      ),
+                      const SizedBox(height: 10),
+                       Column(
+                        children: [
+                         const Text(
+                            'المستهدف المحقق',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            "${data.achieved.toPriceFormat} ر.س",
+                            textAlign: TextAlign.center,
+                            style:const  TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
           ],
         ),
-        //
-        // Positioned(
-        // bottom: -100,
-        //   child: Container(
-        //     width: 100,
-        //     height: 100,
-        //     decoration: const BoxDecoration(
-        //       shape: BoxShape.circle,
-        //       color: Colors.green,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

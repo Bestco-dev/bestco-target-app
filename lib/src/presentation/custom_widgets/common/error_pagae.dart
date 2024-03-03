@@ -12,7 +12,9 @@ class ErrorPage extends StatelessWidget {
   final String? message;
   final Function()? onReload;
   final bool loading;
-  const ErrorPage({Key? key, this.message, this.onReload, this.loading = false})
+  final double size;
+  final double paddingTop;
+  const ErrorPage({Key? key, this.message, this.onReload,this.size=200, this.paddingTop=.1,this.loading = false})
       : super(key: key);
 
   @override
@@ -22,14 +24,14 @@ class ErrorPage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Center(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * .1),
+              SizedBox(height: MediaQuery.of(context).size.height * paddingTop),
               SvgPicture.asset(
                 Assets.svgErrorPage,
-                  width: 200*(context.isPhone?1:2),
-                  height:170*(context.isPhone?1:2)
+                  width: size*(context.isPhone?1:2),
+                  height:size*(context.isPhone?1:2)
               ),
               // Image.asset(Assets.gifNoData, width: 150, height: 150),
               const SizedBox(height: 40),
