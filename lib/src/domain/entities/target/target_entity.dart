@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../common/utils/extensions/datetime.dart';
 import '../../../common/utils/extensions/numbers.dart';
 
 part 'target_entity.freezed.dart';
@@ -21,7 +20,10 @@ abstract class TargetEntity with _$TargetEntity {
   factory TargetEntity.fromJson(Map<String, dynamic> json) =>
       _$TargetEntityFromJson(json);
 
-  String get getDate => (date ?? DateTime.now()).toTodayDisplay;
+  DateTime get getDate => (date ?? DateTime.now());
 
-  double get percentage=>((achieved/target)*100).toDouble().roundTo2Decimal;
+  bool get isActive => getDate.month == DateTime.now().month;
+
+  double get percentage =>
+      ((achieved / target) * 100).toDouble().roundTo2Decimal;
 }

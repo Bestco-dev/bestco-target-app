@@ -13,7 +13,6 @@ import '../../custom_widgets/common/app_nav.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
-import '../../custom_widgets/common/news_curser.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
 import '../../view_models/targets/active_view_model.dart';
@@ -23,6 +22,7 @@ import '../orders/orders.dart';
 import '../products/products.dart';
 import '../profile/profile.dart';
 import '../salepersons/salepersons.dart';
+import '../targets/targets.dart';
 
 class HomeMobilePage extends ConsumerStatefulWidget {
   const HomeMobilePage({Key? key}) : super(key: key);
@@ -323,7 +323,7 @@ class _HomeHeader extends ConsumerWidget {
                         radius: 60.0,
                         lineWidth: 15.0,
                         percent: 0.8,
-                        center:  Text(
+                        center: Text(
                           '${data.percentage}%',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
@@ -337,9 +337,9 @@ class _HomeHeader extends ConsumerWidget {
                         circularStrokeCap: CircularStrokeCap.round,
                       ),
                       const SizedBox(height: 10),
-                       Column(
+                      Column(
                         children: [
-                         const Text(
+                          const Text(
                             'المستهدف المحقق',
                             textAlign: TextAlign.right,
                             style: TextStyle(
@@ -351,7 +351,7 @@ class _HomeHeader extends ConsumerWidget {
                           Text(
                             "${data.achieved.toPriceFormat} ر.س",
                             textAlign: TextAlign.center,
-                            style:const  TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -433,7 +433,13 @@ class _HomeIcons extends ConsumerWidget {
           children: [
             _icon(title: "الفواتير", iconUrl: Assets.iconsInvoices),
             const SizedBox(width: _space),
-            _icon(title: "المستهدفات", iconUrl: Assets.iconsTargets),
+            _icon(
+              title: "المستهدفات",
+              iconUrl: Assets.iconsTargets,
+              onTap: () {
+                context.goNamed(TargetsPage.pageName);
+              },
+            ),
             const SizedBox(width: _space),
             _icon(title: "الزيارات", iconUrl: Assets.iconsVisits),
             const SizedBox(width: _space),

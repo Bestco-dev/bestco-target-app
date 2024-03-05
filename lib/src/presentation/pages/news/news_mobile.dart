@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common/res/gaps.dart';
-import '../../../common/utils/extensions/context.dart';
 import '../../../common/utils/extensions/datetime.dart';
 import '../../../data/demo/images.dart';
-import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/news/news_entity.dart';
-import '../../../domain/entities/salseperson/saleperson_entity.dart';
-import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/cicular_loading.dart';
-import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
-import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/error_pagae.dart';
-import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/news_view_model.dart';
-import '../../view_models/salepersons/details_view_model.dart';
-import '../../view_models/salepersons/list_view_model.dart';
-import '../customer_curd/customer_curd.dart';
-import '../saleperson_curd/saleperson_curd.dart';
-import '../slaeperson_details/saleperson_details.dart';
 
 class NewsMobilePage extends ConsumerStatefulWidget {
   const NewsMobilePage({Key? key}) : super(key: key);

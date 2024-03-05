@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../locales/localization/l10n.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_line/order_line_entity.dart';

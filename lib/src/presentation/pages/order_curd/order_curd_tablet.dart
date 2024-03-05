@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/order/order_entity.dart';
 
 class OrderCurdTabletPage extends StatefulWidget {

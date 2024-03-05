@@ -7,14 +7,12 @@ import '../../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/address_use_case.dart';
-import '../../../domain/use_cases/customers_use_case.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
 import '../../custom_widgets/common/snack_bars.dart';
 import '../salepersons/curd_view_model.dart';
 import '../salepersons/details_view_model.dart';
 import 'curd_view_model.dart';
 import 'details_view_model.dart';
-import 'list_view_model.dart';
 
 final addressDetailsProvider = StateProvider<UiState<AddressModel>>((ref) {
   return const UiState.initial();

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
@@ -17,7 +16,6 @@ import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/key_value_selection.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
-import '../../view_models/cities_view_model.dart';
 import '../../view_models/countries_view_model.dart';
 import '../../view_models/customers/adress_view_model.dart';
 import '../../view_models/customers/details_view_model.dart';

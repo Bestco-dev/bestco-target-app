@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
@@ -17,7 +16,6 @@ import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/customers/adress_view_model.dart';
-import '../../view_models/salepersons/adress_view_model.dart';
 import '../../view_models/salepersons/details_view_model.dart';
 import '../customer_details/customer_details_mobile.dart';
 import '../orders/orders_mobile.dart';

@@ -1,10 +1,7 @@
 import 'package:faker/faker.dart';
 
-import '../../domain/entities/product/product_entity.dart';
 import '../../domain/entities/target/target_entity.dart';
-import '../types/types_enums.dart';
 import 'date.dart';
-import 'images.dart';
 
 TargetEntity getTarget() {
   final target = faker.randomGenerator.integer(30000,min: 1000);
@@ -12,7 +9,7 @@ TargetEntity getTarget() {
   final achieved = faker.randomGenerator.integer(30000,min: 1000);
 
   return TargetEntity(
-    date: getDate(),
+    date: getDateBefore(),
     commission:commission.toDouble(),
     achieved: achieved.toDouble(),
     target: target.toDouble(),

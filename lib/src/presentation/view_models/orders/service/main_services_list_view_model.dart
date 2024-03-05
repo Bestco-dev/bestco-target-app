@@ -1,14 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../data/data_sources/orders_service/remote_data_source.dart';
-import '../../../../domain/entities/customer/customer.dart';
-import '../../../../domain/entities/order/order_entity.dart';
-import '../../../../domain/entities/order_services/order_service_entity.dart';
 import '../../../../domain/entities/req_param/req_param.dart';
 import '../../../../domain/entities/service_main/main_service_entity.dart';
 import '../../../../domain/entities/ui_state/ui_state.dart';
-import '../../../../domain/use_cases/customers_use_case.dart';
-import '../../../../domain/use_cases/orders_prodcuts_use_case.dart';
 import '../../../custom_widgets/common/custom_progress_bar.dart';
 
 

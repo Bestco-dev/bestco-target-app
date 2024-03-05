@@ -1,9 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../common/res/numbers.dart';
-import '../../data/repositories/address_repo_impl.dart';
 import '../../data/repositories/news_repo_impl.dart';
-import '../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../domain/entities/news/news_entity.dart';
 import '../../domain/entities/req_param/req_param.dart';
 import '../../domain/entities/ui_state/ui_state.dart';

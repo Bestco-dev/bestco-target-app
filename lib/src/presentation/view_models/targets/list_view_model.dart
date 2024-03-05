@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../data/repositories/targets_repo_impl.dart';
-import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/target/target_entity.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
-import '../../../domain/use_cases/customers_use_case.dart';
+import '../../../domain/use_cases/targets_use_case.dart';
 import '../../custom_widgets/common/custom_progress_bar.dart';
 
 final targetsListViewModelProvider =
@@ -18,7 +16,7 @@ class ViewModel extends StateNotifier<UiState<List<TargetEntity>>> {
   }
   load() async {
     state = const UiState.loading();
-    final result = await ref.read(targetsRemoteRepositoryProvider).load();
+    final result = await ref.read(targetsRemoteUseCaseProvider).load();
     result.when(success: (data) {
       if (data.isEmpty) {
         state = const UiState.empty();
@@ -32,7 +30,7 @@ class ViewModel extends StateNotifier<UiState<List<TargetEntity>>> {
 
   refresh() async {
     ProgressBar.show();
-    final result = await ref.read(targetsRemoteRepositoryProvider).load();
+    final result = await ref.read(targetsRemoteUseCaseProvider).load();
     ProgressBar.hide();
     result.when(success: (data) {
       if (data.isEmpty) {

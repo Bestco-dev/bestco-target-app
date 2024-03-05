@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../common/res/constants.dart';
-import '../../../../common/utils/extensions/globlas.dart';
-import '../../../../data/types/types.dart';
 import '../../../../data/types/types_enums.dart';
-import '../../../../domain/entities/key_value/key_value.dart';
 import '../../../../domain/entities/question_entity/question_entity.dart';
 
 final questionProvider =

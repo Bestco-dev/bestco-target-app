@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/entities/address/address.dart';
-import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/product/product_entity.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
 import '../../../domain/use_cases/customers_use_case.dart';

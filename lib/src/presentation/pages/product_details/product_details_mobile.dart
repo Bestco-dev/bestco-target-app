@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/product/product_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';

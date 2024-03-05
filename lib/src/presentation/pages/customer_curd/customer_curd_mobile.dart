@@ -5,7 +5,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/address/address.dart';
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/titled_text_field.dart';

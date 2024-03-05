@@ -1,12 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../data/repositories/targets_repo_impl.dart';
-import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/target/target_entity.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
-import '../../../domain/use_cases/customers_use_case.dart';
-import '../../custom_widgets/common/custom_progress_bar.dart';
+import '../../../domain/use_cases/targets_use_case.dart';
 
 final activeViewModelProvider =
     StateNotifierProvider<ViewModel, UiState<TargetEntity>>(
@@ -20,7 +17,7 @@ class ViewModel extends StateNotifier<UiState<TargetEntity>> {
   load() async {
     state = const UiState.loading();
     final result =
-        await ref.read(targetsRemoteRepositoryProvider).loadActive(ReqParam());
+        await ref.read(targetsRemoteUseCaseProvider).loadActive(ReqParam());
     result.when(success: (data) {
       state = UiState.data(data: data);
     }, failure: (error) {
@@ -31,7 +28,7 @@ class ViewModel extends StateNotifier<UiState<TargetEntity>> {
   refresh() async {
     state = const UiState.loading();
     final result =
-        await ref.read(targetsRemoteRepositoryProvider).loadActive(ReqParam());
+        await ref.read(targetsRemoteUseCaseProvider).loadActive(ReqParam());
     // ProgressBar.hide();
     result.when(success: (data) {
       state = UiState.data(data: data);

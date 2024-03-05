@@ -10,7 +10,6 @@ import '../../common/res/numbers.dart';
 import '../../common/utils/http_client/token_provider.dart';
 import '../../common/utils/storage/shared_pref_util.dart';
 import '../../domain/entities/app_state/app_state.dart';
-import '../../domain/entities/contract/contract_entity.dart';
 import '../../domain/entities/customer/customer.dart';
 import '../../domain/entities/order/order_entity.dart';
 import '../../domain/entities/product/product_entity.dart';
@@ -26,7 +25,6 @@ import '../pages/forget_password/forget_password.dart';
 import '../pages/index/index.dart';
 import '../pages/login/login.dart';
 import '../pages/order_curd/order_curd.dart';
-import '../pages/order_details/order_details.dart';
 import '../pages/order_service_curd/order_service_curd.dart';
 import '../pages/orders/orders.dart';
 import '../pages/product_details/product_details.dart';
@@ -36,6 +34,7 @@ import '../pages/saleperson_curd/saleperson_curd.dart';
 import '../pages/salepersons/salepersons.dart';
 import '../pages/slaeperson_details/saleperson_details.dart';
 import '../pages/splashscreen/splashscreen.dart';
+import '../pages/targets/targets.dart';
 import 'auth/user_view_model.dart';
 
 final routerNotifierProvider =
@@ -150,6 +149,19 @@ List<ShellRoute> get routes => [
                   ),
                 ],
               ),
+
+
+              GoRoute(
+                path: "targets",
+                name: TargetsPage.pageName,
+                builder: (context, state) {
+                  return const TargetsPage();
+                },
+              ),
+
+
+
+
               GoRoute(
                 path: "products",
                 name: ProductsPage.pageName,

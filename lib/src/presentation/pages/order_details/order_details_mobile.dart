@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
-import '../../../common/utils/extensions/context.dart';
 import '../../../common/utils/extensions/datetime.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_line/order_line_entity.dart';
-import '../../custom_widgets/common/buttons/app_btn.dart';
-import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
-import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/select_customer.dart';
-import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/orders/orders_products_list_view_model.dart';
-import '../customer_curd/customer_curd.dart';
 
 class OrderDetailsMobilePage extends ConsumerStatefulWidget {
   const OrderDetailsMobilePage({Key? key}) : super(key: key);

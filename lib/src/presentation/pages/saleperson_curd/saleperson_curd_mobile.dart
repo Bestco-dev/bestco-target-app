@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../domain/entities/address/address.dart';
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/titled_text_field.dart';

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
@@ -17,9 +16,7 @@ import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
-import '../../view_models/salepersons/details_view_model.dart';
 import '../../view_models/salepersons/list_view_model.dart';
-import '../customer_curd/customer_curd.dart';
 import '../saleperson_curd/saleperson_curd.dart';
 import '../slaeperson_details/saleperson_details.dart';
 

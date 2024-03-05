@@ -19,6 +19,9 @@ extension DateTimeExtension on DateTime {
   String get display =>
       DateFormat(ResConstants.displayDateTimeFormat, _langCode).format(this);
 
+  String get display3 =>
+      DateFormat(ResConstants.displayDateTimeFormat03, "en").format(this);
+
   String get displayDate =>
       DateFormat(ResConstants.displayDateFormat, _langCode).format(this);
   String get displayDateFullYear =>

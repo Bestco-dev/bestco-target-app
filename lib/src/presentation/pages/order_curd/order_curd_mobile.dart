@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../common/res/colors.dart';
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_line/order_line_entity.dart';
 import '../../../domain/entities/product/product_entity.dart';
@@ -13,7 +11,6 @@ import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
 import '../../custom_widgets/common/select_customer.dart';
-import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/orders/line_view_model.dart';
 import '../../view_models/orders/order_curd_view_model.dart';
 import '../../view_models/orders/selected_customer.dart';

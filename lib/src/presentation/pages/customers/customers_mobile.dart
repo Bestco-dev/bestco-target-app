@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/res/gaps.dart';
 import '../../../common/utils/extensions/context.dart';
-import '../../../data/demo/images.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/card.dart';
@@ -16,7 +15,6 @@ import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/customers/list_view_model.dart';
-import '../../view_models/orders/selected_customer.dart';
 import '../customer_curd/customer_curd.dart';
 import '../customer_details/customer_details.dart';
 

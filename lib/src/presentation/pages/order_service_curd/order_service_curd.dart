@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/service_sub/sub_service.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
 import 'order_service_curd_mobile.dart';

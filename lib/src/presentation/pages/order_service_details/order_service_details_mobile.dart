@@ -2,24 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
-import '../../../common/utils/extensions/context.dart';
 import '../../../common/utils/extensions/datetime.dart';
 import '../../../data/types/types_enums.dart';
 import '../../../domain/entities/order_services/order_service_entity.dart';
 import '../../../domain/entities/question_entity/question_entity.dart';
-import '../../custom_widgets/common/buttons/app_btn.dart';
-import '../../custom_widgets/common/custom_ modal_sheet.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
-import '../../custom_widgets/common/custom_info_item.dart';
 import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/select_customer.dart';
-import '../../custom_widgets/common/titled_text_field.dart';
-import '../../view_models/orders/service/main_services_list_view_model.dart';
 import '../../view_models/orders/service/orders_service_list_view_model.dart';
-import '../customer_curd/customer_curd.dart';
 
 class OrderServiceDetailsMobilePage extends ConsumerStatefulWidget {
   const OrderServiceDetailsMobilePage({Key? key}) : super(key: key);

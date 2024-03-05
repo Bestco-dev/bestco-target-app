@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/contract/contract_entity.dart';
 import '../../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
 import 'saleperson_curd_mobile.dart';

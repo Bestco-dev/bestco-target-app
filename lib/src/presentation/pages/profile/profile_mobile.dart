@@ -9,7 +9,6 @@ import '../../../../generated/assets.dart';
 import '../../../../locales/localization/l10n.dart';
 import '../../../common/res/colors.dart';
 import '../../../common/res/gaps.dart';
-import '../../../data/demo/images.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
 import '../../custom_widgets/common/custom_curve_edgets.dart';
 import '../../custom_widgets/common/custom_dialogs_bar.dart';

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/res/numbers.dart';
-import '../../../common/utils/http_client/token_provider.dart';
 import '../../../common/utils/storage/shared_pref.dart';
 import '../../../common/utils/storage/shared_pref_util.dart';
 import '../../../domain/entities/req_param/req_param.dart';
