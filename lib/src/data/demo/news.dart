@@ -1,8 +1,6 @@
 import 'package:faker/faker.dart';
 
 import '../../domain/entities/news/news_entity.dart';
-import '../../domain/entities/product/product_entity.dart';
-import '../types/types_enums.dart';
 import 'date.dart';
 import 'images.dart';
 

@@ -3,24 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/utils/exception/network_exceptions/network_exceptions.dart';
 import '../../../common/utils/http_client/http_clinet.dart';
-import '../../../domain/entities/address/address.dart';
-import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/key_valu_option/key_value_option.dart';
-import '../../../domain/entities/order/order_entity.dart';
 import '../../../domain/entities/order_services/order_service_entity.dart';
-import '../../../domain/entities/product/product_entity.dart';
 import '../../../domain/entities/question_entity/question_entity.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
 import '../../../domain/entities/service_main/main_service_entity.dart';
 import '../../../domain/entities/service_sub/sub_service.dart';
-import '../../../presentation/custom_widgets/common/key_value_selection.dart';
 import '../../demo/customers.dart';
 import '../../demo/orders_service.dart';
-import '../../demo/products.dart';
 import '../../demo/question_demo.dart';
-import '../../demo/services_main.dart';
-import '../../demo/services_sub.dart';
 import 'data_source.dart';
 
 final ordersServicesRemoteDataSourceProvider =

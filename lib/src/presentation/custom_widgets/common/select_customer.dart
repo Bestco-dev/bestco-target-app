@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common/res/colors.dart';
-import '../../../common/utils/extensions/context.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../pages/customers/customers.dart';
 import 'app_nav.dart';
-import 'custom_ modal_sheet.dart';
 import 'custom_round_image.dart';
 
 class SelectingCustomerWidget extends StatefulWidget {

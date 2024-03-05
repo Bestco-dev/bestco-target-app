@@ -1,16 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/address/address.dart';
-import '../../domain/entities/customer/customer.dart';
 import '../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../domain/entities/req_param/req_param.dart';
 import '../../domain/entities/response/response.dart';
 import '../../domain/repositories/address_repo.dart';
-import '../../domain/repositories/customers_repo.dart';
 import '../data_sources/address/data_source.dart';
 import '../data_sources/address/remote_data_source.dart';
-import '../data_sources/customers/data_source.dart';
-import '../data_sources/customers/remote_data_source.dart';
 
 final addressRemoteRepositoryProvider = Provider<CustomersRepositoryImpl>(
   (ref) => CustomersRepositoryImpl(

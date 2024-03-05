@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/entities/response/response.dart';
-import '../exception/network_exceptions/network_exceptions.dart';
 import 'intercepter.dart';
 
 final dioClientProvider = Provider<Dio>(

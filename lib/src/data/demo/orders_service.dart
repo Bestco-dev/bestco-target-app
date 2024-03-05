@@ -1,13 +1,9 @@
 import 'package:faker/faker.dart';
 
 import '../../domain/entities/order_services/order_service_entity.dart';
-import '../../domain/entities/product/product_entity.dart';
-import '../../domain/entities/service_main/main_service_entity.dart';
 import '../types/types_enums.dart';
 import 'customers.dart';
 import 'date.dart';
-import 'images.dart';
-import 'orders_products.dart';
 import 'question_demo.dart';
 import 'services_main.dart';
 import 'services_sub.dart';

@@ -1,10 +1,7 @@
 import 'package:faker/faker.dart';
 
-import '../../domain/entities/product/product_entity.dart';
 import '../../domain/entities/question_entity/question_entity.dart';
-import '../../domain/entities/service_main/main_service_entity.dart';
 import '../types/types_enums.dart';
-import 'images.dart';
 
 QuestionEntity getQuestion({bool isAnswer = false}) {
   final id = faker.randomGenerator.integer(5000);

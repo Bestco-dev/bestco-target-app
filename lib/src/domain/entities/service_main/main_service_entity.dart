@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../data/types/types_enums.dart';
-import '../question_entity/question_entity.dart';
 
 part 'main_service_entity.freezed.dart';
 part 'main_service_entity.g.dart';

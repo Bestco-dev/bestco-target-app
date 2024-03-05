@@ -1,13 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/entities/product/product_entity.dart';
 import '../../domain/entities/req_param/req_param.dart';
 import '../../domain/entities/response/response.dart';
 import '../../domain/entities/target/target_entity.dart';
-import '../../domain/repositories/products_repo.dart';
 import '../../domain/repositories/target_repo.dart';
-import '../data_sources/prodcuts/data_source.dart';
-import '../data_sources/prodcuts/remote_data_source.dart';
 import '../data_sources/tragets/data_source.dart';
 import '../data_sources/tragets/remote_data_source.dart';
 

@@ -7,7 +7,6 @@ import '../../../domain/entities/address/address.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
-import '../../demo/customers.dart';
 import 'data_source.dart';
 
 final customersRemoteDataSourceProvider =

@@ -1,10 +1,7 @@
 import 'package:faker/faker.dart';
 
-import '../../domain/entities/product/product_entity.dart';
-import '../../domain/entities/service_main/main_service_entity.dart';
 import '../../domain/entities/service_sub/sub_service.dart';
 import '../types/types_enums.dart';
-import 'images.dart';
 import 'question_demo.dart';
 
 SubServiceEntity getSubService() {

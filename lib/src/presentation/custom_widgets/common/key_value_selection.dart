@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../locales/localization/l10n.dart';
 import '../../../common/utils/extensions/context.dart';
-
 import '../../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
 import 'buttons/app_btn.dart';

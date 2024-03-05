@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:intl/intl.dart';
 
 var formatter = NumberFormat("##,##0.00", "en_US");

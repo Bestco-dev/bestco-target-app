@@ -3,14 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/utils/exception/network_exceptions/network_exceptions.dart';
 import '../../../common/utils/http_client/http_clinet.dart';
-import '../../../domain/entities/address/address.dart';
-import '../../../domain/entities/customer/customer.dart';
-import '../../../domain/entities/key_valu_option/key_value_option.dart';
 import '../../../domain/entities/product/product_entity.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
-import '../../demo/customers.dart';
-import '../../demo/products.dart';
 import 'data_source.dart';
 
 final productsRemoteDataSourceProvider = Provider<_RemoteDataSourceImplementer>(

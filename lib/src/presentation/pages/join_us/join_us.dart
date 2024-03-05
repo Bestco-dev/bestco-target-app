@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../../../common/res/gaps.dart';
-import '../../custom_widgets/common/logo.dart';
 import '../../custom_widgets/common/responsive/responsive.dart';
-import '../../custom_widgets/common/spinner.dart';
-import '../customers/customers_mobile.dart';
-import '../customers/customers_tablet.dart';
 import 'join_us_mobile.dart';
 import 'join_us_tablet.dart';
 

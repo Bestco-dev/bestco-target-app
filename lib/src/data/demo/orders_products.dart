@@ -2,13 +2,9 @@ import 'package:faker/faker.dart';
 
 import '../../domain/entities/order/order_entity.dart';
 import '../../domain/entities/order_line/order_line_entity.dart';
-import '../../domain/entities/product/product_entity.dart';
-import '../../domain/entities/service_main/main_service_entity.dart';
-import '../../domain/entities/service_sub/sub_service.dart';
 import '../types/types_enums.dart';
 import 'customers.dart';
 import 'date.dart';
-import 'images.dart';
 import 'products.dart';
 
 OrderEntity getOrdersProducts() {

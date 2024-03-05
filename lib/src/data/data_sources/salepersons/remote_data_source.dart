@@ -6,7 +6,6 @@ import '../../../common/utils/http_client/http_clinet.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/response/response.dart';
 import '../../../domain/entities/salseperson/saleperson_entity.dart';
-import '../../demo/salepersons.dart';
 import 'data_source.dart';
 
 final salePersonsRemoteDataSourceProvider =

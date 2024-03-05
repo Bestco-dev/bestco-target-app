@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../../../common/res/colors.dart';
 import '../../../data/types/types_enums.dart';
 import '../../custom_widgets/common/buttons/app_btn.dart';
-import '../../custom_widgets/common/spinner.dart';
 import '../../custom_widgets/common/titled_text_field.dart';
 import '../../view_models/auth/join_us_view_model.dart';
 
