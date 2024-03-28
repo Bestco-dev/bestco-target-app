@@ -5,13 +5,15 @@ import '../../../domain/entities/invoice_entity/invoice_entity.dart';
 import '../../../domain/entities/customer/customer.dart';
 import '../../../domain/entities/req_param/req_param.dart';
 import '../../../domain/entities/ui_state/ui_state.dart';
+import '../../../domain/entities/visits/visits_entity.dart';
 import '../../../domain/use_cases/invoices_use_case.dart';
+import '../../../domain/use_cases/visits_use_case.dart';
 
-final activeViewModelProvider =
-    StateNotifierProvider<ViewModel, UiState<InvoiceEntity>>(
+final loadOneViewModelProvider =
+    StateNotifierProvider<ViewModel, UiState<VisitEntity>>(
         (ref) => ViewModel(ref: ref));
 
-class ViewModel extends StateNotifier<UiState<InvoiceEntity>> {
+class ViewModel extends StateNotifier<UiState<VisitEntity>> {
   final Ref ref;
   ViewModel({required this.ref}) : super(const UiState.initial()) {
     load();
@@ -19,9 +21,9 @@ class ViewModel extends StateNotifier<UiState<InvoiceEntity>> {
   load() async {
     state = const UiState.loading();
     final result =
-        await ref.read(invoicesRemoteUseCaseProvider).loadOne(ReqParam());
+        await ref.read(visitsRemoteUseCaseProvider).loadOne(ReqParam());
     result.when(success: (data) {
-      CustomerEntity customer=getCustomer();
+      CustomerEntity customer = getCustomer();
       // print(customer.)
       // print(d)
       state = UiState.data(data: data);
@@ -33,7 +35,7 @@ class ViewModel extends StateNotifier<UiState<InvoiceEntity>> {
   refresh() async {
     state = const UiState.loading();
     final result =
-        await ref.read(invoicesRemoteUseCaseProvider).loadOne(ReqParam());
+        await ref.read(visitsRemoteUseCaseProvider).loadOne(ReqParam());
     // ProgressBar.hide();
     result.when(success: (data) {
       state = UiState.data(data: data);

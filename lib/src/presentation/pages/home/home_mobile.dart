@@ -16,13 +16,16 @@ import '../../custom_widgets/common/images/transparent_image.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/auth/user_view_model.dart';
 import '../../view_models/targets/active_view_model.dart';
+import '../calls/calls.dart';
 import '../customers/customers.dart';
+import '../invoices/invoices.dart';
 import '../news/news.dart';
 import '../orders/orders.dart';
 import '../products/products.dart';
 import '../profile/profile.dart';
 import '../salepersons/salepersons.dart';
 import '../targets/targets.dart';
+import '../visits/visits.dart';
 
 class HomeMobilePage extends ConsumerStatefulWidget {
   const HomeMobilePage({Key? key}) : super(key: key);
@@ -431,7 +434,13 @@ class _HomeIcons extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _icon(title: "الفواتير", iconUrl: Assets.iconsInvoices),
+            _icon(
+              title: "الفواتير",
+              iconUrl: Assets.iconsInvoices,
+              onTap: () {
+                context.goNamed(InvoicesPage.pageName);
+              },
+            ),
             const SizedBox(width: _space),
             _icon(
               title: "المستهدفات",
@@ -441,9 +450,21 @@ class _HomeIcons extends ConsumerWidget {
               },
             ),
             const SizedBox(width: _space),
-            _icon(title: "الزيارات", iconUrl: Assets.iconsVisits),
+            _icon(
+              title: "الاتصالات",
+              iconUrl: Assets.iconsVisits,
+              onTap: () {
+                context.goNamed(CallsPage.pageName);
+              },
+            ),
             const SizedBox(width: _space),
-            _icon(title: "خطة الزيارات", iconUrl: Assets.iconsVisitsPlans),
+            _icon(
+              title: "خطة الزيارات",
+              iconUrl: Assets.iconsVisitsPlans,
+              onTap: () {
+                context.goNamed(VisitsPage.pageName);
+              },
+            ),
           ],
         ),
       ],

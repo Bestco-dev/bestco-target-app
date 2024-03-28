@@ -1,4 +1,4 @@
-import '../entities/Invoice/Invoice_entity.dart';
+import '../entities/invoice_entity/invoice_entity.dart';
 import '../entities/req_param/req_param.dart';
 import '../entities/response/response.dart';
 

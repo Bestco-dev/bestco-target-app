@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/res/gaps.dart';
-import '../../../domain/entities/Invoice/Invoice_entity.dart';
+
+import '../../../common/utils/extensions/datetime.dart';
+import '../../../common/utils/extensions/numbers.dart';
+import '../../../domain/entities/invoice_entity/invoice_entity.dart';
 import '../../custom_widgets/common/card.dart';
 import '../../custom_widgets/common/cicular_loading.dart';
 import '../../custom_widgets/common/custom_app_bar.dart';
 import '../../custom_widgets/common/custom_app_scaffold.dart';
+import '../../custom_widgets/common/custom_tag.dart';
 import '../../custom_widgets/common/error_pagae.dart';
 import '../../custom_widgets/common/shimmer_tile.dart';
 import '../../view_models/invoices/list_view_model.dart';
@@ -56,14 +60,24 @@ class _CheckMobilePageState extends ConsumerState<InvoicesMobilePage> {
   }
 
   Widget _invoiceWidget(InvoiceEntity invoice) {
-
     return CustomCard(
       radius: 10,
       vp: 8,
       vm: 10,
       child: ListTile(
         contentPadding: EdgeInsets.zero,
-       // title: Text(invoice.),
+        title: Text(
+          "#${invoice.name}",
+        ),
+        trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(invoice.date.display3),
+            CustomTag(info: "${invoice.amount.toPriceFormat} ر.س ")
+          ],
+        ),
+        // subtitle: Custom,
       ),
     );
   }

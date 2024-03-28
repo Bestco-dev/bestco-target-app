@@ -6,13 +6,12 @@ part 'invoice_entity.g.dart';
 
 @freezed
 abstract class InvoiceEntity with _$InvoiceEntity {
-  const InvoiceEntity._();
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory InvoiceEntity({
-    required int id,
-    required String name,
-    required DateTime date,
-    required double amount,
+  required int id,
+  required String name,
+  required DateTime date,
+  required double amount,
   }) = _InvoiceEntity;
 
 

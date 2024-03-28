@@ -130,13 +130,14 @@ class __$$InvoiceEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$InvoiceEntityImpl extends _InvoiceEntity with DiagnosticableTreeMixin {
+class _$InvoiceEntityImpl
+    with DiagnosticableTreeMixin
+    implements _InvoiceEntity {
   const _$InvoiceEntityImpl(
       {required this.id,
       required this.name,
       required this.date,
-      required this.amount})
-      : super._();
+      required this.amount});
 
   factory _$InvoiceEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$InvoiceEntityImplFromJson(json);
@@ -195,13 +196,12 @@ class _$InvoiceEntityImpl extends _InvoiceEntity with DiagnosticableTreeMixin {
   }
 }
 
-abstract class _InvoiceEntity extends InvoiceEntity {
+abstract class _InvoiceEntity implements InvoiceEntity {
   const factory _InvoiceEntity(
       {required final int id,
       required final String name,
       required final DateTime date,
       required final double amount}) = _$InvoiceEntityImpl;
-  const _InvoiceEntity._() : super._();
 
   factory _InvoiceEntity.fromJson(Map<String, dynamic> json) =
       _$InvoiceEntityImpl.fromJson;

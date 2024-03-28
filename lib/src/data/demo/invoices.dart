@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-import '../../domain/entities/Invoice/Invoice_entity.dart';
+import '../../domain/entities/invoice_entity/invoice_entity.dart';
 import 'date.dart';
 
 

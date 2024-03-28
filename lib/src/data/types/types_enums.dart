@@ -35,6 +35,8 @@ enum MainServiceType {
 enum ProductType { service, consu } //consu,service
 
 enum CustomerType { person, company }
+enum VisitType { visit, call }
+enum TimeType { am, pm }
 
 enum SalePersonStatus { active, unActive }
 

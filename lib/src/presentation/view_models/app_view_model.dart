@@ -17,12 +17,14 @@ import '../../domain/entities/salseperson/saleperson_entity.dart';
 import '../../domain/entities/service_sub/sub_service.dart';
 import '../../domain/entities/user/user.dart';
 import '../pages/about_app/about_app.dart';
+import '../pages/calls/calls.dart';
 import '../pages/change_password/change_password.dart';
 import '../pages/customer_curd/customer_curd.dart';
 import '../pages/customer_details/customer_details.dart';
 import '../pages/customers/customers.dart';
 import '../pages/forget_password/forget_password.dart';
 import '../pages/index/index.dart';
+import '../pages/invoices/invoices.dart';
 import '../pages/login/login.dart';
 import '../pages/order_curd/order_curd.dart';
 import '../pages/order_service_curd/order_service_curd.dart';
@@ -35,6 +37,7 @@ import '../pages/salepersons/salepersons.dart';
 import '../pages/slaeperson_details/saleperson_details.dart';
 import '../pages/splashscreen/splashscreen.dart';
 import '../pages/targets/targets.dart';
+import '../pages/visits/visits.dart';
 import 'auth/user_view_model.dart';
 
 final routerNotifierProvider =
@@ -149,8 +152,6 @@ List<ShellRoute> get routes => [
                   ),
                 ],
               ),
-
-
               GoRoute(
                 path: "targets",
                 name: TargetsPage.pageName,
@@ -158,10 +159,27 @@ List<ShellRoute> get routes => [
                   return const TargetsPage();
                 },
               ),
-
-
-
-
+              GoRoute(
+                path: "invoices",
+                name: InvoicesPage.pageName,
+                builder: (context, state) {
+                  return const InvoicesPage();
+                },
+              ),
+              GoRoute(
+                path: "visits",
+                name: VisitsPage.pageName,
+                builder: (context, state) {
+                  return const VisitsPage();
+                },
+              ),
+              GoRoute(
+                path: "calls",
+                name: CallsPage.pageName,
+                builder: (context, state) {
+                  return const CallsPage();
+                },
+              ),
               GoRoute(
                 path: "products",
                 name: ProductsPage.pageName,

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/entities/Invoice/Invoice_entity.dart';
+import '../../domain/entities/invoice_entity/invoice_entity.dart';
 import '../../domain/entities/req_param/req_param.dart';
 import '../../domain/entities/response/response.dart';
 import '../../domain/repositories/invoice_repo.dart';

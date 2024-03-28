@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../data/types/types.dart';
+import '../../../data/types/types_enums.dart';
 
 part 'time_model.freezed.dart';
 part 'time_model.g.dart';
